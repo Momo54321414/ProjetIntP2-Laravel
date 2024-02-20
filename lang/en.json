@@ -1,0 +1,32 @@
+{
+    "Dashboard_Banner_Head": "Empowering Health, One Pill at a Time!",
+    "Dashboard_Banner_Body": "Revolutionizing healthcare with intelligent pillboxes powered by IoT technology.",
+    "Dashboard_Banner_Button": "Discover our solutions",
+
+    "Dashboard_Config_Head": "Configure Your Pillbox",
+    "Dashboard_Config_Body": "Customize your pillbox's settings to meet the specific needs of your patients and healthcare providers.",
+    "Dashboard_Config_Button": "Configure Now",
+
+    "Dashboard_Explore_Head": "Explore our Documentation",
+    "Dashboard_Explore_Body": "Find detailed guides, tutorials, and API documentation to help you integrate our IoT pillbox solutions seamlessly into your healthcare system.",
+    "Dashboard_Explore_Button": "Read more",
+
+    "Download_Above_Bts": "Download our app",
+
+    "Doc_TopLeft": "Help Article",
+    "Doc_SearchBar": "Search Articles",
+    "Doc_Category_Menu": "Help Article",
+    "Doc_Back_Link": "Back Link",
+
+    "Doc_Home_Head": "Home",
+    "Doc_Home_Body": "Welcome to the Pillbox documentation. Here you will find everything you need to know about our IoT pillbox solutions.",
+
+    "Doc_HowTo_Head": "Configuration",
+    "Doc_HowTo_Body": "Learn how to set up and configure your pillbox, and how to use its features to manage your medication.",
+    
+    "Doc_Messages_Head": "Home",
+    "Doc_Messages_Body": "Welcome to the Pillbox documentation. Here you will find everything you need to know about our IoT pillbox solutions.",
+
+    "Doc_An_Head": "How To",
+    "Doc_HowTo_Body": "Learn how to set up and configure your pillbox, and how to use its features to manage your medication."
+}

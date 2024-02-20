@@ -1,0 +1,30 @@
+{
+    "Dashboard_Banner_Head": "Renforcez votre santé, une pilule à la fois !",
+    "Dashboard_Banner_Body": "Nous révolutionnons les soins de santé avec des piluliers intelligents alimentés par la technologie IoT.",
+    "Dashboard_Banner_Button": "Découvrez nos solutions",
+
+    "Dashboard_Config_Head": "Configurez votre pilulier",
+    "Dashboard_Config_Body": "Personnalisez les paramètres de votre pilulier pour répondre aux besoins spécifiques de vos patients et prestataires de soins de santé.",
+    "Dashboard_Config_Button": "Configurer maintenant",
+
+    "Dashboard_Explore_Head": "Explorez notre documentation",
+    "Dashboard_Explore_Body": "Trouvez des guides détaillés, des didacticiels et de la documentation API pour vous aider à intégrer nos solutions de pilulier IoT de manière transparente dans votre système de santé.",
+    "Dashboard_Explore_Button": "Read more",
+
+    "Download_Above_Bts": "Téléchargez notre application",
+
+    "Doc_TopLeft": "Article d'aide",
+    "Doc_Category_Menu": "Help Article",
+    "Doc_Back_Link": "Back Link",
+    "Doc_Item_1": "Home",
+    "Doc_Item_2": "Tasks",
+    "Doc_Item_3": "Messages",
+    "Doc_Item_4": "Analytics",
+    "Doc_Item_5": "Payments",
+
+    "Doc_Home_Head": "Accueil",
+    "Doc_Home_Body": "Bienvenue sur notre portail de documentation. Vous trouverez ici des guides détaillés, des didacticiels et de la documentation API pour vous aider à intégrer nos solutions de pilulier IoT de manière transparente dans votre système de santé",
+
+    "Doc_HowTo_Head": "Configuration",
+    "Doc_HowTo_Body": "Personnalisez les paramètres de votre pilulier pour répondre aux besoins spécifiques de vos patients et prestataires de soins de santé."
+}
