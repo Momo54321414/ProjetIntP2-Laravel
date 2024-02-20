@@ -1,5 +1,7 @@
 @import url('//fonts.googleapis.com/css?family=Poppins:400,500');
-
+html{
+    scroll-behavior: smooth;
+}
 body{
     background: #111827;
     box-sizing: border-box;
@@ -8,16 +10,17 @@ body{
     margin: 0;
 }
 nav{
+    position: fixed;
     display: inline-flex;
     box-sizing: border-box;
     align-items: center;
     background: #1F2937;
     border-bottom: 1px solid #374151;
-    padding: 0 16px;
     width: 100%;
     font-size: 13px;
     height: 64px;
     padding: 0 20%;
+    top: 0;
 }
 nav a{
     margin-left: 35px;
@@ -37,20 +40,45 @@ a{
 #logo{
     width: 48px;
 }
-#container{
-    width: 100%;
-    height: calc(100vh - 64px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 #banner{
-    width: 400px;
+    box-sizing: border-box;
+    padding: 32px 32px 64px 32px;
+    width: 60%;
+    margin: 96px 0 48px 20%;
     border-radius: 16px;
-    height: 400px;
     color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #1F2937;
+}
+input#search{
     background: #374151;
+    padding: 8px;
+    border-radius: 4px;
+    color: #fff;
+    width: 50%;
+    margin: 0 0 64px 25%;
+    border: 0;
+}
+#grid{
+    display: grid;
+    column-gap: 32px;
+    grid-template-columns: 20% 1fr;
+}
+#items{
+    border-right: 2px solid #374151;
+    padding-bottom: 256px;
+}
+#items a{
+    padding-bottom: 16px;
+    cursor: pointer;
+}
+#items a:hover{
+    color: #fff;
+}
+#title{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 32px;
+}
+#desc{
+    margin: 64px 0;
 }
