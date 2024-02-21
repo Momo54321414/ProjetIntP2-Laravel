@@ -3,8 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
+
 Route::prefix('{locale}')
     ->where(['locale' => '[a-zA-Z]{2}'])
+    ->middleware('setlocale')
     ->group(function () {
 Route::get('/doc',function(){return view('documentation');})->name('doc');
 
@@ -19,3 +24,4 @@ Route::middleware('auth')->group(function() {
 require __DIR__.'/auth.php';
 require __DIR__.'/api.php';
 });
+
