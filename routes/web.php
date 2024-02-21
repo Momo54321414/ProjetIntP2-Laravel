@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/',function(){return view('welcome');});
+Route::prefix('{locale}')
+    ->where(['locale' => '[a-zA-Z]{2}'])
+    ->group(function () {
 Route::get('/doc',function(){return view('documentation');})->name('doc');
 
 Route::get('/',function(){return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
@@ -16,3 +18,4 @@ Route::middleware('auth')->group(function() {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/api.php';
+});
