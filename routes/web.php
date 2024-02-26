@@ -12,6 +12,12 @@ Route::prefix('{locale}')
     ->middleware('setlocale')
     ->group(function () {
 
+    Route::get('/',function(){return view('dashboard');})->name('dashboard');
+    
+    Route::get('/documentation',function(){return view('documentation');})->name('documentation');
+
+    Route::get('/download',function(){return view('download');})->name('download');
+    
 
 Route::middleware('auth')->group(function() {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

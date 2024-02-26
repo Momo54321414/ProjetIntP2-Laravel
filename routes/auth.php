@@ -15,10 +15,6 @@ Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
-    Route::get('/doc',function(){return view('documentation');})->name('doc');
-
-    Route::get('/',function(){return view('dashboard');})->name('dashboard');
-
     Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
