@@ -1,4 +1,6 @@
 {
+
+    /************************ Dashboard ************************/
     "Dashboard_Banner_Head": "Empowering Health, One Pill at a Time!",
     "Dashboard_Banner_Body": "Revolutionizing healthcare with intelligent pillboxes powered by IoT technology.",
     "Dashboard_Banner_Button": "Discover our solutions",
@@ -18,6 +20,7 @@
     "Doc_Category_Menu": "Help Article",
     "Doc_Back_Link": "Back Link",
 
+    /************************ Documentation ************************/
     "Doc_Home_Head": "IoT Pillbox Documentation",
     "Doc_Home_Body": "Welcome to the Pillbox documentation. Here you will find everything you need to know about our IoT pillbox solutions.",
 
@@ -79,7 +82,74 @@
 
     "Doc_Header_Conclusion": "8. Conclusion",
         "Doc_Header_Conclusion_text_1": "The IoT Pillbox with LED indicators and automatic door opening functionality offers a convenient and reliable solution for medication management. By following the setup process, usage instructions, and safety precautions outlined in this documentation, users can effectively utilize the pillbox to improve medication adherence and overall health outcomes.",
-    "Log_in": "Log in"
+    
+    /************************ Download ************************/
+    "Hero_Header": "Empowering Health, One Pill at a Time!",
+    "Hero_text": "Revolutionizing healthcare with intelligent pillboxes powered by IoT technology.",
+
+    /************************ Profile ************************/
+    "Delete Account": "Delete Account",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.",
+    "Are you sure you want to delete your account?": "Are you sure you want to delete your account?",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+    "Cancel": "Cancel",
+    "Update Password": "Update Password",
+    "Ensure your account is using a long, random password to stay secure.": "Ensure your account is using a long, random password to stay secure.",
+    "Current Password": "Current Password",
+    "New Password": "New Password",
+    "Save": "Save",
+    "Saved": "Saved",
+    "Profile Information": "Profile Information",
+    "Update your account's profile information and email address.": "Update your account's profile information and email address.",
+    "Your email address is unverified": "Your email address is unverified",
+    "Click here to re-send the verification email.": "Click here to re-send the verification email.",
+    "A new verification link has been sent to your email address.": "A new verification link has been sent to your email address.",
+    "Profile": "Profile",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    /************************ Login/Register/etc ************************/
+    "Email": "Email",
+    "Password": "Password",
+    "Remember me": "Remember me",
+    "Forgot Your Password?": "Forgot Your Password?",
+    "Login": "Login",
+    "Email Password Reset Link": "Email Password Reset Link",
+    "Name": "Name",
+    "Confirm Password": "Confirm Password",
+    "Already registered": "Already registered",
+    "Register": "Register",
+    "Reset Password": "Reset Password",
+    "Resend Verification Email": "Resend Verification Email",
+    "Log Out": "Log Out",
+
+
+
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
 
 
 }
