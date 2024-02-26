@@ -26,5 +26,11 @@
     "Doc_Home_Body": "Bienvenue sur notre portail de documentation. Vous trouverez ici des guides détaillés, des didacticiels et de la documentation API pour vous aider à intégrer nos solutions de pilulier IoT de manière transparente dans votre système de santé",
 
     "Doc_HowTo_Head": "Configuration",
-    "Doc_HowTo_Body": "Personnalisez les paramètres de votre pilulier pour répondre aux besoins spécifiques de vos patients et prestataires de soins de santé."
+    "Doc_HowTo_Body": "Personnalisez les paramètres de votre pilulier pour répondre aux besoins spécifiques de vos patients et prestataires de soins de santé.",
+
+    "Email": "E-mail",
+    "Password": "Mot de passe",
+    "Remember me": "Se souvenir de moi",
+    "Forgot your password?": "Mot de passe oublié?",
+    "Log in": "Se connecter"
 }

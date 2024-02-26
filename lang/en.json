@@ -18,15 +18,68 @@
     "Doc_Category_Menu": "Help Article",
     "Doc_Back_Link": "Back Link",
 
-    "Doc_Home_Head": "Home",
+    "Doc_Home_Head": "IoT Pillbox Documentation",
     "Doc_Home_Body": "Welcome to the Pillbox documentation. Here you will find everything you need to know about our IoT pillbox solutions.",
 
     "Doc_HowTo_Head": "Configuration",
     "Doc_HowTo_Body": "Learn how to set up and configure your pillbox, and how to use its features to manage your medication.",
     
-    "Doc_Messages_Head": "Home",
-    "Doc_Messages_Body": "Welcome to the Pillbox documentation. Here you will find everything you need to know about our IoT pillbox solutions.",
+    "Doc_Title": "Documentation: IoT Pillbox",
+    "Doc_Header_Introduction": "1. Introduction",
+        "Doc_Overview_text_1": "The IoT Pillbox is a smart medication management device designed to assist patients in adhering to their medication schedules efficiently. This documentation outlines the features, setup process, and usage instructions for the IoT Pillbox with LED indicators and automatic door opening functionality.",
 
-    "Doc_An_Head": "How To",
-    "Doc_HowTo_Body": "Learn how to set up and configure your pillbox, and how to use its features to manage your medication."
+    "Doc_Header_Features": "2. Features",
+        "Doc_Features_Text_1": "LED Indicators**: The IoT Pillbox is equipped with LED indicators that provide visual cues to indicate medication schedules, such as upcoming doses and missed doses.",
+        "Doc_Features_Text_2": "Automatic Door Opening**: The pillbox features an automatic door opening mechanism that allows easy access to medication compartments at scheduled times.",
+        "Doc_Features_Text_3": "Mobile App Integration**: Users can control and monitor the IoT Pillbox remotely using a dedicated mobile application. This app provides real-time notifications, medication tracking, and remote access to configure pill schedules.",
+        "Doc_Features_Text_4": "Secure Storage**: The pillbox is designed with secure compartments to store medication safely and prevent unauthorized access.",
+
+    "Doc_Header_Setup_Process": "3. Setup Process",
+        "Doc_Setup_Process_Unboxing": "Step 1: Unboxing",
+            "Doc_Setup_Process_Unboxing_text_1": "Carefully unpack the IoT Pillbox from its packaging.",
+            "Doc_Setup_Process_Unboxing_text_2": ">Ensure all components are included as per the user manual.",
+        "Doc_Setup_Process_Power_Connection": "Step 2: Power Connection",
+            "Doc_Setup_Process_Power_Connection_text_1": "Connect the pillbox to a power source using the provided power adapter.",
+            "Doc_Setup_Process_Power_Connection_text_2": "Ensure the power source is stable and reliable to prevent interruptions in functionality.",
+        "Doc_Setup_Process_Mobile_App_Installation": "Step 3: Mobile App Installation",
+            "Doc_Setup_Process_Mobile_App_Installation_text_1": "Download and install the dedicated mobile application for the IoT Pillbox from the respective app store (iOS/Android).",
+            "Doc_Setup_Process_Mobile_App_Installation_text_2": "Follow the on-screen instructions to create an account and pair the pillbox with the mobile app.",
+        "Doc_Setup_Process_Pairing_Mobile_App": "Step 4: Pairing with Mobile App",
+            "Doc_Setup_Process_Pairing_Mobile_App_text_1": "Open the mobile app and navigate to the pairing section.",
+            "Doc_Setup_Process_Pairing_Mobile_App_text_2": "Follow the prompts to establish a connection between the pillbox and the mobile device via Bluetooth or Wi-Fi.",
+        "Doc_Setup_Process_Configuration": "Step 5: Configuration",
+            "Doc_Setup_Process_Configuration_text_1": "Once paired, configure the pillbox settings such as medication schedule, LED indicators, and door opening preferences through the mobile app.",
+            "Doc_Setup_Process_Configuration_text_2": "Ensure to set up notifications for reminders and missed doses as per user requirements.",
+
+    "Doc_Header_Usage_Instructions": "4. Usage Instructions",
+        "Doc_Header_Usage_Instructions_Manual_Dispensing": "Manual Dispensing",
+            "Doc_Usage_Instructions_Manual_Dispensing_text_1": "Users can manually dispense medication by pressing the appropriate button on the pillbox or through the mobile app.",
+        "Doc_Header_Usage_Instructions_Auto_Dispensing": "Automatic Dispensing",
+            "Doc_Usage_Instructions_Auto_Dispensing_text_1": "The pillbox automatically dispenses medication at scheduled times as per the configured medication schedule.",
+            "Doc_Usage_Instructions_Auto_Dispensing_text_2": "LED indicators provide visual cues to indicate when medication is ready for consumption.",
+        "Doc_Header_Usage_Instructions_Remote_Monitoring": "Remote Monitoring",
+            "Doc_Usage_Instructions_Remote_Monitoring_text_1": "Users can remotely monitor the pillbox status, medication adherence, and receive real-time notifications on the mobile app.",
+            "Doc_Usage_Instructions_Remote_Monitoring_text_2": "In case of missed doses or door malfunctions, users are notified promptly to take necessary action.",
+
+
+    "Doc_Header_Configuration": "Step 5: Configuration",
+        "Doc_Header_Configuration_text_1": "Keep the pillbox away from water or moisture to prevent damage to electronic components.",
+        "Doc_Header_Configuration_text_2": "Do not attempt to disassemble or modify the pillbox without proper authorization.",
+        "Doc_Header_Configuration_text_3": "Keep medication stored securely and out of reach of children or pets.",
+
+    "Doc_Header_Troubleshooting": "6. Troubleshooting",
+        "Doc_Header_Troubleshooting_text_1": "In case of connectivity issues, ensure the pillbox and mobile device are within the recommended range for Bluetooth or Wi-Fi connection.",
+        "Doc_Header_Troubleshooting_text_2": "If the automatic door opening mechanism fails, check for obstructions and ensure proper alignment of the door.",
+        "Doc_Header_Troubleshooting_text_3": "For any technical issues, refer to the user manual or contact customer support for assistance.",
+
+
+    "Doc_Header_Maintenance": "7. Maintenance",
+        "Doc_Header_Maintenance_text_1": "Clean the pillbox regularly using a soft, dry cloth to remove dust and debris.",
+        "Doc_Header_Maintenance_text_2": "Check the battery status periodically and replace batteries as needed to ensure uninterrupted functionality.",
+
+    "Doc_Header_Conclusion": "8. Conclusion",
+        "Doc_Header_Conclusion_text_1": "The IoT Pillbox with LED indicators and automatic door opening functionality offers a convenient and reliable solution for medication management. By following the setup process, usage instructions, and safety precautions outlined in this documentation, users can effectively utilize the pillbox to improve medication adherence and overall health outcomes.",
+    "Log_in": "Log in"
+
+
 }

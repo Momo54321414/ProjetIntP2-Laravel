@@ -3,10 +3,21 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/',function(){return view('welcome');});
-Route::get('/doc',function(){return view('documentation');})->name('doc');
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
 
-Route::get('/',function(){return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix('{locale}')
+    ->where(['locale' => '[a-zA-Z]{2}'])
+    ->middleware('setlocale')
+    ->group(function () {
+
+    Route::get('/',function(){return view('dashboard');})->name('dashboard');
+    
+    Route::get('/documentation',function(){return view('documentation');})->name('documentation');
+
+    Route::get('/download',function(){return view('download');})->name('download');
+    
 
 Route::middleware('auth')->group(function() {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -16,3 +27,5 @@ Route::middleware('auth')->group(function() {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/api.php';
+});
+
