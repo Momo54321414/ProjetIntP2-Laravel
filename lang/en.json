@@ -78,8 +78,8 @@
         "Doc_Header_Maintenance_text_2": "Check the battery status periodically and replace batteries as needed to ensure uninterrupted functionality.",
 
     "Doc_Header_Conclusion": "8. Conclusion",
-        "Doc_Header_Conclusion_text_1": "The IoT Pillbox with LED indicators and automatic door opening functionality offers a convenient and reliable solution for medication management. By following the setup process, usage instructions, and safety precautions outlined in this documentation, users can effectively utilize the pillbox to improve medication adherence and overall health outcomes."
-       
+        "Doc_Header_Conclusion_text_1": "The IoT Pillbox with LED indicators and automatic door opening functionality offers a convenient and reliable solution for medication management. By following the setup process, usage instructions, and safety precautions outlined in this documentation, users can effectively utilize the pillbox to improve medication adherence and overall health outcomes.",
+    "Log_in": "Log in"
 
 
 }

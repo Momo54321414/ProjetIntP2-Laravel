@@ -115,7 +115,7 @@
          <h3>2. Features</h3>
          <ul>
             <li>LED Indicators**: The IoT Pillbox is equipped with LED indicators that provide visual cues to indicate medication schedules, such as upcoming doses and missed doses.</li>
-            <li>Automatic Door Opening**: The pillbox features an automatic door opening mechanism that allows easy access to medication compartments at scheduled times.</li>
+            <li>{{ __("Doc_Features_Text_2")}} </li>
             <li>Mobile App Integration**: Users can control and monitor the IoT Pillbox remotely using a dedicated mobile application. This app provides real-time notifications, medication tracking, and remote access to configure pill schedules.</li>
             <li>Secure Storage**: The pillbox is designed with secure compartments to store medication safely and prevent unauthorized access.</li>
          </ul>
