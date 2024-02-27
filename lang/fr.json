@@ -32,7 +32,7 @@
     "Doc_Header_Setup_Process": "3. Processus de configuration",
         "Doc_Setup_Process_Unboxing": "Étape 1: Déballage",
             "Doc_Setup_Process_Unboxing_text_1": "Déballez soigneusement le Pilulier IoT de son emballage.",
-            "Doc_Setup_Process_Unboxing_text_2": ">Assurez-vous que tous les composants sont inclus selon le manuel d'utilisation.",
+            "Doc_Setup_Process_Unboxing_text_2": "Assurez-vous que tous les composants sont inclus selon le manuel d'utilisation.",
         "Doc_Setup_Process_Power_Connection": "Étape 2: Connexion électrique",
             "Doc_Setup_Process_Power_Connection_text_1": "Connectez le pilulier à une source d'alimentation à l'aide de l'adaptateur secteur fourni.",
             "Doc_Setup_Process_Power_Connection_text_2": "Assurez-vous que la source d'alimentation est stable et fiable pour éviter les interruptions de fonctionnement.",
