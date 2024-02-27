@@ -65,7 +65,7 @@
         "Doc_Header_Configuration_text_2": "Do not attempt to disassemble or modify the pillbox without proper authorization.",
         "Doc_Header_Configuration_text_3": "Keep medication stored securely and out of reach of children or pets.",
 
-    "Doc_Header_Troubleshooting": "6.   ",
+    "Doc_Header_Troubleshooting": "6. Troubleshooting ",
         "Doc_Header_Troubleshooting_text_1": "In case of connectivity issues, ensure the pillbox and mobile device are within the recommended range for Bluetooth or Wi-Fi connection.",
         "Doc_Header_Troubleshooting_text_2": "If the automatic door opening mechanism fails, check for obstructions and ensure proper alignment of the door.",
         "Doc_Header_Troubleshooting_text_3": "For any technical issues, refer to the user manual or contact customer support for assistance.",
@@ -77,7 +77,7 @@
     "Doc_Header_Conclusion": "8. Conclusion",
         "Doc_Header_Conclusion_text_1": "The IoT Pillbox with LED indicators and automatic door opening functionality offers a convenient and reliable solution for medication management. By following the setup process, usage instructions, and safety precautions outlined in this documentation, users can effectively utilize the pillbox to improve medication adherence and overall health outcomes.",
     
-
+    "Back to Top": "Back to top",
 
 
         "Hero_Header": "Empowering Health, One Pill at a Time!",
