@@ -12,6 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        
      $trigger = 'CREATE TRIGGER trigger_create_calendar_assoc_prescription AFTER INSERT ON `prescriptions` FOR EACH ROW
         BEGIN
             INSERT INTO `calendars` (`dateAndHour`, `created_at`, `updated_at`) VALUES (NEW.dateOfStart, NOW(), NOW());
