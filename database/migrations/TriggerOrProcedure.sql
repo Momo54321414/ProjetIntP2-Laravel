@@ -32,3 +32,13 @@ DELIMITER ;
 
 CALL insert_prescriptions_dates (2);
 DROP procedure insert_prescriptions_dates;
+
+
+DELIMITER //
+CREATE PROCEDURE test_column(IN DATE DATE,IN TIME TIME)
+BEGIN
+DECLARE DATEANDHOUR DATETIME;
+SET DATEANDHOUR = CONCAT(DATE, ' ', TIME);
+SELECT DATEANDHOUR;
+END //
+DELIMITER ;
