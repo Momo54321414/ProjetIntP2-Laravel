@@ -1,22 +1,17 @@
 {
-    "Dashboard_Banner_Head": "Empowering Health, One Pill at a Time!",
-    "Dashboard_Banner_Body": "Revolutionizing healthcare with intelligent pillboxes powered by IoT technology.",
-    "Dashboard_Banner_Button": "Discover our solutions",
+    "Discover our solutions": "Discover our solutions",
+    "Configure Your Pillbox": "Configure Your Pillbox",
+    "Configure Your Pillbox_text": "Customize your pillbox's settings to meet the specific needs of your patients and healthcare providers.",
+    "Configure now": "Configure now",
+    "Explore our Documentation": "Explore our Documentation",
+    "Explore our Documentation_text": "Find detailed guides, tutorials, and API documentation to help you integrate our IoT pillbox solutions seamlessly into your healthcare system.",
+    "Read more": "Read more", 
+    "Download the app": "Download the app",
+    "Download the app_text": "Revolutionize the way you manage your daily medication regimen with our intuitive app. Effortlessly organize, schedule, and receive reminders for your pill intake, ensuring you never miss a dose.",
+    "Download page": "Download page",
 
-    "Dashboard_Config_Head": "Configure Your Pillbox",
-    "Dashboard_Config_Body": "Customize your pillbox's settings to meet the specific needs of your patients and healthcare providers.",
-    "Dashboard_Config_Button": "Configure Now",
 
-    "Dashboard_Explore_Head": "Explore our Documentation",
-    "Dashboard_Explore_Body": "Find detailed guides, tutorials, and API documentation to help you integrate our IoT pillbox solutions seamlessly into your healthcare system.",
-    "Dashboard_Explore_Button": "Read more",
 
-    "Download_Above_Bts": "Download our app",
-
-    "Doc_TopLeft": "Help Article",
-    "Doc_SearchBar": "Search Articles",
-    "Doc_Category_Menu": "Help Article",
-    "Doc_Back_Link": "Back Link",
 
     "Doc_Home_Head": "IoT Pillbox Documentation",
     "Doc_Home_Body": "Welcome to the Pillbox documentation. Here you will find everything you need to know about our IoT pillbox solutions.",
@@ -29,15 +24,19 @@
         "Doc_Overview_text_1": "The IoT Pillbox is a smart medication management device designed to assist patients in adhering to their medication schedules efficiently. This documentation outlines the features, setup process, and usage instructions for the IoT Pillbox with LED indicators and automatic door opening functionality.",
 
     "Doc_Header_Features": "2. Features",
-        "Doc_Features_Text_1": "LED Indicators**: The IoT Pillbox is equipped with LED indicators that provide visual cues to indicate medication schedules, such as upcoming doses and missed doses.",
-        "Doc_Features_Text_2": "Automatic Door Opening**: The pillbox features an automatic door opening mechanism that allows easy access to medication compartments at scheduled times.",
-        "Doc_Features_Text_3": "Mobile App Integration**: Users can control and monitor the IoT Pillbox remotely using a dedicated mobile application. This app provides real-time notifications, medication tracking, and remote access to configure pill schedules.",
-        "Doc_Features_Text_4": "Secure Storage**: The pillbox is designed with secure compartments to store medication safely and prevent unauthorized access.",
+        "LED Indicators:": "LED Indicators:",
+        "Doc_Features_Text_1": "The IoT Pillbox is equipped with LED indicators that provide visual cues to indicate medication schedules, such as upcoming doses and missed doses.",
+        "Automatic Door Opening:":"Automatic Door Opening:",
+        "Doc_Features_Text_2": "The pillbox features an automatic door opening mechanism that allows easy access to medication compartments at scheduled times.",
+        "Mobile App Integration:":"Mobile App Integration:",
+        "Doc_Features_Text_3": "Users can control and monitor the IoT Pillbox remotely using a dedicated mobile application. This app provides real-time notifications, medication tracking, and remote access to configure pill schedules.",
+        "Secure Storage:":"Secure Storage:",
+        "Doc_Features_Text_4": "The pillbox is designed with secure compartments to store medication safely and prevent unauthorized access.",
 
     "Doc_Header_Setup_Process": "3. Setup Process",
         "Doc_Setup_Process_Unboxing": "Step 1: Unboxing",
             "Doc_Setup_Process_Unboxing_text_1": "Carefully unpack the IoT Pillbox from its packaging.",
-            "Doc_Setup_Process_Unboxing_text_2": ">Ensure all components are included as per the user manual.",
+            "Doc_Setup_Process_Unboxing_text_2": "Ensure all components are included as per the user manual.",
         "Doc_Setup_Process_Power_Connection": "Step 2: Power Connection",
             "Doc_Setup_Process_Power_Connection_text_1": "Connect the pillbox to a power source using the provided power adapter.",
             "Doc_Setup_Process_Power_Connection_text_2": "Ensure the power source is stable and reliable to prevent interruptions in functionality.",
@@ -61,17 +60,15 @@
             "Doc_Usage_Instructions_Remote_Monitoring_text_1": "Users can remotely monitor the pillbox status, medication adherence, and receive real-time notifications on the mobile app.",
             "Doc_Usage_Instructions_Remote_Monitoring_text_2": "In case of missed doses or door malfunctions, users are notified promptly to take necessary action.",
 
-
     "Doc_Header_Configuration": "Step 5: Configuration",
         "Doc_Header_Configuration_text_1": "Keep the pillbox away from water or moisture to prevent damage to electronic components.",
         "Doc_Header_Configuration_text_2": "Do not attempt to disassemble or modify the pillbox without proper authorization.",
         "Doc_Header_Configuration_text_3": "Keep medication stored securely and out of reach of children or pets.",
 
-    "Doc_Header_Troubleshooting": "6. Troubleshooting",
+    "Doc_Header_Troubleshooting": "6. Troubleshooting ",
         "Doc_Header_Troubleshooting_text_1": "In case of connectivity issues, ensure the pillbox and mobile device are within the recommended range for Bluetooth or Wi-Fi connection.",
         "Doc_Header_Troubleshooting_text_2": "If the automatic door opening mechanism fails, check for obstructions and ensure proper alignment of the door.",
         "Doc_Header_Troubleshooting_text_3": "For any technical issues, refer to the user manual or contact customer support for assistance.",
-
 
     "Doc_Header_Maintenance": "7. Maintenance",
         "Doc_Header_Maintenance_text_1": "Clean the pillbox regularly using a soft, dry cloth to remove dust and debris.",
@@ -79,7 +76,57 @@
 
     "Doc_Header_Conclusion": "8. Conclusion",
         "Doc_Header_Conclusion_text_1": "The IoT Pillbox with LED indicators and automatic door opening functionality offers a convenient and reliable solution for medication management. By following the setup process, usage instructions, and safety precautions outlined in this documentation, users can effectively utilize the pillbox to improve medication adherence and overall health outcomes.",
-    "Log_in": "Log in"
+    
+    "Back to Top": "Back to top",
 
+
+        "Hero_Header": "Empowering Health, One Pill at a Time!",
+    "Hero_text": "Revolutionizing healthcare with intelligent pillboxes powered by IoT technology.",
+    "Download our app:": "Download our app",
+
+
+
+
+    "Delete Account": "Delete Account",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.",
+    "Are you sure you want to delete your account?": "Are you sure you want to delete your account?",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+    "Cancel": "Cancel",
+    "Update Password": "Update Password",
+    "Ensure your account is using a long, random password to stay secure.": "Ensure your account is using a long, random password to stay secure.",
+    "Current Password": "Current Password",
+    "New Password": "New Password",
+    "Save": "Save",
+    "Saved": "Saved",
+    "Profile Information": "Profile Information",
+    "Update your account's profile information and email address.": "Update your account's profile information and email address.",
+    "Your email address is unverified": "Your email address is unverified",
+    "Click here to re-send the verification email.": "Click here to re-send the verification email.",
+    "A new verification link has been sent to your email address.": "A new verification link has been sent to your email address.",
+    "Profile": "Profile",
+    "Already registered?": "Already registered?",
+
+
+
+
+    "Email": "Email",
+    "Password": "Password",
+    "Remember me": "Remember me",
+    "Forgot Your Password?": "Forgot Your Password?",
+    "Login": "Login",
+    "Email Password Reset Link": "Email Password Reset Link",
+    "Name": "Name",
+    "Confirm Password": "Confirm Password",
+    "Already registered": "Already registered",
+    "Register": "Register",
+    "Reset Password": "Reset Password",
+    "Resend Verification Email": "Resend Verification Email",
+    "Log Out": "Log Out",
+
+
+    "Dashboard": "Dashboard",
+    "Documentation": "Documentation",
+    "Download": "Download",
+    "Register": "Register"
 
 }

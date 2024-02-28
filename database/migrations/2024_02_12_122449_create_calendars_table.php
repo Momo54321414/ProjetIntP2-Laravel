@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('calendars', function (Blueprint $table) {
             $table->id();
             $table->dateTime('dateAndHour');
+            $table->foreignId('prescription_id')->constrained('prescriptions');
             $table->timestamps();
         });
     }

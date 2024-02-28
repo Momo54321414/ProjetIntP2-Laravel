@@ -14,7 +14,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
-                    </x-nav-link>
+                    </x-nav-link >
                     
                     <x-nav-link :href="route('documentation')" :active="request()->routeIs('dococumentation')">
                         {{ __('Documentation') }}
@@ -116,12 +116,12 @@
     @if (Route::has('login'))
     <div class="sm:flex sm:top-0 sm:right-0 p-6 text-right z-10">
         @auth
-            <a href="{{ url(app()->getLocale() . '/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+            <a href="{{ url(app()->getLocale() . '/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{__('Dashboard')}}</a>
         @else
-            <a href="{{ route('login', app()->getLocale()) }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+            <a href="{{ route('login', app()->getLocale()) }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{__('Login')}}</a>
 
             @if (Route::has('register'))
-                <a href="{{ route('register', app()->getLocale()) }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                <a href="{{ route('register', app()->getLocale()) }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{__('Register')}}</a>
             @endif
         @endauth
     </div>

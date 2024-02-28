@@ -10,9 +10,9 @@
             <p class="leading-normal text-2xl mb-8">
               Revolutionizing healthcare with intelligent pillboxes powered by IoT technology.
             </p>
-            <button  href="/download" wire:navigate class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-              Discover our solutions
-            </button>
+            <a href="{{ route('download') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              {{ __('Discover our solutions') }}
+            </a>
           </div>
           <!--Right Col-->
           <div class="w-full md:w-3/5 py-6 text-center">
@@ -55,13 +55,13 @@
               <p class="text-gray-600 mb-8">
                 Customize your pillbox's settings to meet the specific needs of your patients and healthcare providers.
               </p>
-              <button  href="/download" wire:navigate class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Configure now
-              </button>
+              <a href="{{ route('download') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                {{ __('configure now') }}
+              </a>
             </div>
             <div class="w-full sm:w-1/2 p-6">
             <img src="img/medical_care.svg" alt="">
-                <title>travel booking</title>
+                
             </div>
           </div>
           <div class="flex flex-wrap flex-col-reverse sm:flex-row">
@@ -76,9 +76,9 @@
                 <p class="text-gray-600 mb-8">
                   Find detailed guides, tutorials, and API documentation to help you integrate our IoT pillbox solutions seamlessly into your healthcare system.
                 </p>
-                <button  href="/download" wire:navigate class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                  Read more
-                </button>
+                <a href="{{ route('documentation') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                  {{ __('Read more') }}
+                </a>
               </div>
             </div>
           </div>
