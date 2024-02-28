@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('calendars', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('prescription_id')->constrained('prescriptions');
+            $table->id();  
             $table->date('dateOfIntake');
             $table->time('hourOfIntake');
+            $table->foreignId('prescription_id')->constrained('prescriptions');
             $table->timestamps();
         });
     }
