@@ -17,6 +17,8 @@ Route::prefix('{locale}')
     Route::get('/documentation',function(){return view('documentation');})->name('documentation');
 
     Route::get('/download',function(){return view('download');})->name('download');
+
+
     
 
 Route::middleware('auth')->group(function() {

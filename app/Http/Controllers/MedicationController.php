@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Controllers\CalendarController;
 
 class MedicationController extends Controller
 {
@@ -27,7 +28,12 @@ class MedicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $medication = new Medication();
+        $medication->name = $request->name;
+        $medication->function = $request->function;
+        $medication->isInPillBox = $request->isInPillBox;
+        
+        $medication->save();
     }
 
     /**

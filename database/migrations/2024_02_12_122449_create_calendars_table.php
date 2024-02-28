@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('calendars', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('dateAndHour');
+            $table->date('dateOfIntake');
+            $table->time('hourOfIntake');
             $table->foreignId('prescription_id')->constrained('prescriptions');
             $table->timestamps();
         });
