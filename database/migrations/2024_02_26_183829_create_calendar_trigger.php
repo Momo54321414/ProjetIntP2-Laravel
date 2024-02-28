@@ -14,13 +14,13 @@ return new class extends Migration
     {
 
         
-     $trigger = 'CREATE TRIGGER trigger_create_calendar_assoc_prescription AFTER INSERT ON `prescriptions` FOR EACH ROW
-        BEGIN
-            INSERT INTO `calendars` (`dateAndHour`, `created_at`, `updated_at`) VALUES (NEW.dateOfStart, NOW(), NOW());
-        END';
+    //  $trigger = 'CREATE TRIGGER trigger_create_calendar_assoc_prescription AFTER INSERT ON `prescriptions` FOR EACH ROW
+    //     BEGIN
+    //         INSERT INTO `calendars` (`dateAndHour`, `created_at`, `updated_at`) VALUES (NEW.dateOfStart, NOW(), NOW());
+    //     END';
 
-        DB::unprepared($trigger);
-        echo 'Trigger created successfully.';
+    //     DB::unprepared($trigger);
+    //     echo 'Trigger created successfully.';
 
     }
 
