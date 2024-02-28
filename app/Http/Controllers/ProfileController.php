@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,11 +24,22 @@ class ProfileController extends Controller
             ->where('prescriptions.user_id', Auth::user()->id)
             ->get();
             
-        $medications = DB::table('medications');
+        $medications = DB::table('medications')
+            ->select('medications.*')
+            ->get();
+
+        $maxDate = Carbon::now()->toDateString();
+        $minDate = Carbon::now()->subDecades(2)->toDateString();
+        $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
+        
+
         return view('profile.edit', [
             'user' => $request->user(),
             'prescriptions' => $prescriptions,
             'medications' => $medications,
+            'maxDate' => $maxDate,
+            'minDate' => $minDate,
+            'maxDateForStart' => $maxDateForStart,
         ]);
     }
 

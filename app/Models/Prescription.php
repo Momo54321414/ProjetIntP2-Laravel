@@ -20,7 +20,7 @@ class Prescription extends Model
     protected $fillable = [
         'nameOfPrescription', 'dateOfPrescription', 'dateOfStart',
         'durationOfTreatmentInDays','frequencyBetweenDosesInHours',
-        'frequencyPerDay',
+        'frequencyPerDay','user_id','medication_id'
     ];
 
     public function user():HasOne
