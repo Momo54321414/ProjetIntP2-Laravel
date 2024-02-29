@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Calendar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,27 +14,49 @@ class CalendarController extends Controller
      */
     public function index()
     {
-    $calendar = DB::table('calendar')
-        ->join('prescriptions', 'calendar.prescription_id', '=', 'prescriptions.id')
-        ->join('users', 'prescriptions.user_id', '=', 'users.id')
-        ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-        ->select('calendar.dateOfIntake as dateOfIntake', 
-            'calendar.timeOfIntake as timeOfIntake',
-         'prescriptions.nameOfPrescription as prescriptionName',
-         'medications.name as medicationName',)
-        ->where('prescriptions.user_id', Auth::user()->id)
-        ->get();    
-        
-        //check if the route is an API
-        if (request()->is('api/*')) {
-            return response()->json($calendar);
-        }
-        else {
-            return view('calendar.index', [
-                'calendar' => $calendar,
-            ]);
-        }
+        try {
+            if (request()->is('api/*')) {
+                $calendar = DB::table('calendar')
+                    ->join('prescriptions', 'calendar.prescription_id', '=', 'prescriptions.id')
+                    ->join('users', 'prescriptions.user_id', '=', 'users.id')
+                    ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+                    ->select(
+                        'calendar.dateOfIntake as dateOfIntake',
+                        'calendar.timeOfIntake as timeOfIntake',
+                        'prescriptions.nameOfPrescription as prescriptionName',
+                        'medications.name as medicationName'
+                    )
+                    ->get();
+            } else {
+                $calendar = DB::table('calendar')
+                    ->join('prescriptions', 'calendar.prescription_id', '=', 'prescriptions.id')
+                    ->join('users', 'prescriptions.user_id', '=', 'users.id')
+                    ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+                    ->select(
+                        'calendar.dateOfIntake as dateOfIntake',
+                        'calendar.timeOfIntake as timeOfIntake',
+                        'prescriptions.nameOfPrescription as prescriptionName',
+                        'medications.name as medicationName',
+                    )
+                    ->where('prescriptions.user_id', Auth::user()->id)
+                    ->get();
+            }
+        } catch (\Exception $e) {
 
+            if (request()->is('api/*')) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            } else {
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        } finally {
+            if (request()->is('api/*')) {
+                return response()->json($calendar, 200);
+            } else {
+                return view('calendar.index', [
+                    'calendar' => $calendar,
+                ]);
+            }
+        }
     }
 
     /**
@@ -49,11 +72,24 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        $calendar = new Calendar();
-        $calendar->date = $request->date;
-        $calendar->time = $request->time;
-     
-        $calendar->save();
+        try {
+            $calendar = new Calendar();
+            $calendar->dateOfIntake = $request->dateOfIntake;
+            $calendar->hourOfIntake = $request->hourOfIntake;
+            $calendar->save();
+        } catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            } else {
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        } finally {
+            if (request()->is('api/*')) {
+                return response()->json($calendar, 201);
+            } else {
+                return redirect()->back()->with('success', 'Calendar created successfully');
+            }
+        }
     }
 
     /**
@@ -62,6 +98,21 @@ class CalendarController extends Controller
     public function show(string $id)
     {
         //
+        try {
+            $calendar = DB::table('calendar')->where('id', $id)->first();
+        } catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            } else {
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        } finally {
+            if (request()->is('api/*')) {
+                return response()->json($calendar, 200);
+            } else {
+                return $calendar;
+            }
+        }
     }
 
     /**
@@ -86,5 +137,22 @@ class CalendarController extends Controller
     public function destroy(string $id)
     {
         //
+        try {
+            $calendar = Calendar::findOrFail($id);
+            $calendar->delete();
+        } catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            } else {
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        } finally {
+            if (request()->is('api/*')) {
+                $json = ['success' => 'Calendar deleted successfully'];
+                return response()->json($json, 200);
+            } else {
+                return redirect()->back()->with('success', 'Calendar deleted successfully');
+            }
+        }
     }
 }
