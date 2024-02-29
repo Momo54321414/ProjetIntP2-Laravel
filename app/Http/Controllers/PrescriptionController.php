@@ -7,6 +7,8 @@ use App\Models\Prescription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CalendarController;
+
 
 class PrescriptionController extends Controller
 {
@@ -55,6 +57,7 @@ class PrescriptionController extends Controller
             $prescription->medication_id = $request->medication_id;
             $prescription->save();
 
+            CalendarController::class->store($prescription);
 
         } catch (\Exception $e) {
 

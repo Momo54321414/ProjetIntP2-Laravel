@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calendar;
+use App\Models\Prescription;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -70,13 +72,22 @@ class CalendarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Prescription $prescription)
     {
         try {
+            
             $calendar = new Calendar();
-            $calendar->dateOfIntake = $request->dateOfIntake;
-            $calendar->hourOfIntake = $request->hourOfIntake;
-            $calendar->save();
+         
+            for ($i = 0; $i < $prescription->durationOfPrescriptionInDays; $i++) {
+                $calendar->dateOfIntake = $prescription->dateOfStart->addDays($i);
+                if($prescription->frequencyPerDay == 1){
+                    $calendar->hourOfIntake = Carbon::createFromTime(24, 0, 0);
+                } else {
+                    $calendar->hourOfIntake = $prescription->Carbon::createFromTime(0, 0, 0)->addHours($prescription->frequencyBetweenDosesInHours);
+                }
+                $calendar->prescription_id = $prescription->id;
+                $calendar->save();
+            }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {
                 return response()->json(['error' => $e->getMessage()], 500);
@@ -97,7 +108,7 @@ class CalendarController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //Route et view en blade inexistantes 
         try {
             $calendar = DB::table('calendar')->where('id', $id)->first();
         } catch (\Exception $e) {
@@ -110,7 +121,9 @@ class CalendarController extends Controller
             if (request()->is('api/*')) {
                 return response()->json($calendar, 200);
             } else {
-                return $calendar;
+                return view('calendar.show', [
+                    'calendar' => $calendar,
+                ]);
             }
         }
     }
@@ -120,7 +133,24 @@ class CalendarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //Route et view en blade inexistantes  
+        try{
+            $calendar = Calendar::findOrFail($id);
+        } catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            } else {
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        } finally {
+            if (request()->is('api/*')) {
+                return response()->json($calendar, 200);
+            } else {
+                return view('calendar.edit', [
+                    'calendar' => $calendar,
+                ]);
+            }
+        }
     }
 
     /**
@@ -129,6 +159,24 @@ class CalendarController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        try{
+            $calendar = Calendar::findOrFail($id);
+            $calendar->dateOfIntake = $request->dateOfIntake;
+            $calendar->hourOfIntake = $request->hourOfIntake;
+            $calendar->save();
+        } catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            } else {
+                return redirect()->back()->with('error', $e->getMessage());
+            }
+        } finally {
+            if (request()->is('api/*')) {
+                return response()->json($calendar, 200);
+            } else {
+                return redirect()->back()->with('success', 'Calendar updated successfully');
+            }
+        }
     }
 
     /**
