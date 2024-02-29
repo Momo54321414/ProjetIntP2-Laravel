@@ -108,5 +108,26 @@ class PrescriptionController extends Controller
     public function destroy(string $id)
     {
         //
+        try{
+            $prescription = Prescription::findOrFail($id);
+            $prescription->delete();
+        }
+        catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => 'Error deleting prescription'], 500);
+            }
+            else {
+                return redirect()->back()->with('error', 'Error deleting prescription');
+            }
+        }
+        finally {
+            if (request()->is('api/*')) {
+                return response()->json(['success' => 'Prescription deleted successfully'], 200);
+            }
+            else {
+                return redirect()->back()->with('success', 'Prescription deleted successfully');
+            }
+        }
+
     }
 }
