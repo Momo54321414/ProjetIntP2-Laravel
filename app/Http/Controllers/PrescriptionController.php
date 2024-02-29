@@ -56,8 +56,21 @@ class PrescriptionController extends Controller
             $prescription->user_id = Auth::user()->id;
             $prescription->medication_id = $request->medication_id;
             $prescription->save();
+        
+            try{
 
-            CalendarController::class->store($prescription);
+                $result = app(CalendarController::class)->store($prescription->id);
+                dd($result);
+
+            } catch (\Exception $e) {
+                if (request()->is('api/*')) {
+                    return response()->json(['error' => 'Error creating calendar'], 500);
+                }
+                else {
+                    return redirect()->back()->with('error', 'Error creating calendar');
+                }
+            }
+            
 
         } catch (\Exception $e) {
 

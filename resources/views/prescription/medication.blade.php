@@ -80,7 +80,7 @@
                   <x-input-label for="dateOfPrescription" value="{{ __('Prescription date') }}" />
       
                   <x-text-input id="dateOfPrescription" name="dateOfPrescription" type="date" class="mt-1 block w-3/4"
-                  min="{{ $maxDate }}" max="{{ $minDate }}" />
+                  min="{{  $minDate }}" max="{{ $maxDate }}" />
       
                   <x-input-error :messages="$errors->userDeletion->get('dateOfPrescription')" class="mt-2" />
               </div>

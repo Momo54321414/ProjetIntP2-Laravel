@@ -29,7 +29,7 @@ class ProfileController extends Controller
             ->get();
 
         $maxDate = Carbon::now()->toDateString();
-        $minDate = Carbon::now()->subDecades(2)->toDateString();
+        $minDate = Carbon::now()->subYearNoOverflow(1)->toDateString();
         $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
         
 
