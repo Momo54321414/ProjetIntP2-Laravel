@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CalendarController;
-
+use App\Models\Calendar;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 
 class PrescriptionController extends Controller
 {
@@ -41,57 +43,36 @@ class PrescriptionController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         try {
 
-            
             $prescription = new Prescription();
-
             $prescription->nameOfPrescription = $request->nameOfPrescription;
             $prescription->dateOfPrescription = $request->dateOfPrescription;
             $prescription->dateOfStart = $request->dateOfStart;
             $prescription->durationOfPrescriptionInDays = $request->durationOfPrescriptionInDays;
             $prescription->frequencyBetweenDosesInHours = $request->frequencyBetweenDosesInHours;
-            $prescription->frequencyPerDay = $request->frequencyPerDay; 
+            $prescription->frequencyPerDay = $request->frequencyPerDay;
             $prescription->user_id = Auth::user()->id;
             $prescription->medication_id = $request->medication_id;
             $prescription->save();
-        
-            try{
 
-                $result = app(CalendarController::class)->store($prescription->id);
-                dd($result);
-
-            } catch (\Exception $e) {
-                if (request()->is('api/*')) {
-                    return response()->json(['error' => 'Error creating calendar'], 500);
-                }
-                else {
-                    return redirect()->back()->with('error', 'Error creating calendar');
-                }
-            }
-            
 
         } catch (\Exception $e) {
 
             if (request()->is('api/*')) {
                 return response()->json(['error' => 'Error creating prescription'], 500);
-            }
-            else {
+            } else {
                 return redirect()->back()->with('error', 'Error creating prescription');
             }
+        } finally {
 
-        }
-        finally {
-            
             if (request()->is('api/*')) {
                 return response()->json(['success' => 'Prescription created successfully'], 200);
-            }
-            else {
+            } else {
                 return redirect()->back()->with('success', 'Prescription created successfully');
             }
         }
-        
     }
 
     /**

@@ -72,35 +72,9 @@ class CalendarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Prescription $prescription)
+    public function store(Request $request)
     {
-        try {
-            
-            $calendar = new Calendar();
-         
-            for ($i = 0; $i < $prescription->durationOfPrescriptionInDays; $i++) {
-                $calendar->dateOfIntake = $prescription->dateOfStart->addDays($i);
-                if($prescription->frequencyPerDay == 1){
-                    $calendar->hourOfIntake = Carbon::createFromTime(24, 0, 0);
-                } else {
-                    $calendar->hourOfIntake = $prescription->Carbon::createFromTime(0, 0, 0)->addHours($prescription->frequencyBetweenDosesInHours);
-                }
-                $calendar->prescription_id = $prescription->id;
-                $calendar->save();
-            }
-        } catch (\Exception $e) {
-            if (request()->is('api/*')) {
-                return response()->json(['error' => $e->getMessage()], 500);
-            } else {
-                return redirect()->back()->with('error', $e->getMessage());
-            }
-        } finally {
-            if (request()->is('api/*')) {
-                return response()->json($calendar, 201);
-            } else {
-                return redirect()->back()->with('success', 'Calendar created successfully');
-            }
-        }
+       
     }
 
     /**
