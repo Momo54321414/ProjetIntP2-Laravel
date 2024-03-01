@@ -121,5 +121,14 @@
 
     "Dashboard": "Tableau de bord",
     "Documentation": "Documentation",
-    "Download": "Téléchargement"
+    "Download": "Téléchargement",
+    "Add": "Ajouter",
+
+    "Prescription":"Prescription",
+    "Prescription list": "Liste des prescriptions",
+    "DurationOfPrescriptionInDays": "Durée de la prescription en jours:",
+
+
+    "MedicationName": "Nom du médicament:",
+    "MedicationFunction": "Fonction de médication:"
 }

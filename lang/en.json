@@ -127,8 +127,13 @@
     "Dashboard": "Dashboard",
     "Documentation": "Documentation",
     "Download": "Download",
+    "Add": "Add",
     
-    "Prescription": "Enter a prescriptions name"
+    "Prescription": "Enter a prescriptions name",
+    "Prescription list": "Prescription list",
+    "DurationOfPrescriptionInDays": "Duration of the prescription in days:",
     
+    "MedicationName": "Medication Name:",
+    "MedicationFunction": "Medication Function:"
 
 }
