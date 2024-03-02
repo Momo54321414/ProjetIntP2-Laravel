@@ -128,11 +128,20 @@
     "Documentation": "Documentation",
     "Download": "Download",
     "Add": "Add",
+    "Update": "Update",
     
     "Prescription": "Enter a prescriptions name",
+    "AddNewPrescription": "Add New Prescription",
+    "EditPrescription": "Edit prescription",
     "Prescription list": "Prescription list",
+    "PrescriptionFrequencyBetweenDosesInHours": "Prescription Frequency Between Doses In Hours",
+    "PrescriptionFrequencyPerDay": "Prescription Frequency Per Day",
+    "PrescriptionName": "Prescription Name",
+    "PrescriptionDateOfStart": "Prescription Date Of Start",
+    "PrescriptionDate": "Prescription Date",
     "DurationOfPrescriptionInDays": "Duration of the prescription in days:",
-    
+    "AreYouSureYouWantToDeleteThisPrescription": "Are you sure you want to delete this prescription?",
+
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:"
 

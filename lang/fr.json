@@ -123,10 +123,19 @@
     "Documentation": "Documentation",
     "Download": "Téléchargement",
     "Add": "Ajouter",
+    "Update": "Mettre à jour",
 
     "Prescription":"Prescription",
+    "AddNewPrescription": "Ajouter une nouvelle prescription",
+    "EditPrescription": "Modifier la prescription",
     "Prescription list": "Liste des prescriptions",
+    "PrescriptionFrequencyBetweenDosesInHours": "Fréquence de la prescription entre les doses en heures:",
+    "PrescriptionFrequencyPerDay": "Fréquence de la prescription par jour:",
+    "PrescriptionName": "Nom de la prescription:",
+    "PrescriptionDateOfStart": "Date de début de la prescription:",
+    "PrescriptionDate": "Date de la prescription:",
     "DurationOfPrescriptionInDays": "Durée de la prescription en jours:",
+    "AreYouSureYouWantToDeleteThisPrescription": "Êtes-vous sûr de vouloir supprimer cette prescription?",
 
 
     "MedicationName": "Nom du médicament:",

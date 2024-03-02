@@ -21,6 +21,7 @@ class ProfileController extends Controller
         $prescriptions = DB::table('prescriptions')
             ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
             ->select(
+                'medications.id as medicationId',
                 'medications.name as medicationName',
                 'medications.function as medicationFunction',
                 'medications.isInPillBox as medicationIsInPillBox',
