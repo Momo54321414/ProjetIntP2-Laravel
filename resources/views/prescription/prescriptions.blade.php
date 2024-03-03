@@ -96,7 +96,7 @@
                     <x-input-label for="dateOfPrescription" value="{{ __('Prescription date') }}" />
 
                     <x-text-input id="dateOfPrescription" name="dateOfPrescription" type="date"
-                        class="mt-1 block w-3/4" min="{{ $minDate }}" max="{{  $maxDate }}" />
+                        class="mt-1 block w-3/4" min="{{ $minDate }}" max="{{ $maxDate }}" />
 
                     <x-input-error :messages="$errors->userDeletion->get('dateOfPrescription')" class="mt-2" />
                 </div>
@@ -128,7 +128,7 @@
 
                     <x-input-error :messages="$errors->userDeletion->get('frequencyBetweenDosesInHours')" class="mt-2" />
                 </div>
-
+                <!--Ajouter ici le prochain input de type date selon la branche CreateTriggers -->
 
                 <div class="mt-6">
                     <x-input-label for="medication_id" value="{{ __('Medication') }}" />
@@ -156,97 +156,104 @@
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                     {{ __('EditPrescription') }}
                 </h2>
-            <form method="POST" action="{{ route('prescriptions.update', [$prescription->prescriptionId]) }}"
-                class="p-6">
-                @csrf
-                @method('put')
+                <form method="POST" action="{{ route('prescriptions.update', [$prescription->prescriptionId]) }}"
+                    class="p-6">
+                    @csrf
+                    @method('put')
 
-                <input type="hidden" name="id" id="id" value="">
+                    <input type="hidden" name="id" id="id" value="">
 
-                <div class="mt-6">
-                    <x-input-label for="nameOfPrescription" value="{{ __('PrescriptionName') }}" />
+                    <div class="mt-6">
+                        <x-input-label for="nameOfPrescription" value="{{ __('PrescriptionName') }}" />
 
-                    <x-text-input id="nameOfPrescription" name="nameOfPrescription" type="text"
-                        class="mt-1 block w-3/4" placeholder="{{ __('Prescription') }}"
-                        value="{{ $prescription->nameOfPrescription }}" />
+                        <x-text-input id="nameOfPrescription" name="nameOfPrescription" type="text"
+                            class="mt-1 block w-3/4" placeholder="{{ __('Prescription') }}"
+                            value="{{ $prescription->nameOfPrescription }}" />
 
-                    <x-input-error :messages="$errors->userDeletion->get('nameOfPrescription')" class="mt-2" />
-                </div>
+                        <x-input-error :messages="$errors->userDeletion->get('nameOfPrescription')" class="mt-2" />
+                    </div>
 
-                <div class="mt-6">
-                    <x-input-label for="dateOfPrescription" value="{{ __('PrescriptionDate') }}" />
+                    <div class="mt-6">
+                        <x-input-label for="dateOfPrescription" value="{{ __('PrescriptionDate') }}" />
 
-                    <x-text-input id="dateOfPrescription" name="dateOfPrescription" type="date"
-                        class="mt-1 block w-3/4" min="{{ $maxDate }}" max="{{ $minDate }}"
-                        value="{{ $prescription->dateOfPrescription }}" />
+                        <x-text-input id="dateOfPrescription" name="dateOfPrescription" type="date"
+                            class="mt-1 block w-3/4" min="{{ $maxDate }}" max="{{ $minDate }}"
+                            value="{{ $prescription->dateOfPrescription }}" />
 
-                    <x-input-error :messages="$errors->userDeletion->get('dateOfPrescription')" class="mt-2" />
-                </div>
+                        <x-input-error :messages="$errors->userDeletion->get('dateOfPrescription')" class="mt-2" />
+                    </div>
 
-                <div class="mt-6">
-                    <x-input-label for="dateOfStart" value="{{ __('PrescriptionDateOfStart') }}" />
+                    <div class="mt-6">
+                        <x-input-label for="dateOfStart" value="{{ __('PrescriptionDateOfStart') }}" />
 
-                    <x-text-input id="dateOfStart" name="dateOfStart" type="date" class="mt-1 block w-3/4"
-                        min="{{ $minDate }}" max="{{ $maxDateForStart }}"
-                        value="{{ $prescription->dateOfStart }}" />
+                        <x-text-input id="dateOfStart" name="dateOfStart" type="date" class="mt-1 block w-3/4"
+                            min="{{ $minDate }}" max="{{ $maxDateForStart }}"
+                            value="{{ $prescription->dateOfStart }}" />
 
-                    <x-input-error :messages="$errors->userDeletion->get('dateOfStart')" class="mt-2" />
-                </div>
+                        <x-input-error :messages="$errors->userDeletion->get('dateOfStart')" class="mt-2" />
+                    </div>
 
-                <div class="mt-6">
-                    <x-input-label for="durationOfPrescriptionInDays"
-                        value="{{ __('DurationOfThePrescriptionInDays') }}" />
+                    <div class="mt-6">
+                        <x-input-label for="durationOfPrescriptionInDays"
+                            value="{{ __('DurationOfThePrescriptionInDays') }}" />
 
-                    <x-text-input id="durationOfPrescriptionInDays" name="durationOfPrescriptionInDays"
-                        type="number" class="mt-1 block w-3/4" placeholder="{{ __(30) }}"
-                        value="{{ $prescription->durationOfPrescriptionInDays }}" />
+                        <x-text-input id="durationOfPrescriptionInDays" name="durationOfPrescriptionInDays"
+                            type="number" class="mt-1 block w-3/4" placeholder="{{ __(30) }}"
+                            value="{{ $prescription->durationOfPrescriptionInDays }}" />
 
-                    <x-input-error :messages="$errors->userDeletion->get('durationOfPrescriptionInDays')" class="mt-2" />
-                </div>
-                <div class="mt-6">
-                    <x-input-label for="durationOfPrescriptionInDays"
-                        value="{{ __('DurationOfPrescriptionInDays') }}" />
+                        <x-input-error :messages="$errors->userDeletion->get('durationOfPrescriptionInDays')" class="mt-2" />
+                    </div>
+                    <div class="mt-6">
+                        <x-input-label for="durationOfPrescriptionInDays"
+                            value="{{ __('DurationOfPrescriptionInDays') }}" />
 
-                    <x-text-input id="durationOfPrescriptionInDays" name="durationOfPrescriptionInDays"
-                        type="number" class="mt-1 block w-3/4" placeholder="{{ __(30) }}"
-                        value="{{ $prescription->durationOfPrescriptionInDays }}" />
+                        <x-text-input id="durationOfPrescriptionInDays" name="durationOfPrescriptionInDays"
+                            type="number" class="mt-1 block w-3/4" placeholder="{{ __(30) }}"
+                            value="{{ $prescription->durationOfPrescriptionInDays }}" />
 
-                    <x-input-error :messages="$errors->userDeletion->get('durationOfPrescriptionInDays')" class="mt-2" />
-                </div>
+                        <x-input-error :messages="$errors->userDeletion->get('durationOfPrescriptionInDays')" class="mt-2" />
+                    </div>
 
-                <div class="mt-6">
-                    <x-input-label for="frequencyBetweenDosesInHours"
-                        value="{{ __('PrescriptionFrequencyBetweenDosesInHours') }}" />
+                    <div class="mt-6">
+                        <x-input-label for="frequencyBetweenDosesInHours"
+                            value="{{ __('PrescriptionFrequencyBetweenDosesInHours') }}" />
 
-                    <x-text-input id="frequencyBetweenDosesInHours" name="frequencyBetweenDosesInHours"
-                        type="number" class="mt-1 block w-3/4" placeholder="{{ __(12) }}"
-                        value="{{ $prescription->frequencyBetweenDosesInHours }}" />
+                        <x-text-input id="frequencyBetweenDosesInHours" name="frequencyBetweenDosesInHours"
+                            type="number" class="mt-1 block w-3/4" placeholder="{{ __(12) }}"
+                            value="{{ $prescription->frequencyBetweenDosesInHours }}" />
 
-                    <x-input-error :messages="$errors->userDeletion->get('frequencyBetweenDosesInHours')" class="mt-2" />
-                </div>
+                        <x-input-error :messages="$errors->userDeletion->get('frequencyBetweenDosesInHours')" class="mt-2" />
+                    </div>
+                    <div class="mt-6">
+                        <x-input-label for="frequencyPerDay" value="{{ __('PrescriptionFrequencyPerDay') }}" />
 
+                        <x-text-input id="frequencyPerDay" name="frequencyPerDay" type="number"
+                            class="mt-1 block w-3/4"
+                            value="{{ $prescription->frequencyPerDay }}"  @readonly(true) />
+                    </div>
+                    <div class="mt-6">
+                        <x-input-label for="medication_id" value="{{ __('Medication') }}" />
+                        <select name="medication_id" id="medication_id" class="mt-1 block w-3/4">
 
-                <div class="mt-6">
-                    <x-input-label for="medication_id" value="{{ __('Medication') }}" />
-                    <select name="medication_id" id="medication_id" class="mt-1 block w-3/4">
+                            @foreach ($medications as $medication)
+                                <option value="{{ $medication->id }}"
+                                    {{ $prescription->medicationId == $medication->id ? 'selected' : '' }}>
+                                    {{ $medication->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->userDeletion->get('medication_id')" class="mt-2" />
+                    </div>
 
-                        @foreach ($medications as $medication)
-                            <option value="{{ $medication->id }}" {{$prescription->medicationId == $medication->id ? 'selected': ''}} >{{ $medication->name }}</option>
-                        @endforeach
-                    </select>
-                    <x-input-error :messages="$errors->userDeletion->get('medication_id')" class="mt-2" />
-                </div>
+                    <div class="mt-6 flex justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Cancel') }}
+                        </x-secondary-button>
 
-                <div class="mt-6 flex justify-end">
-                    <x-secondary-button x-on:click="$dispatch('close')">
-                        {{ __('Cancel') }}
-                    </x-secondary-button>
-
-                    <x-primary-button class="ms-3">
-                        {{ __('Update') }}
-                    </x-primary-button>
-                </div>
-            </form>
+                        <x-primary-button class="ms-3">
+                            {{ __('Update') }}
+                        </x-primary-button>
+                    </div>
+                </form>
             </div>
         </x-modal>
         <x-modal id="delete-prescription-modal" name="delete-prescription-modal" focusable>
@@ -254,24 +261,25 @@
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                     {{ __('DeletePrescription') }}
                 </h2>
-            <form method="POST" action="{{ route('prescriptions.destroy', [$prescription->prescriptionId]) }}"  class="p-6">
-                @csrf
-                @method('delete')
+                <form method="POST" action="{{ route('prescriptions.destroy', [$prescription->prescriptionId]) }}"
+                    class="p-6">
+                    @csrf
+                    @method('delete')
 
-                <h2 class="text-lg
+                    <h2 class="text-lg
                 font-medium text-gray-900 dark:text-gray-100">
-                {{ __('AreYouSureYouWantToDeleteThisPrescription') }}
-                </h2>
-                <div class="mt-6 flex justify-center">
+                        {{ __('AreYouSureYouWantToDeleteThisPrescription') }}
+                    </h2>
+                    <div class="mt-6 flex justify-center">
 
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
-                <x-danger-button class="ms-3">
-                    {{ __('Delete') }}
-                </x-danger-button>
-                </div>
-            </form>
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Cancel') }}
+                        </x-secondary-button>
+                        <x-danger-button class="ms-3">
+                            {{ __('Delete') }}
+                        </x-danger-button>
+                    </div>
+                </form>
             </div>
         </x-modal>
 

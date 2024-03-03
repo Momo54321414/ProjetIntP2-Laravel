@@ -16,7 +16,7 @@ class Prescription extends Model
      *
      * @var array<int, string>
      */
-
+    //Venir enlever frequencyPerDay et remplacer par firstIntakeHour
     protected $fillable = [
         'nameOfPrescription', 'dateOfPrescription', 'dateOfStart',
         'durationOfTreatmentInDays','frequencyBetweenDosesInHours',

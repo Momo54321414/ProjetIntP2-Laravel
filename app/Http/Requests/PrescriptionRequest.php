@@ -27,6 +27,7 @@ class PrescriptionRequest extends FormRequest
             'dateOfStart' => 'required|date',
             'durationOfPrescriptionInDays' => 'required|integer',
             'frequencyBetweenDosesInHours' => 'required|integer',
+            /*Venir enlever frequencyPerDay par firstIntakeHour */
             'frequencyPerDay' => 'required|integer',
             'medication_id' => 'required|integer|exists:medications,id',
         ];

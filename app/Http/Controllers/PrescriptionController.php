@@ -64,6 +64,7 @@ class PrescriptionController extends Controller
             $prescription->dateOfStart = $request->dateOfStart;
             $prescription->durationOfPrescriptionInDays = $request->durationOfPrescriptionInDays;
             $prescription->frequencyBetweenDosesInHours = $request->frequencyBetweenDosesInHours;
+            //Venir ajouter la firstIntakeHour de la branche CreateTriggers
             $prescription->frequencyPerDay = $request->frequencyPerDay; 
             $prescription->user_id = Auth::user()->id;
             $prescription->medication_id = $request->medication_id;
