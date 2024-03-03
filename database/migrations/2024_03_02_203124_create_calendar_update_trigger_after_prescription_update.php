@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -12,18 +12,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-
         $trigger = "
-        
-        CREATE TRIGGER create_calendar_after_insert_prescription
-        AFTER INSERT ON prescriptions
+        CREATE TRIGGER prescriptions_after_update
+        AFTER UPDATE ON prescriptions
         FOR EACH ROW
         BEGIN
-            DECLARE currentDate DATE;
+           DECLARE currentDate DATE;
             DECLARE hours TIME;
             DECLARE Date DATE;
             DECLARE hoursBetweenDoses INT;
         
+            DELETE FROM calendars WHERE prescription_id = NEW.id;
+            
+
             SET currentDate = NEW.dateOfStart;
             SET hoursBetweenDoses = NEW.frequencyBetweenDosesInHours;
         
@@ -47,7 +48,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
-        DB::unprepared('DROP TRIGGER IF EXISTS create_calendar_after_insert_prescription');
+        DB::unprepared('DROP TRIGGER IF EXISTS prescriptions_after_update');
     }
 };

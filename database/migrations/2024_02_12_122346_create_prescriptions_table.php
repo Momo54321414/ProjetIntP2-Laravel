@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('dateOfPrescription');
             $table->date('dateOfStart');
             $table->integer('durationOfPrescriptionInDays');
+            $table->time('firstIntakeHour');
             $table->integer('frequencyBetweenDosesInHours');
             $table->integer('frequencyPerDay');
             $table->foreignId('user_id')->constrained('users');

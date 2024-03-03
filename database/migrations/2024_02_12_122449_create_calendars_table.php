@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();  
             $table->date('dateOfIntake');
             $table->time('hourOfIntake');
-            $table->foreignId('prescription_id')->constrained('prescriptions');
+            $table->foreignId('prescription_id')->constrained('prescriptions')->onDelete('cascade');
             $table->timestamps();
         });
     }
