@@ -80,7 +80,7 @@
     "Back to Top": "Back to top",
 
 
-        "Hero_Header": "Empowering Health, One Pill at a Time!",
+        "Hero_header": "Empowering Health, One Pill at a Time!",
     "Hero_text": "Revolutionizing healthcare with intelligent pillboxes powered by IoT technology.",
     "Download our app:": "Download our app",
 
@@ -132,6 +132,7 @@
     
     "Prescription": "Enter a prescriptions name",
     "AddNewPrescription": "Add New Prescription",
+    "DeletePrescription": "Delete Prescription",
     "EditPrescription": "Edit prescription",
     "Prescription list": "Prescription list",
     "PrescriptionFrequencyBetweenDosesInHours": "Prescription Frequency Between Doses In Hours",

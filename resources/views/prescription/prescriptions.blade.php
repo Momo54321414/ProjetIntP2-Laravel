@@ -96,7 +96,7 @@
                     <x-input-label for="dateOfPrescription" value="{{ __('Prescription date') }}" />
 
                     <x-text-input id="dateOfPrescription" name="dateOfPrescription" type="date"
-                        class="mt-1 block w-3/4" min="{{ $maxDate }}" max="{{ $minDate }}" />
+                        class="mt-1 block w-3/4" min="{{ $minDate }}" max="{{  $maxDate }}" />
 
                     <x-input-error :messages="$errors->userDeletion->get('dateOfPrescription')" class="mt-2" />
                 </div>
@@ -129,14 +129,6 @@
                     <x-input-error :messages="$errors->userDeletion->get('frequencyBetweenDosesInHours')" class="mt-2" />
                 </div>
 
-                <div class="mt-6">
-                    <x-input-label for="frequencyPerDay" value="{{ __('Frequency per day') }}" />
-
-                    <x-text-input id="frequencyPerDay" name="frequencyPerDay" type="number" class="mt-1 block w-3/4"
-                        placeholder="{{ __(1) }}" />
-
-                    <x-input-error :messages="$errors->userDeletion->get('frequencyPerDay')" class="mt-2" />
-                </div>
 
                 <div class="mt-6">
                     <x-input-label for="medication_id" value="{{ __('Medication') }}" />
@@ -233,15 +225,6 @@
                     <x-input-error :messages="$errors->userDeletion->get('frequencyBetweenDosesInHours')" class="mt-2" />
                 </div>
 
-                <div class="mt-6">
-                    <x-input-label for="frequencyPerDay" value="{{ __('PrescriptionFrequencyPerDay') }}" />
-
-                    <x-text-input id="frequencyPerDay" name="frequencyPerDay" type="number"
-                        class="mt-1 block w-3/4" placeholder="{{ __(1) }}" 
-                        value="{{$prescription->frequencyPerDay}}"/>
-
-                    <x-input-error :messages="$errors->userDeletion->get('frequencyPerDay')" class="mt-2" />
-                </div>
 
                 <div class="mt-6">
                     <x-input-label for="medication_id" value="{{ __('Medication') }}" />
@@ -268,9 +251,10 @@
         </x-modal>
         <x-modal id="delete-prescription-modal" name="delete-prescription-modal" focusable>
             <div class="p-6">
-                <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100"
-            <form method="post"
-                action="{{ route('prescriptions.destroy', ['prescription' => $prescription->prescriptionId]) }}>
+                <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                    {{ __('DeletePrescription') }}
+                </h2>
+            <form method="POST" action="{{ route('prescriptions.destroy', [$prescription->prescriptionId]) }}"  class="p-6">
                 @csrf
                 @method('delete')
 
@@ -283,7 +267,7 @@
                 <x-secondary-button x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
                 </x-secondary-button>
-                <x-danger-button class="ms-3" type="submit">
+                <x-danger-button class="ms-3">
                     {{ __('Delete') }}
                 </x-danger-button>
                 </div>

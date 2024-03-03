@@ -7,7 +7,7 @@
 <div class="bg-grey-lightest ">
 <!--Container-->
 <div class="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
-   <div class="w-full lg:w-1/5 lg:px-6 text-xl text-grey-darkest leading-normal">
+   <div class="w-full lg:w-1/5 lg:px-6 text-xl dark:text-gray-500 leading-normal">
       <div class="lg:hidden sticky pin hidden">
          <button id="menu-toggle" class="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded border-grey-dark hover:border-purple appearance-none focus:outline-none">
             <svg class="fill-current h-3 float-right" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +19,7 @@
          <ul class="list-reset">
             <li class="py-2 md:my-0 hover:bg-purple-lightest lg:hover:bg-transparent">
                <a href="#Doc_Header_Configuration" class="block pl-4 align-middle text-grey-darker no-underline hover:text-purple border-l-4 border-transparent lg:border-purple lg:hover:border-purple">
-               <span class="pb-1 md:pb-0 text-sm text-black font-bold">{{__('Doc_Header_Introduction')}}</span>
+               <span class="pb-1 md:pb-0 text-sm text-black dark:text-white font-bold">{{__('Doc_Header_Introduction')}}</span>
                </a>
             </li>
             <li class="py-2 md:my-0 hover:bg-purple-lightest lg:hover:bg-transparent">
@@ -60,16 +60,16 @@
          </ul>
       </div>
    </div>
-   <div class="w-full lg:w-4/5 p-8 mt-6 lg:mt-0 text-black leading-normal bg-white border border-grey-light border-rounded">
+   <div class="w-full lg:w-4/5 p-8 mt-6 lg:mt-0 text-black leading-normal dark:bg-gray-700 border border-grey-light border-rounded">
       <!--Title-->
       <div class="font-sans">
-         <h1 class="font-sans break-normal text-black pt-6 pb-2 text-xl">Documentation: IoT Pillbox</h1>
+         <h1 class="font-sans break-normal text-black dark:text-white pt-6 pb-2 text-xl">{{__('Doc_Title')}}</h1>
          <hr class="border-b border-grey-light">
       </div>
       <!--Post Content--> 
    <ol>
       <li>
-         <h3 id="Doc_Header_Introduction" class="text-xl font-semibold text-gray-900 dark:text-white"><b>{{__('Doc_Header_Introduction')}}</b></h3>
+         <h2 id="Doc_Header_Introduction" class="text-xl font-semibold text-gray-900 dark:text-white"><b>{{__('Doc_Header_Introduction')}}</b></h2>
          <ul>
             <li class="mb-3 text-gray-500 dark:text-gray-400">{{__('Doc_Overview_text_1')}}</li>
          </ul>

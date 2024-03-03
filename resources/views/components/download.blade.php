@@ -21,10 +21,10 @@
 		
 		<!--Left Col-->
 		<div class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-			<h1 class="my-4 text-3xl md:text-5xl font-bold leading-tight text-center md:text-left slide-in-bottom-h1">{{ __ ('Hero_header')}}</h1>
-			<p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle">{{ __ ('Hero_text')}}</p>
+			<h1 class="my-4 text-3xl md:text-5xl font-bold leading-tight text-center md:text-left slide-in-bottom-h1">{{ __('Hero_header')}}</h1>
+			<p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle">{{ __('Hero_text')}}</p>
 		
-			<p class="text-blue-400 font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">{{ __ ('Download our app:')}}</p>
+			<p class="text-blue-400 font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">{{ __('Download our app:')}}</p>
 			<div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
                 <a href="" class="pr-1"><img src="/img/Play_Store.svg" class="h-12 bounce-top-icons"/></a>
                 <a href=""><img src="/img/App_Store.svg" class="h-12 pr-4 bounce-top-icons"/></a>

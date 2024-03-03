@@ -74,7 +74,7 @@
 
 
 
-    "Hero_Header": "Donner du pouvoir à la santé, une pilule à la fois !",
+    "Hero_header": "Donner du pouvoir à la santé, une pilule à la fois !",
     "Hero_text": "Révolutionner les soins de santé avec des piluliers intelligents alimentés par la technologie IoT.",
     "Download our app:": "Téléchargez notre application",
 
@@ -127,6 +127,7 @@
 
     "Prescription":"Prescription",
     "AddNewPrescription": "Ajouter une nouvelle prescription",
+    "DeletePrescription": "Supprimer la prescription",
     "EditPrescription": "Modifier la prescription",
     "Prescription list": "Liste des prescriptions",
     "PrescriptionFrequencyBetweenDosesInHours": "Fréquence de la prescription entre les doses en heures:",
