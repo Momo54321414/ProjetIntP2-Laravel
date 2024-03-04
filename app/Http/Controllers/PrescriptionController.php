@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PrescriptionRequest;
 use App\Models\Medication;
 use App\Models\Prescription;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,22 +20,19 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
-        if(request()->is('api/*'))
-        {
+        if (request()->is('api/*')) {
             $prescriptions = DB::table('prescriptions')
                 ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
                 ->select('prescriptions.*', 'medications.name as medicationName')
                 ->get();
             return response()->json($prescriptions);
-        }
-        else
-        {
-        $prescriptions = DB::table('prescriptions')
-            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-            ->select('prescriptions.*', 'medications.name as medicationName')
-            ->where('prescriptions.user_id', Auth::user()->id)
-            ->get();
-        return  $prescriptions;
+        } else {
+            $prescriptions = DB::table('prescriptions')
+                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+                ->select('prescriptions.*', 'medications.name as medicationName')
+                ->where('prescriptions.user_id', Auth::user()->id)
+                ->get();
+            return  $prescriptions;
         }
     }
 
@@ -44,65 +42,51 @@ class PrescriptionController extends Controller
     public function create()
     {
         $medications = Medication::all();
+        $maxDate = Carbon::now()->toDateString();
+        $minDate = Carbon::now()->subDecades(2)->toDateString();
+        $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
 
-        return view('prescriptions.create', [
+
+        return view('prescription.create', [
             'medications' => $medications,
+            'maxDate' => $maxDate,
+            'minDate' => $minDate,
+            'maxDateForStart' => $maxDateForStart,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PrescriptionRequest $request)
     {
+       
+        $validated = $request->validated();
+        
+        $prescription = new Prescription($validated);
+        $prescription->user_id = Auth::user()->id;
         
         
         try {
-            $request->validateWithBag('createPrescription', [
-                'nameOfPrescription' => 'required|string|max:255',
-                'dateOfPrescription' => 'required|date',
-                'dateOfStart' => 'required|date',
-                'durationOfPrescriptionInDays' => 'required|integer',
-                'frequencyBetweenDosesInHours' => 'required|integer',
-                'frequencyPerDay' => 'required|integer',
-                'medication_id' => 'required|integer|exists:medications,id',
-            ]);
-
-            $prescription = new Prescription($request->all());
-            dd($prescription);
-            // $prescription->nameOfPrescription = $request->nameOfPrescription;
-            // $prescription->dateOfPrescription = $request->dateOfPrescription;
-            // $prescription->dateOfStart = $request->dateOfStart;
-            // $prescription->durationOfPrescriptionInDays = $request->durationOfPrescriptionInDays;
-            // $prescription->frequencyBetweenDosesInHours = $request->frequencyBetweenDosesInHours;
-            // //Venir ajouter la firstIntakeHour de la branche CreateTriggers
-            // $prescription->frequencyPerDay = $request->frequencyPerDay; 
-            // $prescription->user_id = Auth::user()->id;
-            // $prescription->medication_id = $request->medication_id;
-            $prescription->saveOrFail();
-
+            $prescription->save();
+           
 
         } catch (\Exception $e) {
 
             if (request()->is('api/*')) {
 
                 return response()->json(['error' => 'Error creating prescription'], 500);
-            }
-            else {
+            } else {
                 return redirect()->back()->with('errors', 'Error creating prescription');
             }
+        } finally {
 
-        }
-        finally {
-            
             if (request()->is('api/*')) {
                 return response()->json(['success' => 'Prescription created successfully'], 200);
-            }
-            else {
-                return redirect()->back()->with('status', 'Prescription created successfully');
+            } else {
+                return redirect()->route('profile.edit')->with('status', 'Prescription created successfully');
             }
         }
-        
     }
 
     /**
@@ -118,45 +102,57 @@ class PrescriptionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try {
+            $prescription = Prescription::findOrFail($id);
+            $medications = Medication::all();
+            $maxDate = Carbon::now()->toDateString();
+            $minDate = Carbon::now()->subDecades(2)->toDateString();
+            $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
+        } catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => 'Error editing prescription'], 500);
+            } else {
+                return redirect()->back()->with('errors', 'Error editing prescription');
+            }
+        } finally {
+            if (request()->is('api/*')) {
+                return response()->json(['success' => 'Prescription edited successfully'], 200);
+            } else {
+                return view('prescription.edit', [
+                    'prescription' => $prescription,
+                    'medications' => $medications,
+                    'maxDate' => $maxDate,
+                    'minDate' => $minDate,
+                    'maxDateForStart' => $maxDateForStart,
+                ]);
+            }
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    { dd($request->all());
-        $request->validateWithBag('updatePrescription');
-        
-        try{
-           
+    {
+        $errorsMessages = app()->getLocale() === 'en' ? $this->getEnglishMessages() : $this->getFrenchMessages();
+        $request->validateWithBag('createPrescription', $this->getRules(), $errorsMessages);
+
+        try {
+
             $prescription = Prescription::findOrFail($id);
-           
-            
-            $prescription->nameOfPrescription = $request->nameOfPrescription;
-            $prescription->dateOfPrescription = $request->dateOfPrescription;
-            $prescription->dateOfStart = $request->dateOfStart;
-            $prescription->durationOfPrescriptionInDays = $request->durationOfPrescriptionInDays;
-            $prescription->frequencyBetweenDosesInHours = $request->frequencyBetweenDosesInHours;
-            //Venir ajouter la firstIntakeHour de la branche CreateTriggers
-            $prescription->frequencyPerDay = $request->frequencyPerDay; 
+            $prescription->fill($request->all());
             $prescription->user_id = Auth::user()->id;
-            $prescription->medication_id = $request->medication_id;
             $prescription->saveOrFail();
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             if (request()->is('api/*')) {
                 return response()->json(['error' => 'Error updating prescription'], 500);
-            }
-            else {
+            } else {
                 return redirect()->back()->with('errors', 'Error updating prescription');
             }
-        }
-        finally {
+        } finally {
             if (request()->is('api/*')) {
                 return response()->json(['success' => 'Prescription updated successfully'], 200);
-            }
-            else {
+            } else {
                 return redirect()->back()->with('status', 'Prescription updated successfully');
             }
         }
@@ -168,27 +164,23 @@ class PrescriptionController extends Controller
     public function destroy(string $id)
     {
         //
-        try{
+        try {
             $prescription = Prescription::findOrFail($id);
             $prescription->delete();
-
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             if (request()->is('api/*')) {
                 return response()->json(['error' => 'Error deleting prescription'], 500);
-            }
-            else {
+            } else {
                 return redirect()->back()->with('errors', 'Error deleting prescription');
             }
-        }
-        finally {
+        } finally {
             if (request()->is('api/*')) {
                 return response()->json(['success' => 'Prescription deleted successfully'], 200);
-            }
-            else {
+            } else {
                 return redirect()->back()->with('status', 'Prescription deleted successfully');
             }
         }
-
     }
+
+   
 }

@@ -19,7 +19,7 @@ class Prescription extends Model
     //Venir enlever frequencyPerDay et remplacer par firstIntakeHour
     protected $fillable = [
         'nameOfPrescription', 'dateOfPrescription', 'dateOfStart',
-        'durationOfTreatmentInDays','frequencyBetweenDosesInHours',
+        'durationOfPrescriptionInDays','frequencyBetweenDosesInHours',
         'frequencyPerDay','user_id','medication_id'
     ];
 
