@@ -135,6 +135,7 @@
     "PrescriptionName": "Nom de la prescription:",
     "PrescriptionDateOfStart": "Date de début de la prescription:",
     "PrescriptionDate": "Date de la prescription:",
+    "FirstIntakeHour": "Première heure d'admission:",
     "DurationOfPrescriptionInDays": "Durée de la prescription en jours:",
     "AreYouSureYouWantToDeleteThisPrescription": "Êtes-vous sûr de vouloir supprimer cette prescription?",
 

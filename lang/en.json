@@ -139,6 +139,7 @@
     "PrescriptionFrequencyPerDay": "Prescription Frequency Per Day",
     "PrescriptionName": "Prescription Name",
     "PrescriptionDateOfStart": "Prescription Date Of Start",
+    "FirstIntakeHour": "First Intake Hour",
     "PrescriptionDate": "Prescription Date",
     "DurationOfPrescriptionInDays": "Duration of the prescription in days:",
     "AreYouSureYouWantToDeleteThisPrescription": "Are you sure you want to delete this prescription?",

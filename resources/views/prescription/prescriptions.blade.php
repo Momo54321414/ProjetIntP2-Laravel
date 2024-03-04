@@ -203,16 +203,16 @@
 
                         <x-input-error :messages="$errors->userDeletion->get('durationOfPrescriptionInDays')" class="mt-2" />
                     </div>
-                    <div class="mt-6">
-                        <x-input-label for="durationOfPrescriptionInDays"
-                            value="{{ __('DurationOfPrescriptionInDays') }}" />
+                    {{-- <div class="mt-6">
+                        <x-input-label for="firstIntakeHour"
+                            value="{{ __('FirstIntakeHour') }}" />
 
-                        <x-text-input id="durationOfPrescriptionInDays" name="durationOfPrescriptionInDays"
+                        <x-text-input id="firstIntakeHour" name="firstIntakeHour"
                             type="number" class="mt-1 block w-3/4" placeholder="{{ __(30) }}"
-                            value="{{ $prescription->durationOfPrescriptionInDays }}" />
+                            value="{{ $prescription->firstIntakeHour }}" />
 
                         <x-input-error :messages="$errors->userDeletion->get('durationOfPrescriptionInDays')" class="mt-2" />
-                    </div>
+                    </div> --}}
 
                     <div class="mt-6">
                         <x-input-label for="frequencyBetweenDosesInHours"
