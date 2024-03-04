@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('dateOfStart');
             $table->integer('durationOfPrescriptionInDays');
             $table->integer('frequencyBetweenDosesInHours');
-            $table->integer('frequencyPerDay');
+            $table->integer('frequencyPerDay')->default(0);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('medication_id')->constrained('medications');
             $table->timestamps();

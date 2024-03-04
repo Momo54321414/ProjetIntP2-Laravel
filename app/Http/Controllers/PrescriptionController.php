@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PrescriptionRequest;
 use App\Models\Medication;
 use App\Models\Prescription;
 use Illuminate\Auth\Events\Failed;
@@ -57,17 +58,27 @@ class PrescriptionController extends Controller
         
         
         try {
-            
-            $prescription = new Prescription();
-            $prescription->nameOfPrescription = $request->nameOfPrescription;
-            $prescription->dateOfPrescription = $request->dateOfPrescription;
-            $prescription->dateOfStart = $request->dateOfStart;
-            $prescription->durationOfPrescriptionInDays = $request->durationOfPrescriptionInDays;
-            $prescription->frequencyBetweenDosesInHours = $request->frequencyBetweenDosesInHours;
-            //Venir ajouter la firstIntakeHour de la branche CreateTriggers
-            $prescription->frequencyPerDay = $request->frequencyPerDay; 
-            $prescription->user_id = Auth::user()->id;
-            $prescription->medication_id = $request->medication_id;
+            $request->validateWithBag('createPrescription', [
+                'nameOfPrescription' => 'required|string|max:255',
+                'dateOfPrescription' => 'required|date',
+                'dateOfStart' => 'required|date',
+                'durationOfPrescriptionInDays' => 'required|integer',
+                'frequencyBetweenDosesInHours' => 'required|integer',
+                'frequencyPerDay' => 'required|integer',
+                'medication_id' => 'required|integer|exists:medications,id',
+            ]);
+
+            $prescription = new Prescription($request->all());
+            dd($prescription);
+            // $prescription->nameOfPrescription = $request->nameOfPrescription;
+            // $prescription->dateOfPrescription = $request->dateOfPrescription;
+            // $prescription->dateOfStart = $request->dateOfStart;
+            // $prescription->durationOfPrescriptionInDays = $request->durationOfPrescriptionInDays;
+            // $prescription->frequencyBetweenDosesInHours = $request->frequencyBetweenDosesInHours;
+            // //Venir ajouter la firstIntakeHour de la branche CreateTriggers
+            // $prescription->frequencyPerDay = $request->frequencyPerDay; 
+            // $prescription->user_id = Auth::user()->id;
+            // $prescription->medication_id = $request->medication_id;
             $prescription->saveOrFail();
 
 
@@ -114,8 +125,41 @@ class PrescriptionController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+    { dd($request->all());
+        $request->validateWithBag('updatePrescription');
+        
+        try{
+           
+            $prescription = Prescription::findOrFail($id);
+           
+            
+            $prescription->nameOfPrescription = $request->nameOfPrescription;
+            $prescription->dateOfPrescription = $request->dateOfPrescription;
+            $prescription->dateOfStart = $request->dateOfStart;
+            $prescription->durationOfPrescriptionInDays = $request->durationOfPrescriptionInDays;
+            $prescription->frequencyBetweenDosesInHours = $request->frequencyBetweenDosesInHours;
+            //Venir ajouter la firstIntakeHour de la branche CreateTriggers
+            $prescription->frequencyPerDay = $request->frequencyPerDay; 
+            $prescription->user_id = Auth::user()->id;
+            $prescription->medication_id = $request->medication_id;
+            $prescription->saveOrFail();
+        }
+        catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => 'Error updating prescription'], 500);
+            }
+            else {
+                return redirect()->back()->with('errors', 'Error updating prescription');
+            }
+        }
+        finally {
+            if (request()->is('api/*')) {
+                return response()->json(['success' => 'Prescription updated successfully'], 200);
+            }
+            else {
+                return redirect()->back()->with('status', 'Prescription updated successfully');
+            }
+        }
     }
 
     /**
