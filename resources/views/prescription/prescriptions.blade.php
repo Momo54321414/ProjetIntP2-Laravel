@@ -261,7 +261,8 @@
             </div>
            
         </x-modal> --}}
-        {{-- <x-modal id="delete-prescription-modal" name="delete-prescription-modal" focusable>
+        {{-- @if(!$prescriptions->isEmpty())
+        <x-modal id="delete-prescription-modal" name="delete-prescription-modal" focusable>
             <div class="p-6">
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                     {{ __('DeletePrescription') }}
@@ -286,7 +287,8 @@
                     </div>
                 </form>
             </div>
-        </x-modal> --}}
-    </div>
+        </x-modal>
+        @endif
+    </div> --}}
    
 </section>

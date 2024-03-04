@@ -21,6 +21,7 @@ class PrescriptionController extends Controller
     public function index()
     {
         if (request()->is('api/*')) {
+
             $prescriptions = DB::table('prescriptions')
                 ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
                 ->select('prescriptions.*', 'medications.name as medicationName')
@@ -29,10 +30,35 @@ class PrescriptionController extends Controller
         } else {
             $prescriptions = DB::table('prescriptions')
                 ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-                ->select('prescriptions.*', 'medications.name as medicationName')
+                ->select(
+                    'medications.id as medicationId',
+                    'medications.name as medicationName',
+                    'medications.function as medicationFunction',
+                    'medications.isInPillBox as medicationIsInPillBox',
+                    'prescriptions.nameOfPrescription as nameOfPrescription',
+                    'prescriptions.dateOfPrescription as dateOfPrescription',
+                    'prescriptions.dateOfStart as dateOfStart',
+                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
+                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
+                    'prescriptions.frequencyPerDay  as frequencyPerDay',
+                    'prescriptions.id as prescriptionId'
+                )
                 ->where('prescriptions.user_id', Auth::user()->id)
                 ->get();
-            return  $prescriptions;
+
+            $medications = DB::table('medications')
+                ->select('medications.*')
+                ->get();
+            $maxDate = Carbon::now()->toDateString();
+            $minDate = Carbon::now()->subDecades(2)->toDateString();
+            $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
+
+            return  view('prescription.index', [
+                'prescriptions' => $prescriptions, 'medications' => $medications,
+                'maxDate' => $maxDate,
+                'minDate' => $minDate,
+                'maxDateForStart' => $maxDateForStart,
+            ]);
         }
     }
 
@@ -60,17 +86,15 @@ class PrescriptionController extends Controller
      */
     public function store(PrescriptionRequest $request)
     {
-       
+
         $validated = $request->validated();
-        
+
         $prescription = new Prescription($validated);
         $prescription->user_id = Auth::user()->id;
-        
-        
+
+
         try {
             $prescription->save();
-           
-
         } catch (\Exception $e) {
 
             if (request()->is('api/*')) {
@@ -132,15 +156,14 @@ class PrescriptionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PrescriptionRequest $request, string $id)
     {
-        $errorsMessages = app()->getLocale() === 'en' ? $this->getEnglishMessages() : $this->getFrenchMessages();
-        $request->validateWithBag('createPrescription', $this->getRules(), $errorsMessages);
 
         try {
 
             $prescription = Prescription::findOrFail($id);
-            $prescription->fill($request->all());
+            $validated = $request->validated();
+            $prescription->fill($validated);
             $prescription->user_id = Auth::user()->id;
             $prescription->saveOrFail();
         } catch (\Exception $e) {
@@ -181,6 +204,4 @@ class PrescriptionController extends Controller
             }
         }
     }
-
-   
 }
