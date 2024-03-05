@@ -33,20 +33,33 @@ class LogController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request, string $locale)
     {
-        //
-    }
+        
+        try {
+            $log = new Log();
+            $log->device_id = $request->device_id;
+            $log->action = $request->action;
+            $log->actionTimestamp = $request->actionTimestamp;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+            $log->save();
+        }
+        catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => 'Error creating log'], 500);
+            }
+            else {
+                return redirect()->back()->with('errors', 'Error creating log');
+            }
+        }
+        finally {
+            if (request()->is('api/*')) {
+                return response()->json(['success' => 'Log created successfully'], 200);
+            }
+            else {
+                return redirect()->route('profile.edit')->with('status', 'Log created successfully');
+            }
+        }
     }
 
 }
