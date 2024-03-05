@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
+
+
 
 class LogsSeeder extends Seeder
 {
@@ -12,30 +17,30 @@ class LogsSeeder extends Seeder
      */
     public function run(): void
     {
-        $logs = [
-            [
+        DB::table('logs')->insert([[
+                'actionTimestamp' => '2024-03-01 00:00:00',
+                'action' => 'Une porte est ouverte',
                 'device_id' => 1,
-                'message' => 'Votre portière est ouverte',
-                'actionTimestamp' => '2021-10-01 12:00:00',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
+                'actionTimestamp' => '2024-03-05 00:00:01',
+                'action' => 'Votre portière est mal fermée',
                 'device_id' => 1,
-                'message' => 'Votre portière est mal fermé',
-                'actionTimestamp' => '2021-10-01 12:00:00',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
+                'actionTimestamp' => '2024-03-05 00:00:02',
+                'action' => 'Votre portière est mal fermée, gros cave',
                 'device_id' => 1,
-                'message' => 'Votre portière est mal fermé gros cave',
-                'actionTimestamp' => '2021-10-01 12:00:00',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
-        ];
+        ]);
 
-        DB::table('logs')->insert($logs);
+
+        
     }
 }
