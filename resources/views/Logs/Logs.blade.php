@@ -15,7 +15,7 @@
                 <div class=" w-full max-w-md flex flex-col">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-4">
-                            <div class="text-md font-bold"> {{ $log->deviceName }}</div>
+                            <div class="text-md font-bold"> {{ $log->noSerie }}</div>
 
                         </div>
                         <div class="flex items-center space-x-4">
@@ -23,7 +23,7 @@
 
                             </div>
                             <div class="mt-4 text-gray-500 font-bold text-sm">
-                                {{ $log->timestamp }}
+                                {{ $log->actionTimestamp }}
                             </div>
                         </div>
                     </div>
