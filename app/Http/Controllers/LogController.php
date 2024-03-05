@@ -9,9 +9,27 @@ class LogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $locale)
     {
-        //
+        if(request()->is('api/*'))
+        {
+            $logs = DB::table('logs')
+                ->join('device', 'logs.device_id', '=', 'device.id')
+                ->select('logs.*', 'device.noSerie as deviceNoSerie')
+                ->get();
+            return response()->json($logs);
+        }
+        else
+        {
+            $logs = DB::table('logs')
+            ->join('device', 'logs.device_id', '=', 'device.id')
+            ->select('logs.*', 'device.noSerie as deviceNoSerie')
+            ->get();
+        return  $logs;
+        }
+        return view('logs.index', [
+            'logs' => $logs,
+        ]);
     }
 
 
