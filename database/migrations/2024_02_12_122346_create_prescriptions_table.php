@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('durationOfPrescriptionInDays');
             $table->integer('frequencyBetweenDosesInHours');
             $table->integer('frequencyPerDay')->default(0);
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('medication_id')->constrained('medications');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('medication_id')->constrained('medications')->onDelete('cascade');
             $table->timestamps();
         });
     }
