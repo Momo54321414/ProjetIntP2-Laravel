@@ -28,11 +28,7 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                @foreach(config('app.available_locales') as $locale)
-                    <x-nav-link :href="route(\Illuminate\Support\Facades\Route::currentRouteName(), ['locale' => $locale])" :active="app()->getLocale() == $locale">
-                        {{ strtoupper($locale) }}
-                    </x-nav-link>
-                @endforeach
+                <x-nav-lang />
         @auth
             <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

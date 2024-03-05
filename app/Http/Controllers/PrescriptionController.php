@@ -86,31 +86,31 @@ class PrescriptionController extends Controller
      */
     public function store(PrescriptionRequest $request, string $locale)
     {
-
+        $Messages =  $this->getRightMessagesForCreate($locale);
         $validated = $request->validated();
-
         $prescription = new Prescription($validated);
         $prescription->user_id = Auth::user()->id;
 
 
         try {
             $prescription->save();
+
+            if(request()->is('api/*')){
+
+                return response()->json(['success' => $Messages['success']], 200);
+            }else{
+                return redirect()->back()->with('status', $Messages['success']);
+            }
+
         } catch (\Exception $e) {
 
             if (request()->is('api/*')) {
 
-                return response()->json(['error' => 'Error creating prescription'], 500);
+                return response()->json(['error' => $Messages['error']], 500);
             } else {
-                return redirect()->back()->with('errors', 'Error creating prescription');
+                return redirect()->back()->with('errors', $Messages['error']);
             }
-        } finally {
-
-            if (request()->is('api/*')) {
-                return response()->json(['success' => 'Prescription created successfully'], 200);
-            } else {
-                return redirect()->route('profile.edit')->with('status', 'Prescription created successfully');
-            }
-        }
+        } 
     }
 
     /**
@@ -126,6 +126,7 @@ class PrescriptionController extends Controller
      */
     public function edit(string $locale, string $id)
     {
+       $locale = app()->getLocale();
         $Messages =  $this->getRightMessagesForEdit($locale);
         try {
             $prescription = Prescription::findOrFail($id);
@@ -137,6 +138,7 @@ class PrescriptionController extends Controller
             if (request()->is('api/*')) {
                 return response()->json(['success' => $Messages['success'], $prescription, $medications, $maxDate, $minDate, $maxDateForStart], 200);
             } else {
+                //dd($prescription, $medications, $maxDate, $minDate, $maxDateForStart);
                 return view('prescription.edit', [
                     'prescription' => $prescription,
                     'medications' => $medications,
@@ -162,8 +164,8 @@ class PrescriptionController extends Controller
         $Messages =  $this->getRightMessagesForUpdate($locale);
 
         try {
-
             $prescription = Prescription::findOrFail($id);
+           
             $validated = $request->validated();
             $prescription->fill($validated);
             $prescription->user_id = Auth::user()->id;
@@ -195,13 +197,13 @@ class PrescriptionController extends Controller
             if (request()->is('api/*')) {
                 return response()->json(['success' => $Messages['success']], 200);
             } else {
-                return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
+                return redirect()->back()->with('status', $Messages['success']);
             }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {
                 return response()->json(['error' => $Messages], 500);
             } else {
-                return redirect()->route('prescriptions.index')->with('errors', $Messages['error']);
+                return redirect()->back()->with('errors', $Messages['error']);
             }
         }
     }
@@ -220,7 +222,7 @@ class PrescriptionController extends Controller
                 break;
             case 'fr':
                 $Messages = [
-                    'error' => 'Erreur lors de la création de la prescription',
+                    'error' => 'Erreur lors de la recherche de la prescription',
                     'success' => 'Prescription à été trouvée avec succès',
                 ];
                 break;
