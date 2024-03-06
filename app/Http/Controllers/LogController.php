@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class LogController extends Controller
 {
     /**
@@ -25,11 +26,11 @@ class LogController extends Controller
             ->join('device', 'logs.device_id', '=', 'device.id')
             ->select('logs.*', 'device.noSerie as deviceNoSerie')
             ->get();
-        return  $logs;
+            return view('logs.index', [
+                'logs' => $logs,
+            ]);
         }
-        return view('logs.index', [
-            'logs' => $logs,
-        ]);
+   
     }
 
 

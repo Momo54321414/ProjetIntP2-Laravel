@@ -17,7 +17,9 @@ Route::prefix('{locale}')
     Route::get('/documentation',function(){return view('documentation');})->name('documentation');
 
     Route::get('/download',function(){return view('download');})->name('download');
-    
+
+    require __DIR__.'/alert.php';
+    require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function() {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,7 +27,8 @@ Route::middleware('auth')->group(function() {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
 require __DIR__.'/api.php';
+
 });
 
