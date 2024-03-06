@@ -36,7 +36,10 @@
                         {{ $alert->dateOfIntake }} {{ $alert->hourOfIntake }}
                     </div>
                     <div class="mt-5">
-                        @if($alert->isTheMedicationTaken == 0)
+                       
+                            
+                        @endif
+                        @if($alert->isTheMedicationTaken == 0 )
                         <a>
                         <form action="{{ route('alerts.update', $alert->id) }}" method="POST">
                             @csrf
