@@ -95,13 +95,12 @@ class PrescriptionController extends Controller
         try {
             $prescription->save();
 
-            if(request()->is('api/*')){
+            if (request()->is('api/*')) {
 
                 return response()->json(['success' => $Messages['success']], 200);
-            }else{
+            } else {
                 return redirect()->back()->with('status', $Messages['success']);
             }
-
         } catch (\Exception $e) {
 
             if (request()->is('api/*')) {
@@ -110,7 +109,7 @@ class PrescriptionController extends Controller
             } else {
                 return redirect()->back()->with('errors', $Messages['error']);
             }
-        } 
+        }
     }
 
     /**
@@ -119,6 +118,20 @@ class PrescriptionController extends Controller
     public function show(string $locale, string $id)
     {
         //
+        try {
+            $prescription = Prescription::findOrFail($id);
+            if (request()->is('api/*')) {
+                return response()->json($prescription);
+            } else {
+                return view('prescription.show', ['prescription' => $prescription]);
+            }
+        } catch (\Exception $e) {
+            if (request()->is('api/*')) {
+                return response()->json(['error' => 'Error finding prescription'], 500);
+            } else {
+                return redirect()->back()->with('errors', 'Error finding prescription');
+            }
+        }
     }
 
     /**
@@ -126,7 +139,7 @@ class PrescriptionController extends Controller
      */
     public function edit(string $locale, string $id)
     {
-       $locale = app()->getLocale();
+        $locale = app()->getLocale();
         $Messages =  $this->getRightMessagesForEdit($locale);
         try {
             $prescription = Prescription::findOrFail($id);
@@ -165,7 +178,7 @@ class PrescriptionController extends Controller
 
         try {
             $prescription = Prescription::findOrFail($id);
-           
+
             $validated = $request->validated();
             $prescription->fill($validated);
             $prescription->user_id = Auth::user()->id;

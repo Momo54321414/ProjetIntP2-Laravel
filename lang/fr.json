@@ -138,6 +138,7 @@
     "FirstIntakeHour": "Première heure d'admission:",
     "DurationOfPrescriptionInDays": "Durée de la prescription en jours:",
     "AreYouSureYouWantToDeleteThisPrescription": "Êtes-vous sûr de vouloir supprimer cette prescription?",
+    "NoPrescriptionsFound": "Aucune prescription trouvée",
 
 
     "MedicationName": "Nom du médicament:",

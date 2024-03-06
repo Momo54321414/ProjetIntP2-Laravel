@@ -8,7 +8,7 @@
     <div class="overflow-y-scroll max-h-64">
         @if ($prescriptions->isEmpty())
             <div class="text-gray-500 dark:text-gray-400">
-                {{ __('No prescriptions found.') }}
+                {{ __('NoPrescriptionsFound') }}
             </div>
         @else
             @foreach ($prescriptions as $prescription)

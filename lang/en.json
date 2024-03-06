@@ -143,6 +143,7 @@
     "PrescriptionDate": "Prescription Date",
     "DurationOfPrescriptionInDays": "Duration of the prescription in days:",
     "AreYouSureYouWantToDeleteThisPrescription": "Are you sure you want to delete this prescription?",
+    "NoPrescriptionsFound": "No prescriptions found",
 
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:"
