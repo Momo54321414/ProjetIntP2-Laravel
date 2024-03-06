@@ -47,6 +47,14 @@ class UserSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'id' => 5,
+                'name' => 'Divad Prefab',
+                'email' => 'divadpre@hotmail.com',
+                'password' => bcrypt('123'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
 
         ]);
     }
