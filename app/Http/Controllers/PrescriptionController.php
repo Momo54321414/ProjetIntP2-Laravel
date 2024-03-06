@@ -99,7 +99,7 @@ class PrescriptionController extends Controller
 
                 return response()->json(['success' => $Messages['success']], 200);
             } else {
-                return redirect()->back()->with('status', $Messages['success']);
+                return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
             }
         } catch (\Exception $e) {
 
@@ -181,13 +181,14 @@ class PrescriptionController extends Controller
 
             $validated = $request->validated();
             $prescription->fill($validated);
+            
             $prescription->user_id = Auth::user()->id;
             $prescription->saveOrFail();
 
             if (request()->is('api/*')) {
                 return response()->json(['success' => $Messages['success']], 200);
             } else {
-                return redirect()->back()->with('status', $Messages['success']);
+                return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
             }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {

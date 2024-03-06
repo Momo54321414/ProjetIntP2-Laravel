@@ -24,9 +24,7 @@
 
                                     <div class="text-gray-500 hover:text-gray-300 cursor-pointer">
 
-                                        <x-hrefbutton href="{{ route('prescriptions.edit', [$prescription->id]) }}">
-
-
+                                        <x-hrefbutton :href=" route('prescriptions.edit', [$prescription->id]) " >
                                             <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -77,11 +75,12 @@
                         </div>
                     @endforeach
                 @endif
+                <x-href-button-primary href="{{ route('prescriptions.create') }}">{{ __('Add') }}</x-href-button-primary>
             </div>
 
 
             <div class="flex items-center gap-4">
-                <x-hrefbutton href="{{ route('prescriptions.create') }}">{{ __('Add') }}</x-hrefbutton>
+                
 
                 @if (!$prescriptions->isEmpty())
                     <x-modal id="delete-prescription-modal" name="delete-prescription-modal" focusable>
