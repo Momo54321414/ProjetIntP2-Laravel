@@ -15,6 +15,7 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-4">
                             <div class="text-md font-bold"> {{ $alert->medicationName }}</div>
+                            <div class="text-gray-500 font-bold text-sm"> {{ $alert->id }} </div>
                         </div>
                         <div class="flex items-center space-x-4">
                             <div class="text-gray-500 hover:text-gray-300 cursor-pointer">
@@ -36,12 +37,14 @@
                     </div>
                     <div class="mt-5">
                         @if($alert->isTheMedicationTaken == 0)
+                        <a>
                         <form action="{{ route('alerts.update', $alert->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
                             <input type="hidden" name="isTheMedicationTaken" value="1">
-                            <x-primary-button type="submit">Take now</x-primary-button>
+                            <x-primary-button>Take now</x-primary-button>
                         </form>
+                        </a>
                         @endif
                     </div>
                     <br>

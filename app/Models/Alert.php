@@ -10,6 +10,10 @@ class Alert extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'isTheMedicationTaken',
+        'updateTimestamp',
+    ];
 
     public function calendar(): BelongsTo
     {
