@@ -8,7 +8,7 @@
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
             <div class="mt-6 ">
-                <x-hrefbutton href="{{ route('profile.edit') }}" class="btn">
+                <x-hrefbutton href="{{ route('prescriptions.index') }}" class="btn">
                     {{ __('Back') }}
                 </x-hrefbutton>
                 <div class="p-6">
@@ -106,9 +106,9 @@
 
 
                         <div class="mt-6 flex justify-end">
-                            <x-secondary-button x-on:click="$dispatch('close')">
+                            <x-hrefbutton href="{{ route('prescriptions.index') }}" class="btn">
                                 {{ __('Cancel') }}
-                            </x-secondary-button>
+                            </x-hrefbutton>
 
                             <x-primary-button class="ms-3">
                                 {{ __('Update') }}

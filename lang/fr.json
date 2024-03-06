@@ -126,9 +126,11 @@
     "Update": "Mettre à jour",
 
     "Prescription":"Prescription",
+    "Prescriptions":"Prescriptions",
     "AddNewPrescription": "Ajouter une nouvelle prescription",
     "DeletePrescription": "Supprimer la prescription",
     "EditPrescription": "Modifier la prescription",
+    "GoToPrescriptionList": "Aller à la liste des prescriptions",
     "Prescription list": "Liste des prescriptions",
     "PrescriptionFrequencyBetweenDosesInHours": "Fréquence de la prescription entre les doses en heures:",
     "PrescriptionFrequencyPerDay": "Fréquence de la prescription par jour:",
@@ -139,6 +141,7 @@
     "DurationOfPrescriptionInDays": "Durée de la prescription en jours:",
     "AreYouSureYouWantToDeleteThisPrescription": "Êtes-vous sûr de vouloir supprimer cette prescription?",
     "NoPrescriptionsFound": "Aucune prescription trouvée",
+    "QuickLinkToPrescriptions": "Lien rapide vers les prescriptions",
 
 
     "MedicationName": "Nom du médicament:",
