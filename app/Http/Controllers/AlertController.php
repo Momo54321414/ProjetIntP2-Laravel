@@ -46,7 +46,7 @@ class AlertController extends Controller
     {
         try {
             $alert = DB::table('Alerts')->where('id', $id)->first();
-            $alert->status = $request->status;
+            $alert->isTheMedicationTaken = $request->isTheMedicationTaken;
             $alert->save();
         }
         catch (\Exception $e) {
