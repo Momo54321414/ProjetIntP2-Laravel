@@ -181,7 +181,7 @@ class PrescriptionController extends Controller
 
             $validated = $request->validated();
             $prescription->fill($validated);
-            
+
             $prescription->user_id = Auth::user()->id;
             $prescription->saveOrFail();
 
