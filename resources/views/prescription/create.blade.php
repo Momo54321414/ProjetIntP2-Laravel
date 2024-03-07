@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Add prescription') }}
+            {{ __('AddNewPrescription') }}
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -15,7 +15,7 @@
                         @csrf
 
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Add prescription') }}
+                            {{ __('AddNewPrescription') }}
                         </h2>
 
 

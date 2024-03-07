@@ -6,7 +6,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
+    //Inserer les routes ici après avoir utilisé le token pour s'authentifier
 });
+Route::prefix('{locale}')
+    ->where(['locale' => '[a-zA-Z]{2}'])
+    ->middleware('setlocale')
+    ->group(function () {
 
     Route::get('prescriptions', [PrescriptionController::class, 'index'])->name('prescriptions.api.index');
     Route::post('prescriptions', [PrescriptionController::class, 'store'])->name('prescriptions.api.store');
@@ -14,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::put('prescriptions/{prescription}', [PrescriptionController::class, 'update'])->name('prescriptions.api.update');
     Route::delete('prescriptions/{prescription}', [PrescriptionController::class, 'destroy'])->name('prescriptions.api.destroy');
     Route::get('prescriptions/{prescription}/edit', [PrescriptionController::class, 'edit'])->name('prescriptions.api.edit');
-    Route::get('prescriptions/create', [PrescriptionController::class, 'create'])->name('prescriptions.api.create');
+    //Route::get('prescriptions/create', [PrescriptionController::class, 'create'])->name('prescriptions.api.create');
+
+    });

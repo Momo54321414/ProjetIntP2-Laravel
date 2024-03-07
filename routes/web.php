@@ -14,25 +14,25 @@ Route::prefix('{locale}')
     ->middleware('setlocale')
     ->group(function () {
 
-    Route::get('/',function(){return view('dashboard');})->name('dashboard');
-    
-    Route::get('/documentation',function(){return view('documentation');})->name('documentation');
+        Route::get('/', function () {
+            return view('dashboard');
+        })->name('dashboard');
 
-    Route::get('/download',function(){return view('download');})->name('download');
+        Route::get('/documentation', function () {
+            return view('documentation');
+        })->name('documentation');
 
-    
-Route::middleware('auth')->group(function() {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    require __DIR__.'/prescriptions.php';
-    
-});
-
-require __DIR__.'/auth.php';
+        Route::get('/download', function () {
+            return view('download');
+        })->name('download');
 
 
-});
+        Route::middleware('auth')->group(function () {
+            Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+            Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+            require __DIR__ . '/prescriptions.php';
+        });
 
-
-
+        require __DIR__ . '/auth.php';
+    });

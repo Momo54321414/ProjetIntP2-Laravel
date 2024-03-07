@@ -16,7 +16,7 @@ class PrescriptionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(string $locale)
+    public function index()
     {
         if (request()->is('api/*')) {
 
@@ -65,7 +65,7 @@ class PrescriptionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $locale)
+    public function create()
     {
         $medications = Medication::all();
         $maxDate = Carbon::now()->toDateString();
