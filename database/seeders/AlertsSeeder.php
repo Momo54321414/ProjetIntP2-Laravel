@@ -12,6 +12,6 @@ class AlertsSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+//
     }
 }

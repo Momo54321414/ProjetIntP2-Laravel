@@ -28,6 +28,7 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+
                 <x-nav-lang />
                 @auth
                     <x-dropdown align="right" width="48">
@@ -54,6 +55,9 @@
                             <x-dropdown-link :href="route('prescriptions.index')">
                                 {{ __('Prescriptions') }}
                             </x-dropdown-link>
+                        <x-dropdown-link :href="route('alerts.index')">
+                            {{ __('Alerts') }}
+                        </x-dropdown-link>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -105,6 +109,11 @@
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
 
+
+                <x-responsive-nav-link :href="route('alerts.index')">
+                    {{ __('Alerts') }}
+                </x-responsive-nav-link>
+
                     <x-responsive-nav-link :href="route('prescriptions.index')">
                         {{ __('Prescriptions') }}
                     </x-responsive-nav-link>
@@ -112,6 +121,7 @@
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
+
 
                         <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
