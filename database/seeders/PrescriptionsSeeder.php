@@ -40,7 +40,7 @@ class PrescriptionsSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ],
         [
-            'nameOfPrescription' => 'Monday blues',
+            'nameOfPrescription' => 'Treatment for my headache',
             'dateOfPrescription' =>  Carbon::now(),
             'dateOfStart' => Carbon::now()->addDays(fake()->numberBetween(1, 20)),
             'durationOfPrescriptionInDays' => fake()->numberBetween(1, 30),
@@ -52,7 +52,7 @@ class PrescriptionsSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ],
         [
-            'nameOfPrescription' => 'Making it pillable',
+            'nameOfPrescription' => 'Treatment prescribed by Dr. Smith',
             'dateOfPrescription' =>  Carbon::now(),
             'dateOfStart' => Carbon::now()->addDays(fake()->numberBetween(1, 20)),
             'durationOfPrescriptionInDays' => fake()->numberBetween(1, 30),
@@ -64,7 +64,7 @@ class PrescriptionsSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ],
         [
-            'nameOfPrescription' => 'Intake of pills',
+            'nameOfPrescription' => 'Daily medication treatemnt',
             'dateOfPrescription' =>  Carbon::now(),
             'dateOfStart' => Carbon::now()->addDays(fake()->numberBetween(1, 20)),
             'durationOfPrescriptionInDays' => fake()->numberBetween(1, 30),
