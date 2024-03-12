@@ -37,8 +37,7 @@
                     </div>
                     <div class="mt-5">
                        
-                            
-                        @endif
+
                         @if($alert->isTheMedicationTaken == 0 )
                         <a>
                         <form action="{{ route('alerts.update', $alert->id) }}" method="POST">
