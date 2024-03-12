@@ -13,6 +13,11 @@ class UserController extends Controller
         return $request->user();
 
     }
+    public function alluser(Request $request)
+{
+    $users = User::all();
+    return response()->json($users);
+}
 
     public function register(Request $request)
     {
@@ -44,9 +49,11 @@ class UserController extends Controller
             $token = md5(time()).'.'.md5($request->email);
             $user -> forceFill([
                 'api_token' => $token,
+            
             ])->save();
             return response()->json([
                 'token' => $token,
+                'user' => $user,
                 
             ]);
 
