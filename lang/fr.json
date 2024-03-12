@@ -148,5 +148,13 @@
 
 
     "MedicationName": "Nom du médicament:",
-    "MedicationFunction": "Fonction de médication:"
+    "MedicationFunction": "Fonction de médication:",
+
+    "Alerts": "Alertes",
+    "Alerts log": "Journal des alertes",
+    "No alerts to show yet.": "Pas d'alertes pour le moment.",
+    "Take now": "Prendre maintenant",
+
+    "Logs": "Journal d'activité",
+    "No logs to show yet": "Pas d'activité dans le journal pour le moment."
 }

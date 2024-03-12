@@ -1,6 +1,8 @@
 <?php
-use Carbon\Carbon;
+use Carbon\Carbon;               
 ?>
+
+
 <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -18,18 +20,19 @@ use Carbon\Carbon;
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-4">
                             <div class="text-md font-bold"> {{ $alert->medicationName }}</div>
-                            <div class="text-gray-500 font-bold text-sm"> {{ $alert->id }} </div>
                         </div>
                         <div class="flex items-center space-x-4">
                             <div class="text-gray-500 hover:text-gray-300 cursor-pointer">
 
                             </div>
-                            <div class="mt-4 text-gray-500 font-bold text-sm">
-                                <div>Status:</div>
+                            <div class="mt-4 flex text-gray-500 font-bold text-sm">
+                                <div class="mr-2">Status: </div>
                                 @if($alert->isTheMedicationTaken == 0)
-                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div class="w-5 h-5 bg-red-500 rounded-full"></div>
+                                @elseif($alert->isTheMedicationTaken == 1)
+                                    <div class="w-5 h-5 bg-green-500 rounded-full"></div>
                                 @else
-                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <div class="w-5 h-5 bg-gray-600 rounded-full"></div>
                                     @endif
                             </div>
                         </div>
@@ -50,7 +53,7 @@ use Carbon\Carbon;
                             @csrf
                             @method('PATCH')
                             <input type="hidden" name="isTheMedicationTaken" value="1">
-                            <x-primary-button>Take now</x-primary-button>
+                            <x-primary-button>{{__('Take now')}}</x-primary-button>
                         </form>
                         </a>
                         @endif

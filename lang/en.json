@@ -152,6 +152,21 @@
     "ZoomPrescription": "Zoom on a prescription",
 
     "MedicationName": "Medication Name:",
-    "MedicationFunction": "Medication Function:"
+    "MedicationFunction": "Medication Function:",
+
+    "Alerts": "Alerts",
+    "Alerts log": "Alerts log",
+    "No alerts to show yet": "No alerts to show yet",
+    "Take now": "Take now",
+
+    "Logs": "Logs",
+    "No logs to show yet": "No logs to show yet",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": ""
 
 }

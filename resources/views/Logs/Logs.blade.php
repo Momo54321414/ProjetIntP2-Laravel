@@ -1,14 +1,17 @@
+<?php
+use Carbon\Carbon;
+?>
 <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Add and monitor your device') }}
+            {{ __('Logs') }}
         </h2>
     </header>
 
     <div class="overflow-y-scroll max-h-64">
         @if ($logs->isEmpty())
             <div class="text-gray-500 text-center">
-                {{ __('No logs to show yet') }}
+                {{ __('Logs') }}
             </div>
         @else
             @foreach ($logs as $log)
@@ -22,8 +25,8 @@
                             <div class="text-gray-500 hover:text-gray-300 cursor-pointer">
 
                             </div>
-                            <div class="mt-4 text-gray-500 font-bold text-sm">
-                                {{ $log->actionTimestamp }}
+                            <div class="mt-4 text-gray-500 font-bold text-sm">    
+                                {{Carbon::create ($log->actionTimestamp)->format(' F j Y h:i A');}}
                             </div>
                         </div>
                     </div>
