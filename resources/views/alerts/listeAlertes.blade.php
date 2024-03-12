@@ -25,7 +25,7 @@ use Carbon\Carbon;
 
                             </div>
                             <div class="mt-4 flex text-gray-500 font-bold text-sm">
-                                <div class="mr-2">Status: </div>
+                                <div class="mr-2">{{__('Status: ')}}</div>
                                 @if($alert->isTheMedicationTaken == 0)
                                     <div class="w-5 h-5 bg-red-500 rounded-full" data-tooltip-target="tooltip-notTaken-{{$alert->id}}"></div>
 

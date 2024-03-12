@@ -160,5 +160,5 @@
     "Medication taken": "Médicament pris",
     "Medication not taken": "Médicament non pris",
     "Error": "Erreur",
-    "Status": "Statut"
+    "Status: ": "Statut: "
 }

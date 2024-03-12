@@ -55,8 +55,8 @@
               <p class="text-gray-600 mb-8">
                 {{ __('Configure Your Pillbox_text') }} 
               </p>
-              <a href="{{ route('download') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                {{ __('configure now') }}
+              <a href="{{ route('alerts.index') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                {{ __('Configure now') }}
               </a>
             </div>
             <div class="w-full sm:w-1/2 p-6">
