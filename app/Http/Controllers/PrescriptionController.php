@@ -19,7 +19,7 @@ class PrescriptionController extends Controller
     public function index()
     {
         if (request()->is('api/*')) {
-            //Vraiment utile pour l'api ou se créer un?
+            //Vraiment utile pour l'api ou se créer un puisqu'on doit récuperer un api_token?
             $prescriptions = DB::table('prescriptions')
                 ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
                 ->select(
@@ -64,6 +64,7 @@ class PrescriptionController extends Controller
     }
 
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -74,6 +75,9 @@ class PrescriptionController extends Controller
         $minDate = Carbon::now()->subDecades(2)->toDateString();
         $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
 
+        if (request()->is('api/*')) {
+            return response()->json(['medications' => $medications, 'maxDate' => $maxDate, 'minDate' => $minDate, 'maxDateForStart' => $maxDateForStart], 200);
+        }
 
         return view('prescription.create', [
             'medications' => $medications,
@@ -103,14 +107,14 @@ class PrescriptionController extends Controller
             } else {
                 return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
             }
+
         } catch (\Exception $e) {
 
             if (request()->is('api/*')) {
 
                 return response()->json(['error' => $Messages['error']], 500);
-            } else {
-                return redirect()->back()->with('errors', $Messages['error']);
             }
+            return redirect()->back()->withErrors();
         }
     }
 

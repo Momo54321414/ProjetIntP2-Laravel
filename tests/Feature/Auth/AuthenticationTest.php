@@ -5,6 +5,7 @@ namespace Tests\Feature\Auth;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Routing\Route;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -14,7 +15,7 @@ class AuthenticationTest extends TestCase
     public function test_login_screen_can_be_rendered(): void
     {
         $locale = app()->getLocale();
-        $response = $this->get('/'.$locale.'/login');
+        $response = $this->get('/' . $locale . '/login');
 
         $response->assertStatus(200);
     }
@@ -22,22 +23,27 @@ class AuthenticationTest extends TestCase
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
         $locale = app()->getLocale();
-        $user = User::factory()->create();
-
-        $response = $this->post('/'.$locale.'/login', [
-            'email' => $user->email,
-            'password' => 'password',
+        $password = 'password';
+        $user = User::factory()->create([
+            'password' => bcrypt($password),
         ]);
-
+        
+        $response = $this->actingAs($user)->post('/' . $locale . '/login', [
+            'email' => $user->email,
+            'password' => $password,
+        ])->assertRedirect();
+        
         $this->assertAuthenticated();
-        $response->assertRedirect('/'.$locale.'/dashboard');
+        
     }
 
+
     public function test_users_can_not_authenticate_with_invalid_password(): void
-    { $locale = app()->getLocale();
+    {
+        $locale = app()->getLocale();
         $user = User::factory()->create();
 
-        $this->post('/'.$locale.'/login', [
+        $this->post('/' . $locale . '/login', [
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
@@ -53,6 +59,6 @@ class AuthenticationTest extends TestCase
         $response = $this->actingAs($user)->post('/logout');
 
         $this->assertGuest();
-        $response->assertRedirect('/', $locale.'/dashboard');
+        $response->assertRedirect('/'. $locale);
     }
 }

@@ -9,10 +9,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
     //Inserer les routes ici après avoir utilisé le token pour s'authentifier
 });
-Route::prefix('{locale}')
-    ->where(['locale' => '[a-zA-Z]{2}'])
-    ->middleware('setlocale')
-    ->group(function () {
+
 
     Route::get('prescriptions', [PrescriptionController::class, 'index'])->name('prescriptions.api.index');
     Route::post('prescriptions', [PrescriptionController::class, 'store'])->name('prescriptions.api.store');
@@ -22,4 +19,4 @@ Route::prefix('{locale}')
     Route::get('prescriptions/{prescription}/edit', [PrescriptionController::class, 'edit'])->name('prescriptions.api.edit');
     //Route::get('prescriptions/create', [PrescriptionController::class, 'create'])->name('prescriptions.api.create');
 
-    });
+  

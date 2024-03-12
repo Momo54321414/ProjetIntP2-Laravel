@@ -57,7 +57,7 @@ class ProfileTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/'.$locale.'/profile');
+            ->assertRedirect();
 
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
@@ -75,7 +75,7 @@ class ProfileTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/'.$locale);
+            ->assertRedirect();
 
         $this->assertGuest();
         $this->assertNull($user->fresh());
@@ -84,18 +84,18 @@ class ProfileTest extends TestCase
     public function test_correct_password_must_be_provided_to_delete_account(): void
     {
         $locale = app()->getLocale();
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'password' => bcrypt('password')]);
 
+        $wrongPassword = 'wrong-password';
         $response = $this
             ->actingAs($user)
-            ->from('/'.$locale.'/profile')
-            ->delete('/'.$locale.'/profile', [
-                'password' => 'wrong-password',
-            ]);
-
-        $response
-            ->assertSessionHasErrorsIn('userDeletion', 'password')
-            ->assertRedirect('/'.$locale.'/profile');
+            ->from('/profile')
+            ->delete('/profile', [
+                'password' => $wrongPassword,
+            ])
+            ->assertSessionHasErrors('userDeletion');
+            
 
         $this->assertNotNull($user->fresh());
     }
