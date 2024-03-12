@@ -159,5 +159,6 @@
     "No logs to show yet": "Pas d'activité dans le journal pour le moment.",
     "Medication taken": "Médicament pris",
     "Medication not taken": "Médicament non pris",
-    "Error": "Erreur"
+    "Error": "Erreur",
+    "Status": "Statut"
 }
