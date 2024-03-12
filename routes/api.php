@@ -13,6 +13,6 @@ Route::post('register', [UserController::class, 'register']);
 Route::get('alluser', [UserController::class, 'alluser']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('user', 'UserController@index');
-    Route::post('logout', 'UserController@logout');
+    Route::get('user',  [UserController::class,'index']);
+    Route::post('logout',  [UserController::class,'logout']);
 });
