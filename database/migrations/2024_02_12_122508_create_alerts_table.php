@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('alerts', function (Blueprint $table) {
             $table->id();
             $table->boolean('isTheMedicationTaken');
-            $table->foreignId('calendar_id')->constrained('calendars');
+            $table->foreignId('calendar_id')->constrained('calendars')->onDelete('cascade');
             $table->timestamps();
         });
     }

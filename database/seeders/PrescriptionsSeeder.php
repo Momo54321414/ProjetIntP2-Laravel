@@ -21,7 +21,7 @@ class PrescriptionsSeeder extends Seeder
             'dateOfStart' => Carbon::now()->addDays(fake()->numberBetween(1, 20)),
             'durationOfPrescriptionInDays' => fake()->numberBetween(1, 30),
             'frequencyBetweenDosesInHours' => fake()->numberBetween(1, 24),
-            'frequencyPerDay' => fake()->numberBetween(1, 6),
+            'firstIntakeHour' => '10:00:00',
             'medication_id' => fake()->numberBetween(1, 9),
             'user_id' => fake()->numberBetween(1, 4),
             'created_at' => Carbon::now(),
@@ -33,7 +33,7 @@ class PrescriptionsSeeder extends Seeder
             'dateOfStart' => Carbon::now()->addDays(fake()->numberBetween(1, 20)),
             'durationOfPrescriptionInDays' => fake()->numberBetween(1, 30),
             'frequencyBetweenDosesInHours' => fake()->numberBetween(1, 24),
-            'frequencyPerDay' => fake()->numberBetween(1, 6),
+            'firstIntakeHour' => '08:00:00',
             'medication_id' => fake()->numberBetween(1, 9),
             'user_id' => fake()->numberBetween(1, 4),
             'created_at' => Carbon::now(),
@@ -45,7 +45,7 @@ class PrescriptionsSeeder extends Seeder
             'dateOfStart' => Carbon::now()->addDays(fake()->numberBetween(1, 20)),
             'durationOfPrescriptionInDays' => fake()->numberBetween(1, 30),
             'frequencyBetweenDosesInHours' => fake()->numberBetween(1, 24),
-            'frequencyPerDay' => fake()->numberBetween(1, 6),
+            'firstIntakeHour' => '06:00:00',
             'medication_id' => fake()->numberBetween(1, 9),
             'user_id' => fake()->numberBetween(1, 4),
             'created_at' => Carbon::now(),
@@ -57,7 +57,7 @@ class PrescriptionsSeeder extends Seeder
             'dateOfStart' => Carbon::now()->addDays(fake()->numberBetween(1, 20)),
             'durationOfPrescriptionInDays' => fake()->numberBetween(1, 30),
             'frequencyBetweenDosesInHours' => fake()->numberBetween(1, 24),
-            'frequencyPerDay' => fake()->numberBetween(1, 6),
+            'firstIntakeHour' => '08:00:00',
             'medication_id' => fake()->numberBetween(1, 9),
             'user_id' => fake()->numberBetween(1, 4),
             'created_at' => Carbon::now(),
@@ -69,7 +69,7 @@ class PrescriptionsSeeder extends Seeder
             'dateOfStart' => Carbon::now()->addDays(fake()->numberBetween(1, 20)),
             'durationOfPrescriptionInDays' => fake()->numberBetween(1, 30),
             'frequencyBetweenDosesInHours' => fake()->numberBetween(1, 24),
-            'frequencyPerDay' => fake()->numberBetween(1, 6),
+            'firstIntakeHour' => '07:00:00',
             'medication_id' => fake()->numberBetween(1, 9),
             'user_id' => fake()->numberBetween(1, 4),
             'created_at' => Carbon::now(),
@@ -77,6 +77,5 @@ class PrescriptionsSeeder extends Seeder
         ],
    
     ]);
-
     }
 }

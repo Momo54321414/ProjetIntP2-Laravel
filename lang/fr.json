@@ -74,7 +74,7 @@
 
 
 
-    "Hero_Header": "Donner du pouvoir à la santé, une pilule à la fois !",
+    "Hero_header": "Donner du pouvoir à la santé, une pilule à la fois !",
     "Hero_text": "Révolutionner les soins de santé avec des piluliers intelligents alimentés par la technologie IoT.",
     "Download our app:": "Téléchargez notre application",
 
@@ -92,6 +92,7 @@
     "New Password": "Nouveau mot de passe",
     "Save": "Enregistrer",
     "Saved": "Enregistré",
+    "Back": "Retour",
     "Profile Information": "Informations de profil",
     "Update your account's profile information and email address.": "Mettez à jour les informations de profil et l'adresse e-mail de votre compte.",
     "Your email address is unverified": "Votre adresse e-mail n'est pas vérifiée",
@@ -116,11 +117,44 @@
     "Register": "S'inscrire",
     "Reset Password": "Réinitialiser le mot de passe",
     "Resend Verification Email": "Renvoyer l'e-mail de vérification",
+    "Return": "Retour",
     "Log Out": "Déconnexion",
 
 
     "Dashboard": "Tableau de bord",
     "Documentation": "Documentation",
     "Download": "Téléchargement",
-    "Register": "S'inscrire"
+    "Add": "Ajouter",
+    "Update": "Mettre à jour",
+
+    "Prescription":"Prescription",
+    "Prescriptions":"Prescriptions",
+    "AddNewPrescription": "Ajouter une nouvelle prescription",
+    "DeletePrescription": "Supprimer la prescription",
+    "EditPrescription": "Modifier la prescription",
+    "GoToPrescriptionList": "Aller à la liste des prescriptions",
+    "Prescription list": "Liste des prescriptions",
+    "PrescriptionFrequencyBetweenDosesInHours": "Fréquence de la prescription entre les doses en heures:",
+    "PrescriptionFrequencyPerDay": "Fréquence de la prescription par jour:",
+    "PrescriptionName": "Nom de la prescription:",
+    "PrescriptionDateOfStart": "Date de début de la prescription:",
+    "PrescriptionDate": "Date de la prescription:",
+    "FirstIntakeHour": "Première heure d'admission:",
+    "DurationOfPrescriptionInDays": "Durée de la prescription en jours:",
+    "AreYouSureYouWantToDeleteThisPrescription": "Êtes-vous sûr de vouloir supprimer cette prescription?",
+    "NoPrescriptionsFound": "Aucune prescription trouvée",
+    "QuickLinkToPrescriptions": "Lien rapide vers les prescriptions",
+    "ZoomPrescription": "Zoom sur la prescription",
+
+
+    "MedicationName": "Nom du médicament:",
+    "MedicationFunction": "Fonction de médication:",
+
+    "Alerts": "Alertes",
+    "Alerts log": "Journal des alertes",
+    "No alerts to show yet.": "Pas d'alertes pour le moment.",
+    "Take now": "Prendre maintenant",
+
+    "Logs": "Journal d'activité",
+    "No logs to show yet": "Pas d'activité dans le journal pour le moment."
 }
