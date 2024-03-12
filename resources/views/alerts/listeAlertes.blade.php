@@ -39,6 +39,9 @@
                        
 
                         @if($alert->isTheMedicationTaken == 0 )
+                        @if ($alert->dateOfIntake == date('Y-m-d'))
+                            
+                        
                         <a>
                         <form action="{{ route('alerts.update', $alert->id) }}" method="POST">
                             @csrf
@@ -47,6 +50,7 @@
                             <x-primary-button>Take now</x-primary-button>
                         </form>
                         </a>
+                        @endif
                         @endif
                     </div>
                     <br>
