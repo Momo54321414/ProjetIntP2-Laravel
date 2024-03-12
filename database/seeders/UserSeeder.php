@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
                 'name' => 'Marc Pépin',
                 'email' => '123@123',
                 'password' => bcrypt('123'),
-                'profile_photo_path' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -25,7 +24,6 @@ class UserSeeder extends Seeder
                 'name' => 'John Doe',
                 'email' => 'johndoe@hotmail.com',
                 'password' => bcrypt('123'),
-                'profile_photo_path' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -34,7 +32,6 @@ class UserSeeder extends Seeder
                 'name' => 'Jane Doe',
                 'email' => 'janedoe@gmail.com',
                 'password' => bcrypt('123'),
-                'profile_photo_path' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -43,7 +40,14 @@ class UserSeeder extends Seeder
                 'name' => 'John Smith',
                 'email' => 'johnsmith@gmail.com',
                 'password' => bcrypt('123'),
-                'profile_photo_path' => '',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 5,
+                'name' => 'Divad Prefab',
+                'email' => 'divadpre@hotmail.com',
+                'password' => bcrypt('123'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

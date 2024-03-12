@@ -5,10 +5,10 @@
           <!--Left Col-->
           <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
             <h1 class="my-4 text-5xl font-bold leading-tight">
-              Empowering Health, One Pill at a Time!
+              {{ __('Hero_header')}}
             </h1>
             <p class="leading-normal text-2xl mb-8">
-              Revolutionizing healthcare with intelligent pillboxes powered by IoT technology.
+              {{ __('Hero_text')}}
             </p>
             <a href="{{ route('download') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
               {{ __('Discover our solutions') }}
@@ -50,10 +50,10 @@
           <div class="flex flex-wrap">
             <div class="w-5/6 sm:w-1/2 p-6">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Configure Your Pillbox
+                {{ __('Configure Your Pillbox') }} 
               </h3>
               <p class="text-gray-600 mb-8">
-                Customize your pillbox's settings to meet the specific needs of your patients and healthcare providers.
+                {{ __('Configure Your Pillbox_text') }} 
               </p>
               <a href="{{ route('download') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                 {{ __('configure now') }}
@@ -71,10 +71,10 @@
             <div class="w-full sm:w-1/2 p-6 mt-6">
               <div class="align-middle">
                 <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                  Explore our Documentation
+                  {{ __('Explore our Documentation') }}
                 </h3>
                 <p class="text-gray-600 mb-8">
-                  Find detailed guides, tutorials, and API documentation to help you integrate our IoT pillbox solutions seamlessly into your healthcare system.
+                  {{ __('Explore our Documentation_text') }} 
                 </p>
                 <a href="{{ route('documentation') }}" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                   {{ __('Read more') }}

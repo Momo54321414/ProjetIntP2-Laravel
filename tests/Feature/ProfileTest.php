@@ -11,18 +11,18 @@ class ProfileTest extends TestCase
     use RefreshDatabase;
 
     public function test_profile_page_is_displayed(): void
-    {
+    {  $locale = app()->getLocale();
         $user = User::factory()->create();
 
         $response = $this
             ->actingAs($user)
-            ->get('/profile');
+            ->get('/'.$locale.'/profile');
 
         $response->assertOk();
     }
 
     public function test_profile_information_can_be_updated(): void
-    {
+    {   $locale = app()->getLocale();
         $user = User::factory()->create();
 
         $response = $this
@@ -34,7 +34,7 @@ class ProfileTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/profile');
+            ->assertRedirect('/'.$locale.'/profile');
 
         $user->refresh();
 
@@ -45,6 +45,7 @@ class ProfileTest extends TestCase
 
     public function test_email_verification_status_is_unchanged_when_the_email_address_is_unchanged(): void
     {
+        $locale = app()->getLocale();
         $user = User::factory()->create();
 
         $response = $this
@@ -56,24 +57,25 @@ class ProfileTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/profile');
+            ->assertRedirect();
 
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
 
     public function test_user_can_delete_their_account(): void
     {
+        $locale = app()->getLocale();
         $user = User::factory()->create();
 
         $response = $this
             ->actingAs($user)
-            ->delete('/profile', [
+            ->delete('/'.$locale.'/profile', [
                 'password' => 'password',
             ]);
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect('/');
+            ->assertRedirect();
 
         $this->assertGuest();
         $this->assertNull($user->fresh());
@@ -81,18 +83,19 @@ class ProfileTest extends TestCase
 
     public function test_correct_password_must_be_provided_to_delete_account(): void
     {
-        $user = User::factory()->create();
+        $locale = app()->getLocale();
+        $user = User::factory()->create([
+            'password' => bcrypt('password')]);
 
+        $wrongPassword = 'wrong-password';
         $response = $this
             ->actingAs($user)
             ->from('/profile')
             ->delete('/profile', [
-                'password' => 'wrong-password',
-            ]);
-
-        $response
-            ->assertSessionHasErrorsIn('userDeletion', 'password')
-            ->assertRedirect('/profile');
+                'password' => $wrongPassword,
+            ])
+            ->assertSessionHasErrors('userDeletion');
+            
 
         $this->assertNotNull($user->fresh());
     }

@@ -77,6 +77,5 @@ class PrescriptionsSeeder extends Seeder
         ],
    
     ]);
-
     }
 }
