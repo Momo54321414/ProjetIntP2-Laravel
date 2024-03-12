@@ -1,8 +1,7 @@
 <?php
 use Carbon\Carbon;               
 ?>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -28,12 +27,29 @@ use Carbon\Carbon;
                             <div class="mt-4 flex text-gray-500 font-bold text-sm">
                                 <div class="mr-2">Status: </div>
                                 @if($alert->isTheMedicationTaken == 0)
-                                    <div class="w-5 h-5 bg-red-500 rounded-full"></div>
+                                    <div class="w-5 h-5 bg-red-500 rounded-full" data-tooltip-target="tooltip-notTaken-{{$alert->id}}"></div>
+
                                 @elseif($alert->isTheMedicationTaken == 1)
-                                    <div class="w-5 h-5 bg-green-500 rounded-full"></div>
+                                    <div class="w-5 h-5 bg-green-500 rounded-full" data-tooltip-target="tooltip-isTaken-{{$alert->id}}"></div>
+  
                                 @else
-                                    <div class="w-5 h-5 bg-gray-600 rounded-full"></div>
-                                    @endif
+                                    <div class="w-5 h-5 bg-gray-600 rounded-full" data-tooltip-target="tooltip-alertError-{{$alert->id}}"></div>
+
+                                @endif
+                                <div id="tooltip-isTaken-{{$alert->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                                    Medication taken
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                    
+                                <div id="tooltip-notTaken-{{$alert->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                                    Medication not taken
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                    
+                                <div id="tooltip-alertError-{{$alert->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                                    Error
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -64,5 +80,6 @@ use Carbon\Carbon;
                     <br>
                 </div>
             @endforeach
+           
         @endif
 </section>
