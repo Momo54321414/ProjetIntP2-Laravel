@@ -30,7 +30,7 @@ class AlertController extends Controller
                 ->join('Medications', 'Prescriptions.medication_id', '=', 'Medications.id')
                 ->where('Prescriptions.user_id', '=', Auth::user()->id)
                 ->where('Calendars.dateOfIntake', '<=', Carbon::today())
-                ->select('Alerts.*', 'Calendars.*',  'Medications.name as medicationName')
+                ->select('Alerts.*', 'Calendars.*', 'Medications.name as medicationName')
                 ->get();
             return view('alerts.index', [
                 'alerts' => $alerts,

@@ -1,3 +1,6 @@
+<?php
+use Carbon\Carbon;
+?>
 <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -33,7 +36,7 @@
                     </div>
 
                     <div class="mt-4 text-gray-500 font-bold text-sm">
-                        {{ $alert->dateOfIntake }} {{ $alert->hourOfIntake }}
+                     {{Carbon::create ($alert->dateOfIntake)->format(' F j Y');}}, {{Carbon::create ($alert->hourOfIntake)->format('h:i A') }}
                     </div>
                     <div class="mt-5">
                        
@@ -59,5 +62,4 @@
                 </div>
             @endforeach
         @endif
-
 </section>
