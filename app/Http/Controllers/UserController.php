@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -31,23 +33,26 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            
         ]);
 
         return $result;
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $credentials=$request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 // je me suis arreté ici
-        if(Auth:: attempt($credentials))
+        if(Auth::attempt($credentials))
             {
-                $user = Auth::user();
-            $token = md5(time()).'.'.md5($request->email);
-            $user -> forceFill([
+
+            $user = Auth::user();
+            $token = $user->createToken('token-name')->plainTextToken;
+            $token = bcrypt(str(random_bytes(60)));
+            $user->forceFill([
                 'api_token' => $token,
             
             ])->save();
@@ -74,5 +79,6 @@ class UserController extends Controller
             'message' => 'Logged out',
         ]);
     }
+    
 }
 

@@ -13,13 +13,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [UserController::class,'login']);
 Route::post('register', [UserController::class, 'register']);
 Route::get('alluser', [UserController::class, 'alluser']);
-
+Route::get('prescriptions', [PrescriptionController::class, 'getAssociatedPrescriptions'])->name('prescriptions.api.index');
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user',  [UserController::class,'index']);
     Route::post('logout',  [UserController::class,'logout']);
+   
 });
 
-    Route::get('prescriptions', [PrescriptionController::class, 'index'])->name('prescriptions.api.index');
+   
     Route::post('prescriptions', [PrescriptionController::class, 'store'])->name('prescriptions.api.store');
     Route::get('prescriptions/{prescription}', [PrescriptionController::class, 'show'])->name('prescriptions.api.show');
     Route::put('prescriptions/{prescription}', [PrescriptionController::class, 'update'])->name('prescriptions.api.update');
