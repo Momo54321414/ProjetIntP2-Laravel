@@ -114,7 +114,7 @@ class PrescriptionController extends Controller
 
                 return response()->json(['error' => $Messages['error']], 500);
             }
-            return redirect()->back()->withErrors();
+            return redirect()->back()->withErrors('errors');
         }
     }
 
@@ -126,10 +126,11 @@ class PrescriptionController extends Controller
         //
         try {
             $prescription = Prescription::findOrFail($id);
+            $medications = Medication::all();
             if (request()->is('api/*')) {
                 return response()->json($prescription);
             } else {
-                return view('prescription.show', ['prescription' => $prescription]);
+                return view('prescription.show', ['prescription' => $prescription, 'medications' => $medications]);
             }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {

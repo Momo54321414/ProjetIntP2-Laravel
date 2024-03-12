@@ -9,7 +9,7 @@
         <div class="p-6 text-gray-900 dark:text-gray-100">
             <div class="mt-6 ">
                 <x-hrefbutton href="{{ route('prescriptions.index') }}" class="btn">
-                    {{ __('Back') }}
+                    {{ __('Return') }}
                 </x-hrefbutton>
                 <div class="p-6">
                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">

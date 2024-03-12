@@ -9,7 +9,7 @@
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="mt-6 ">
                     <x-hrefbutton href="{{ route('profile.edit') }}" class="btn">
-                        {{ __('Back') }}
+                        {{ __('Return') }}
                     </x-hrefbutton>
                     <form method="POST" action="{{ route('prescriptions.store') }}" class="p-6">
                         @csrf

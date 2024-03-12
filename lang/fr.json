@@ -117,6 +117,7 @@
     "Register": "S'inscrire",
     "Reset Password": "Réinitialiser le mot de passe",
     "Resend Verification Email": "Renvoyer l'e-mail de vérification",
+    "Return": "Retour",
     "Log Out": "Déconnexion",
 
 
@@ -143,6 +144,7 @@
     "AreYouSureYouWantToDeleteThisPrescription": "Êtes-vous sûr de vouloir supprimer cette prescription?",
     "NoPrescriptionsFound": "Aucune prescription trouvée",
     "QuickLinkToPrescriptions": "Lien rapide vers les prescriptions",
+    "ZoomPrescription": "Zoom sur la prescription",
 
 
     "MedicationName": "Nom du médicament:",

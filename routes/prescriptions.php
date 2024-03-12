@@ -4,9 +4,9 @@ use App\Http\Controllers\PrescriptionController;
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::resource('prescriptions', PrescriptionController::class, [
-        'only' => ['index','create','edit', 'store', 'update', 'destroy']
-    ]);
+    Route::resource('prescriptions', PrescriptionController::class /*, [
+        'only' => ['index','create','edit','show', 'store', 'update', 'destroy']
+    ]*/);
    
     
 });
