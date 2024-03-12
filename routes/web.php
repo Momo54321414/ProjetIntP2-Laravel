@@ -9,8 +9,6 @@ Route::get('/', function () {
     return redirect(app()->getLocale());
 });
 
-require __DIR__.'/api.php';
-
 Route::prefix('{locale}')
     ->where(['locale' => '[a-zA-Z]{2}'])
     ->middleware('setlocale')
