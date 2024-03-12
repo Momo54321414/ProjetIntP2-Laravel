@@ -46,6 +46,22 @@ class DevicesSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'id' => 5,
+                'associatedPatientFullName' => 'Guy Laravel',
+                'noSerie'=>'20266080',
+                'user_id' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 6,
+                'associatedPatientFullName' => 'Antoine Gauthier',
+                'noSerie'=>'20206688',
+                'user_id' => 6,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }
