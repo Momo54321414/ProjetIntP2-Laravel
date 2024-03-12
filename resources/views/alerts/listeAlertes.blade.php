@@ -37,17 +37,17 @@ use Carbon\Carbon;
 
                                 @endif
                                 <div id="tooltip-isTaken-{{$alert->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
-                                    Medication taken
+                                     {{__('Medication taken')}}
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                     
                                 <div id="tooltip-notTaken-{{$alert->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
-                                    Medication not taken
+                                     {{__('Medication not taken')}}
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                     
                                 <div id="tooltip-alertError-{{$alert->id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
-                                    Error
+                                     {{__('Error')}}
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             </div>
