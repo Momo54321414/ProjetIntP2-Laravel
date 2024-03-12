@@ -84,7 +84,64 @@ class MedicationsSeeder extends Seeder
             'isInPillBox' => fake()->boolean(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-        ]
+        ],
+        [
+            'name' => 'Cortef',
+            'function' => 'Supplemental Steroid Treatment',
+            'isInPillBox' => fake()->boolean(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'Florinef',
+            'function' => 'Supplemental Steroid Treatment',
+            'isInPillBox' => fake()->boolean(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'Synthroid',
+            'function' => 'Hypothyroidism treatment',
+            'isInPillBox' => fake()->boolean(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'Vitamin D',
+            'function' => 'Vitamin Supplemental Treatment',
+            'isInPillBox' => fake()->boolean(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'Hummalog',
+            'function' => 'Type 1 Diabetes Treatment Insulin Injection',
+            'isInPillBox' => fake()->boolean(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'Tresciba',
+            'function' => 'Type 1 Diabetes Treatment Insulin Injection',
+            'isInPillBox' => fake()->boolean(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'Dexcom G6 Sensor',
+            'function' => 'Type 1 Diabetes Treatment Insulin Sensor',
+            'isInPillBox' => fake()->boolean(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        [
+            'name' => 'DexcomG5 Tansmitter',
+            'function' => 'Type 1 Diabetes Treatment Insulin Transmitter',
+            'isInPillBox' => fake()->boolean(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ],
+        
 
         ]);
     }
