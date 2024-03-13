@@ -12,15 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $trigger = "
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Fichier config/database.php
+        DB::unprepared('
        CREATE TRIGGER prescription_frequency_calculator_trigger
        BEFORE INSERT ON prescriptions
        FOR EACH ROW
        BEGIN
         SET new.frequencyPerDay = 24 / new.frequencyBetweenDosesInHours;
 
-        END;";
-        DB::unprepared($trigger);
+        END;');
     }
 
     /**

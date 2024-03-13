@@ -13,8 +13,9 @@ return new class extends Migration
     public function up(): void
     {
 
-        $trigger = "
-        
+
+
+        DB::unprepared('
         CREATE TRIGGER create_calendar_after_insert_prescription
         AFTER INSERT ON prescriptions
         FOR EACH ROW
@@ -23,23 +24,25 @@ return new class extends Migration
             DECLARE hours TIME;
             DECLARE Date DATE;
             DECLARE hoursBetweenDoses INT;
-        
+
             SET currentDate = NEW.dateOfStart;
             SET hoursBetweenDoses = NEW.frequencyBetweenDosesInHours;
-        
+
             WHILE currentDate <= ADDDATE(NEW.dateOfStart, INTERVAL NEW.durationOfPrescriptionInDays DAY) DO
-               
-                SET hours = SEC_TO_TIME(hoursBetweenDoses * 3600);
+                IF (currentDate = NEW.dateOfStart) THEN
+                    SET hours = NEW.firstIntakeHour;
+                ELSE
+                    SET hours = SEC_TO_TIME(hoursBetweenDoses * 3600);
+                END IF;
                 SET Date = currentDate;
-        
-                INSERT INTO calendars (prescription_id, dateOfIntake, hourOfIntake,created_at,updated_at)
+
+                INSERT INTO calendars (prescription_id, dateOfIntake, hourOfIntake, created_at, updated_at)
                 VALUES (NEW.id, currentDate, hours, NOW(), NOW());
-        
-                
+
                 SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);
             END WHILE;
-        END;";
-        DB::unprepared($trigger);
+        END;
+        ');
     }
 
     /**

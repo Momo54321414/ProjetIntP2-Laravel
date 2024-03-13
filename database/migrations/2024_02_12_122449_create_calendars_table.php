@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Fichier config/database.php
         Schema::create('calendars', function (Blueprint $table) {
-            $table->id();  
+            $table->id();
             $table->date('dateOfIntake');
             $table->time('hourOfIntake');
             $table->foreignId('prescription_id')->constrained('prescriptions')->onDelete('cascade');

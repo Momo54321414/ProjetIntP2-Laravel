@@ -28,7 +28,7 @@ class PrescriptionRequest extends FormRequest
             'dateOfStart' => 'required',
             'durationOfPrescriptionInDays' => 'required|integer',
             'frequencyBetweenDosesInHours' => 'required|integer',
-            /*Venir enlever frequencyPerDay par firstIntakeHour */
+            'firstIntakeHour' => 'required|date_format:H:i:s',
             'medication_id' => 'required|integer',
         ];
     }
@@ -59,6 +59,8 @@ class PrescriptionRequest extends FormRequest
             'durationOfPrescriptionInDays.integer' => 'The duration of the prescription in days must be an number',
             'frequencyBetweenDosesInHours.required' => 'The frequency between doses in hours is required',
             'frequencyBetweenDosesInHours.integer' => 'The frequency between doses in hours must be an number',
+            'firstIntakeHour.required' => 'The first intake hour is required',
+            'firstIntakeHour.date_format' => 'The first intake hour must be a time format (H:i:s)',
             'medication_id.required' => 'The medication is required',
         ];
     }
@@ -76,6 +78,8 @@ class PrescriptionRequest extends FormRequest
             'durationOfPrescriptionInDays.integer' => 'La durée de la prescription en jours doit être un nombre',
             'frequencyBetweenDosesInHours.required' => 'La fréquence entre les doses en heures est requise',
             'frequencyBetweenDosesInHours.integer' => 'La fréquence entre les doses en heures doit être un nombre',
+            'firstIntakeHour.required' => 'La première heure de prise est requise',
+            'firstIntakeHour.date_format' => 'La première heure de prise doit être au format heure (H:i:s)',
             'medication_id.required' => 'Le médicament est requis',
         ];
     }

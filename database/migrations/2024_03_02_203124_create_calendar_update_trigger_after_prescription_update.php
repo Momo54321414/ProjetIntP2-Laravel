@@ -12,7 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $trigger = "
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Fichier config/database.php
+        DB::unprepared('
         CREATE TRIGGER prescriptions_after_update
         AFTER UPDATE ON prescriptions
         FOR EACH ROW
@@ -21,7 +23,7 @@ return new class extends Migration
             DECLARE hours TIME;
             DECLARE Date DATE;
             DECLARE hoursBetweenDoses INT;
-        
+            
             DELETE FROM calendars WHERE prescription_id = NEW.id;
             
 
@@ -29,8 +31,11 @@ return new class extends Migration
             SET hoursBetweenDoses = NEW.frequencyBetweenDosesInHours;
         
             WHILE currentDate <= ADDDATE(NEW.dateOfStart, INTERVAL NEW.durationOfPrescriptionInDays DAY) DO
-               
-                SET hours = SEC_TO_TIME(hoursBetweenDoses * 3600);
+               IF (currentDate = NEW.dateOfStart) THEN
+                    SET hours = NEW.firstIntakeHour;
+                ELSE
+                    SET hours = SEC_TO_TIME(hoursBetweenDoses * 3600);
+                END IF;
                 SET Date = currentDate;
         
                 INSERT INTO calendars (prescription_id, dateOfIntake, hourOfIntake,created_at,updated_at)
@@ -39,8 +44,7 @@ return new class extends Migration
                 
                 SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);
             END WHILE;
-        END;";
-        DB::unprepared($trigger);
+        END;');
     }
 
     /**
