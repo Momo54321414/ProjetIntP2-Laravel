@@ -71,24 +71,21 @@
 
                         <div class="mt-6">
                             <x-input-label for="durationOfPrescriptionInDays"
-                                value="{{ __('DurationOfThePrescriptionInDays') }}" />
+                                value="{{ __('DurationOfPrescriptionInDays') }}" />
 
                             <x-text-input id="durationOfPrescriptionInDays" name="durationOfPrescriptionInDays"
                                 type="number" class="mt-1 block w-3/4 disabled:bg-slate-50"
                                 placeholder="{{ __(30) }}"
                                 value="{{ $prescription->durationOfPrescriptionInDays }}" readonly disabled />
                         </div>
-                        {{-- <div class="mt-6">
-                                    <x-input-label for="firstIntakeHour"
-                                        value="{{ __('FirstIntakeHour') }}" />
-            
-                                    <x-text-input id="firstIntakeHour" name="firstIntakeHour"
-                                        type="number" class="mt-1 block w-3/4" placeholder="{{ __(30) }}"
-                                        value="{{ $prescription->firstIntakeHour }}" />
-            
-                                  
-                                </div> --}}
 
+                        <div class="mt-6">
+                            <x-input-label for="frequencyOfIntakeInDays" value="{{ __('frequencyOfIntakeInDays') }}" />
+
+                            <x-text-input id="frequencyOfIntakeInDays" name="frequencyOfIntakeInDays" type="number"
+                                class="mt-1 block w-3/4 disabled:bg-slate-50"
+                                value="{{ $prescription->frequencyOfIntakeInDays }}" readonly disabled />
+                        </div>
                         <div class="mt-6">
                             <x-input-label for="frequencyBetweenDosesInHours"
                                 value="{{ __('PrescriptionFrequencyBetweenDosesInHours') }}" />
@@ -97,6 +94,14 @@
                                 type="number" class="mt-1 block w-3/4 disabled:bg-slate-50"
                                 placeholder="{{ __(12) }}"
                                 value="{{ $prescription->frequencyBetweenDosesInHours }}" readonly disabled />
+                        </div>
+                        <div class="mt-6">
+                            <x-input-label for="firstIntakeHour" value="{{ __('FirstIntakeHour') }}" />
+
+                            <x-text-input id="firstIntakeHour" name="firstIntakeHour" type="time"
+                                class="mt-1 block w-3/4 disabled:bg-slate-50" placeholder="{{ __(30) }}"
+                                value="{{ $prescription->firstIntakeHour }}" readonly disabled />
+
                         </div>
                         <div class="mt-6">
                             <x-input-label for="frequencyPerDay" value="{{ __('PrescriptionFrequencyPerDay') }}" />

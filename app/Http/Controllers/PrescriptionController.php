@@ -107,7 +107,6 @@ class PrescriptionController extends Controller
             } else {
                 return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
             }
-
         } catch (\Exception $e) {
 
             if (request()->is('api/*')) {
@@ -150,6 +149,7 @@ class PrescriptionController extends Controller
         $Messages =  $this->getRightMessagesForEdit($locale);
         try {
             $prescription = Prescription::findOrFail($id);
+
             $medications = Medication::all();
             $maxDate = Carbon::now()->toDateString();
             $minDate = Carbon::now()->subDecades(2)->toDateString();
@@ -182,25 +182,25 @@ class PrescriptionController extends Controller
     public function update(PrescriptionRequest $request, string $locale, string $id)
     {
         $Messages =  $this->getRightMessagesForUpdate($locale);
+        $prescription = Prescription::findOrFail($id);
 
         try {
-            $prescription = Prescription::findOrFail($id);
-
             $validated = $request->validated();
             $prescription->fill($validated);
-
             $prescription->user_id = Auth::user()->id;
             $prescription->saveOrFail();
 
             if (request()->is('api/*')) {
                 return response()->json(['success' => $Messages['success']], 200);
             } else {
+
                 return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
             }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {
                 return response()->json(['error' => $Messages['error']], 500);
             } else {
+
                 return redirect()->back()->with('errors', $Messages['error']);
             }
         }

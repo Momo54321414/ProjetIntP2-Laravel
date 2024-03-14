@@ -132,15 +132,15 @@
     "Add": "Add",
     "Update": "Update",
     
-    "Prescription": "Enter a prescriptions name",
+    "Prescription": "Give this prescriptions a name",
     "Prescriptions": "Prescriptions",
     "AddNewPrescription": "Add New Prescription",
     "DeletePrescription": "Delete Prescription",
     "EditPrescription": "Edit prescription",
     "GoToPrescriptionList": "Go to prescription list",
     "Prescription list": "Prescription list",
-    "PrescriptionFrequencyBetweenDosesInHours": "Prescription Frequency Between Doses In Hours",
-    "PrescriptionFrequencyPerDay": "Prescription Frequency Per Day",
+    "PrescriptionFrequencyBetweenDosesInHours": "The frequency between your doses in hours:",
+    "PrescriptionFrequencyPerDay": "Prescription Frequency Per Day:",
     "PrescriptionName": "Prescription Name:",
     "PrescriptionDateOfStart": "The starting date for this prescription:",
     "FirstIntakeHour": "First Intake Hour for your prescription:",
@@ -151,6 +151,9 @@
     "QuickLinkToPrescriptions": "Quick link to prescriptions",
     "ZoomPrescription": "Zoom on a prescription",
     "frequencyOfIntakeInDays": "Frequency of intake in days:",
+    "PrescriptionEnterFBDIH": "Enter the number of hours between the doses",
+    "PrescriptionEnterFIID": "Enter the first intake hour for your prescription",
+    "PrescriptionEnterDOPID": "Enter the date of the prescription",
 
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:",
@@ -165,9 +168,7 @@
     "Medication taken": "Medication taken",
     "Medication not taken": "Medication not taken",
     "Error": "Error",
-    "Status: ": "Status: ",
-    "": "",
-    "": "",
-    "": ""
+    "Status: ": "Status: "
+  
 
 }

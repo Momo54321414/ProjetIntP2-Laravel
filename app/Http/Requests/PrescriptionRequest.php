@@ -24,8 +24,8 @@ class PrescriptionRequest extends FormRequest
     {
         return [
             'nameOfPrescription' => 'required|string|max:255',
-            'dateOfPrescription' => 'required',
-            'dateOfStart' => 'required',
+            'dateOfPrescription' => 'required|date_format:Y-m-d',
+            'dateOfStart' => 'required|date_format:Y-m-d',
             'durationOfPrescriptionInDays' => 'required|integer',
             'frequencyBetweenDosesInHours' => 'required|integer',
             'frequencyOfIntakeInDays' => 'required|integer',
@@ -63,7 +63,7 @@ class PrescriptionRequest extends FormRequest
             'frequencyOfIntakeInDays.required' => 'The frequency of intake in days is required',
             'frequencyOfIntakeInDays.integer' => 'The frequency of intake in days must be an number',
             'firstIntakeHour.required' => 'The first intake hour is required',
-            'firstIntakeHour.date_format' => 'The first intake hour must be a time format (H:i:s)',
+            'firstIntakeHour.date_format' => 'The first intake hour must be a time format (HH:MM)',
             'medication_id.required' => 'The medication is required',
         ];
     }
