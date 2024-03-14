@@ -20,6 +20,8 @@ class AlertController extends Controller
                 ->join('Calendars', 'Alerts.calendar_id', '=', 'Calendars.id')
                 ->join('Prescriptions', 'Calendars.prescription_id', '=', 'Prescriptions.id')
                 ->join('Medications', 'Prescriptions.medication_id', '=', 'Medications.id')
+                ->where('Calendars.dateOfIntake', '<=', Carbon::today())
+                ->where('Calendars.active', '=', 1)
                 ->select('Alerts.*', 'Calendars.dateOfIntake as dateOfIntake', 'Calendars.hourOfIntake as hourOfIntake',  'Medications.name as medicationName')
                 ->get();
             return response()->json($alerts);
@@ -30,6 +32,7 @@ class AlertController extends Controller
                 ->join('Medications', 'Prescriptions.medication_id', '=', 'Medications.id')
                 ->where('Prescriptions.user_id', '=', Auth::user()->id)
                 ->where('Calendars.dateOfIntake', '<=', Carbon::today())
+                ->where('Calendars.active', '=', 1)
                 ->select('Alerts.*', 'Calendars.*', 'Medications.name as medicationName')
                 ->get();
             return view('alerts.index', [

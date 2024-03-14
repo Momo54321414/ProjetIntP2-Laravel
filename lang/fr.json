@@ -145,6 +145,7 @@
     "NoPrescriptionsFound": "Aucune prescription trouvée",
     "QuickLinkToPrescriptions": "Lien rapide vers les prescriptions",
     "ZoomPrescription": "Zoom sur la prescription",
+    "frequencyOfIntakeInDays": "Fréquence d'admission en jours:",
 
 
     "MedicationName": "Nom du médicament:",

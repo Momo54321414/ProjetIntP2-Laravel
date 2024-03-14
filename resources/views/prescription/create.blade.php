@@ -67,36 +67,44 @@
 
                             <x-input-error :messages="$errors->get('durationOfPrescriptionInDays')" class="mt-2" />
                         </div>
-
                         <div class="mt-6">
-                            <x-input-label for="frequencyBetweenDosesInHours"
-                                value="{{ __('Frequency between hours') }}" />
+                            <x-input-label for="frequencyOfIntakeInDays" value="{{ __('frequencyOfIntakeInDays') }}" />
 
-                            <x-text-input id="frequencyBetweenDosesInHours" name="frequencyBetweenDosesInHours"
-                                type="number" class="mt-1 block w-3/4" placeholder="{{ __(12) }}" />
+                            <x-text-input id="frequencyOfIntakeInDays" name="frequencyOfIntakeInDays" type="number"
+                                class="mt-1 block w-3/4" placeholder="{{ __(2) }}" />
 
-                            <x-input-error :messages="$errors->get('frequencyBetweenDosesInHours')" class="mt-2" />
-                        </div>
-                        <!--Ajouter ici le prochain input de type date :firstIntakeHour -->
-                        <div class="mt-6">
-                            <x-input-label for="firstIntakeHour" value="{{ __('FirstIntakeHour') }}" />
+                            <x-input-error :messages="$errors->get('frequencyOfIntakeInDays')" class="mt-2" />
 
-                            <x-text-input id="firstIntakeHour" name="firstIntakeHour" type="time"
-                                class="mt-1 block w-3/4" />
+                            <div class="mt-6">
+                                <x-input-label for="firstIntakeHour" value="{{ __('FirstIntakeHour') }}" />
 
-                            <x-input-error :messages="$errors->get('firstIntakeHour')" class="mt-2" />
-                        </div>
+                                <x-text-input id="firstIntakeHour" name="firstIntakeHour" type="time"
+                                    class="mt-1 block w-3/4" />
 
-                        <div class="mt-6 flex justify-end">
-                            <x-hrefbutton href="{{ route('profile.edit') }}" class="btn ">
-                                {{ __('Cancel') }}
-                            </x-hrefbutton>
+                                <x-input-error :messages="$errors->get('firstIntakeHour')" class="mt-2" />
+                            </div>
+
+                            <div class="mt-6">
+                                <x-input-label for="frequencyBetweenDosesInHours"
+                                    value="{{ __('Frequency between hours') }}" />
+
+                                <x-text-input id="frequencyBetweenDosesInHours" name="frequencyBetweenDosesInHours"
+                                    type="number" class="mt-1 block w-3/4" placeholder="{{ __(12) }}" />
+
+                                <x-input-error :messages="$errors->get('frequencyBetweenDosesInHours')" class="mt-2" />
+                            </div>
 
 
-                            <x-primary-button class="ms-3">
-                                {{ __('Add') }}
-                            </x-primary-button>
-                        </div>
+                            <div class="mt-6 flex justify-end">
+                                <x-hrefbutton href="{{ route('profile.edit') }}" class="btn ">
+                                    {{ __('Cancel') }}
+                                </x-hrefbutton>
+
+
+                                <x-primary-button class="ms-3">
+                                    {{ __('Add') }}
+                                </x-primary-button>
+                            </div>
                     </form>
                 </div>
             </div>

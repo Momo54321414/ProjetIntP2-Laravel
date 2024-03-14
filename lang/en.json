@@ -141,7 +141,7 @@
     "Prescription list": "Prescription list",
     "PrescriptionFrequencyBetweenDosesInHours": "Prescription Frequency Between Doses In Hours",
     "PrescriptionFrequencyPerDay": "Prescription Frequency Per Day",
-    "PrescriptionName": "Prescription Name",
+    "PrescriptionName": "Prescription Name:",
     "PrescriptionDateOfStart": "The starting date for this prescription:",
     "FirstIntakeHour": "First Intake Hour for your prescription:",
     "PrescriptionDate": "Prescription Date:",
@@ -150,6 +150,7 @@
     "NoPrescriptionsFound": "No prescriptions found",
     "QuickLinkToPrescriptions": "Quick link to prescriptions",
     "ZoomPrescription": "Zoom on a prescription",
+    "frequencyOfIntakeInDays": "Frequency of intake in days:",
 
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:",
