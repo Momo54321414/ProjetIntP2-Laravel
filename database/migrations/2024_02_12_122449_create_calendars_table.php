@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->date('dateOfIntake');
             $table->time('hourOfIntake');
+           /*Ajouter cet attribut lorsque les tests seront concluant pour les triggers associés à cette table*/
+            $table->boolean('active')->default(1);
             $table->foreignId('prescription_id')->constrained('prescriptions')->onDelete('cascade');
             $table->timestamps();
         });

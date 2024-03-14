@@ -21,28 +21,34 @@ return new class extends Migration
         FOR EACH ROW
         BEGIN
             DECLARE currentDate DATE;
-            DECLARE hours TIME;
-            DECLARE Date DATE;
+            DECLARE hourOfIntake TIME;
             DECLARE hoursBetweenDoses INT;
-
+            DECLARE daysBetweenIntakes INT;
+            DECLARE intakePerDay INT;
+            
             SET currentDate = NEW.dateOfStart;
+            SET hourOfIntake = NEW.firstIntakeHour;
             SET hoursBetweenDoses = NEW.frequencyBetweenDosesInHours;
-
+            SET daysBetweenIntakes = NEW.frequencyOfIntakeInDays;
+        
             WHILE currentDate <= ADDDATE(NEW.dateOfStart, INTERVAL NEW.durationOfPrescriptionInDays DAY) DO
-                IF (currentDate = NEW.dateOfStart) THEN
-                    SET hours = NEW.firstIntakeHour;
-                ELSE
-                    SET hours = SEC_TO_TIME(hoursBetweenDoses * 3600);
-                END IF;
-                SET Date = currentDate;
+                
+                SET hourOfIntake = NEW.firstIntakeHour;
+                SET intakePerDay = 1;
 
-                INSERT INTO calendars (prescription_id, dateOfIntake, hourOfIntake, created_at, updated_at)
-                VALUES (NEW.id, currentDate, hours, NOW(), NOW());
+                WHILE intakePerDay <= NEW.frequencyPerDay DO
+                    INSERT INTO calendars (prescription_id, dateOfIntake, hourOfIntake, created_at, updated_at)
+                    VALUES (NEW.id, currentDate, hourOfIntake, NOW(), NOW());
+                     
+                    SET hourOfIntake = ADDTIME(hourOfIntake, SEC_TO_TIME(hoursBetweenDoses * 3600));
 
-                SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);
+                    SET hourOfIntake = ADDTIME(hourOfIntake, SEC_TO_TIME(-TIME_TO_SEC("24:00:00") * FLOOR(TIME_TO_SEC(hourOfIntake) / TIME_TO_SEC("24:00:00"))));
+                    SET intakePerDay = intakePerDay + 1;
+                END WHILE;
+
+               SET currentDate = DATE_ADD(currentDate, INTERVAL daysBetweenIntakes DAY);
             END WHILE;
-        END;
-        ');
+        END;');
     }
 
     /**

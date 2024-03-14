@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('function');
-            $table->boolean('isInPillBox');
+            $table->boolean('canBeInPillBox');
             $table->timestamps();
         });
     }
