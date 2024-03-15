@@ -26,7 +26,7 @@ class PrescriptionController extends Controller
                     'medications.id as medicationId',
                     'medications.name as medicationName',
                     'medications.function as medicationFunction',
-                    'medications.isInPillBox as medicationIsInPillBox',
+                    'medications.canBeInPillBox as medicationCanBeInPillBox',
                     'prescriptions.nameOfPrescription as nameOfPrescription',
                     'prescriptions.dateOfPrescription as dateOfPrescription',
                     'prescriptions.dateOfStart as dateOfStart',
