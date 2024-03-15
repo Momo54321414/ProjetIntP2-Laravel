@@ -112,7 +112,7 @@
                                 <x-input-label for="frequencyPerDay" value="{{ __('PrescriptionFrequencyPerDay') }}" />
 
                                 <x-text-input id="frequencyPerDay" name="frequencyPerDay" type="number"
-                                    class="mt-1 block w-3/4 disabled:bg-slate-50"
+                                    class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700"
                                     value="{{ $prescription->frequencyPerDay }}" readonly disabled />
                             </div>
 

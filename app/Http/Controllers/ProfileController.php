@@ -25,41 +25,9 @@ class ProfileController extends Controller
         ->where('devices.user_id', Auth::user()->id)
         ->get();
 
-        $prescriptions = DB::table('prescriptions')
-            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-            ->select(
-                'medications.id as medicationId',
-                'medications.name as medicationName',
-                'medications.function as medicationFunction',
-                'medications.isInPillBox as medicationIsInPillBox',
-                'prescriptions.nameOfPrescription as nameOfPrescription',
-                'prescriptions.dateOfPrescription as dateOfPrescription',
-                'prescriptions.dateOfStart as dateOfStart',
-                'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-                'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-                'prescriptions.frequencyPerDay  as frequencyPerDay',
-                'prescriptions.id as prescriptionId'
-            )
-            ->where('prescriptions.user_id', Auth::user()->id)
-            ->get();
-           
-        $medications = DB::table('medications')
-            ->select('medications.*')
-            ->get();
-
-        $maxDate = Carbon::now()->toDateString();
-        $minDate = Carbon::now()->subDecades(2)->toDateString();
-        $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
-
-
         return view('profile.edit', [
             'user' => $request->user(),
             'logs' => $logs,
-            'prescriptions' => $prescriptions,
-            'medications' => $medications,
-            'maxDate' => $maxDate,
-            'minDate' => $minDate,
-            'maxDateForStart' => $maxDateForStart,
         ]);
     }
 
