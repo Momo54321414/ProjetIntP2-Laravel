@@ -155,6 +155,33 @@
     "PrescriptionEnterFIID": "Enter the first intake hour for your prescription",
     "PrescriptionEnterDOPID": "Enter the date of the prescription",
 
+    "P_NOP.required": "The name of the prescription is required",
+    "P_NOP.string": "The name of the prescription must be a string",
+    "P_NOP.max": "The name of the prescription must be less than 255 characters",
+    "P_DOP.required": "The date of the prescription is required",
+    "P_DOP.date_format": "The date of the prescription must be in the format YYYY-MM-DD",
+    "P_DOS.required": "The date of start for the prescription is required",
+    "P_DOS.date_format": "The date of start for the prescription must be in the format YYYY-MM-DD",
+    "P_DOPID.required": "The duration of the prescription in days is required",
+    "P_DOPID.integer": "The duration of the prescription in days must be an number",
+    "P_FBDIH.required": "The frequency between doses in hours is required",
+    "P_FBDIH.integer": "The frequency between doses in hours must be an number",
+    "P_FOIID.required" :"The frequency of intake in days is required",
+    "P_FOIID.integer" :"The frequency of intake in days must be an number",
+    "P_FIH.required" :"The first intake hour for your prescription is required",
+    "P_FIH.date_format" :"The first intake hour for your prescription must be in the format HH:MM",
+    "P_M.required" :"The medication is required",
+    "P_M.integer" :"The medication must be a number",
+
+
+
+    
+
+
+
+
+
+
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:",
 

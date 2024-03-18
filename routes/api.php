@@ -25,9 +25,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('prescriptions/{prescription}', [PrescriptionController::class, 'show']);
     Route::put('prescriptions/{prescription}', [PrescriptionController::class, 'update']);
     Route::delete('prescriptions/{prescription}', [PrescriptionController::class, 'destroy']);
-    Route::get('prescriptions/{prescription}/edit', [PrescriptionController::class, 'edit']);
 
     Route::get('alerts', [AlertController::class, 'index']);
+    Route::put('alerts/{alert}', [AlertController::class, 'update']);
+
 });
 
 

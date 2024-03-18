@@ -23,7 +23,6 @@ class PrescriptionsResource extends JsonResource
                 'durationOfPrescriptionInDays' => $this->durationOfPrescriptionInDays,
                 'frequencyBetweenDosesInHours' => $this->frequencyBetweenDosesInHours,
                 'frequencyPerDay' => $this->frequencyPerDay,
-
                 'firstIntakeHour' => $this->firstIntakeHour,
                 'frequencyOfIntakeInDays' => $this->frequencyOfIntakeInDays,
                 'created_at' => $this->created_at,

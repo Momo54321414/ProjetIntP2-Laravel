@@ -17,9 +17,7 @@ class AlertsResource extends JsonResource
         return [
             'id' => (string) $this->id,
             'attributes'=>[
-            
             'isTheMedicationTaken' => $this->isTheMedicationTaken,
-  
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             ],

@@ -150,6 +150,27 @@
     "PrescriptionEnterFIID": "Entrez la fréquence de la prescription par jour",
     "PrescriptionEnterDOPID": "Entrez la date de la prescription",
 
+    "P_NOP.required": "Le nom de la prescription est requis",
+    "P_NOP.string": "Le nom de la prescription doit être une chaîne de caractères",
+    "P_NOP.max": "Le nom de la prescription doit comporter moins de 255 caractères",
+    "P_DOP.required": "La date de la prescription est requise",
+    "P_DOP.date_format": "La date de la prescription doit être au format YYYY-MM-DD",
+    "P_DOS.required": "La date de début de la prescription est requise",
+    "P_DOS.date_format": "La date de début de la prescription doit être au format YYYY-MM-DD",
+    "P_DOPID.required" :"La duration de la prescription en jours est requise",
+    "P_DOPID.integer" :"La duration de la prescription en jours doit être un entier",
+    "P_FBDIH.required" :"La fréquence de la prescription entre les doses en heures est requise",
+    "P_FBDIH.integer" :"La fréquence de la prescription entre les doses en heures doit être un entier",
+    "P_FOIID.required" :"La fréquence de la prescription en jour est requise",
+    "P_FOIID.integer" :"La fréquence de la prescription en jour doit être un entier",
+    "P_FIH.required" :"La première heure d'admission de votre prescription est requise",
+    "P_FIH.date_format" :"La première heure d'admission de votre prescription doit être au format HH:MM",
+    "P_M.required" : "La médication est requise",
+    "P_M.integer" : "La médication doit être un entier",
+
+
+
+
     "MedicationName": "Nom du médicament:",
     "MedicationFunction": "Fonction de médication:",
 
