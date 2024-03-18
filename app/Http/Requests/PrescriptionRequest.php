@@ -69,7 +69,7 @@ class PrescriptionRequest extends FormRequest
             'frequencyOfIntakeInDays.max' => 'The frequency of intake in days must be at most 24 days',
             'firstIntakeHour.required' => 'The first intake hour is required',
             'firstIntakeHour.date_format' => 'The first intake hour must be a time format (HH:MM)',
-            'medication_id.required' => 'The medication is required',
+            'medication_id.required' => 'The medication is required'
         ];
     }
     public function getFrenchMessages(): array
