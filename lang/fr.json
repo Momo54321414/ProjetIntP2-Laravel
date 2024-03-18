@@ -139,13 +139,16 @@
     "PrescriptionName": "Nom de la prescription:",
     "PrescriptionDateOfStart": "Date de début de la prescription:",
     "PrescriptionDate": "Date de la prescription:",
-    "FirstIntakeHour": "Première heure d'admission:",
+    "FirstIntakeHour": "Première heure d'admission de votre prescription:",
     "DurationOfPrescriptionInDays": "Durée de la prescription en jours:",
     "AreYouSureYouWantToDeleteThisPrescription": "Êtes-vous sûr de vouloir supprimer cette prescription?",
     "NoPrescriptionsFound": "Aucune prescription trouvée",
     "QuickLinkToPrescriptions": "Lien rapide vers les prescriptions",
     "ZoomPrescription": "Zoom sur la prescription",
-
+    "frequencyOfIntakeInDays": "Fréquence d'admission en jours:",
+    "PrescriptionEnterFBDIH": "Entrez la fréquence de la prescription entre les doses en heures",
+    "PrescriptionEnterFIID": "Entrez la fréquence de la prescription par jour",
+    "PrescriptionEnterDOPID": "Entrez la date de la prescription",
 
     "MedicationName": "Nom du médicament:",
     "MedicationFunction": "Fonction de médication:",

@@ -51,6 +51,14 @@ class UserSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'id' => 6,
+                'name' => 'Antoine Gauthier',
+                'email' => 'antoine.gauthier94@gmail.com',
+                'password' => bcrypt('123'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
 
         ]);
     }

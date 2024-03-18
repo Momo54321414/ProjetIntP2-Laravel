@@ -12,14 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $trigger = 'CREATE TRIGGER create_alert_after_insert_calendar
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Fichier config/database.php
+        DB::unprepared('CREATE TRIGGER create_alert_after_insert_calendar
         AFTER INSERT ON calendars
         FOR EACH ROW
         BEGIN
                 INSERT INTO alerts (isTheMedicationTaken, calendar_id,created_at,updated_at)
                 VALUES (0, NEW.id, NOW(), NOW()); 
-        END;';
-        DB::unprepared($trigger);
+        END;');
+        
     }
 
     /**

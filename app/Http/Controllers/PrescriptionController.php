@@ -21,6 +21,43 @@ class PrescriptionController extends Controller
      */
     public function index()
     {
+        if (request()->is('api/*')) {
+            //Vraiment utile pour l'api ou se créer un puisqu'on doit récuperer un api_token?
+            $prescriptions = DB::table('prescriptions')
+                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+                ->select(
+                    'medications.id as medicationId',
+                    'medications.name as medicationName',
+                    'medications.function as medicationFunction',
+                    'medications.canBeInPillBox as medicationCanBeInPillBox',
+                    'prescriptions.nameOfPrescription as nameOfPrescription',
+                    'prescriptions.dateOfPrescription as dateOfPrescription',
+                    'prescriptions.dateOfStart as dateOfStart',
+                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
+                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
+                    'prescriptions.frequencyPerDay  as frequencyPerDay',
+                    'prescriptions.id as id'
+                )
+                ->get();
+            return response()->json($prescriptions);
+        } else {
+            $prescriptions = DB::table('prescriptions')
+                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+                ->select(
+                    'medications.id as medicationId',
+                    'medications.name as medicationName',
+                    'medications.function as medicationFunction',
+                    'medications.canBeInPillBox as medicationcanBeInPillBox',
+                    'prescriptions.nameOfPrescription as nameOfPrescription',
+                    'prescriptions.dateOfPrescription as dateOfPrescription',
+                    'prescriptions.dateOfStart as dateOfStart',
+                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
+                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
+                    'prescriptions.frequencyPerDay  as frequencyPerDay',
+                    'prescriptions.id as id'
+                )
+                ->where('prescriptions.user_id', Auth::user()->id)
+                ->get();
 
         $prescriptions = DB::table('prescriptions')
             ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
@@ -166,6 +203,7 @@ class PrescriptionController extends Controller
         $Messages =  $this->getRightMessagesForEdit($locale);
         try {
             $prescription = Prescription::findOrFail($id);
+
             $medications = Medication::all();
             $maxDate = Carbon::now()->toDateString();
             $minDate = Carbon::now()->subDecades(2)->toDateString();
@@ -198,25 +236,25 @@ class PrescriptionController extends Controller
     public function update(PrescriptionRequest $request, string $locale, string $id)
     {
         $Messages =  $this->getRightMessagesForUpdate($locale);
+        $prescription = Prescription::findOrFail($id);
 
         try {
-            $prescription = Prescription::findOrFail($id);
-
             $validated = $request->validated();
             $prescription->fill($validated);
-
             $prescription->user_id = Auth::user()->id;
             $prescription->saveOrFail();
 
             if (request()->is('api/*')) {
                 return response()->json(['success' => $Messages['success']], 200);
             } else {
+
                 return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
             }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {
                 return response()->json(['error' => $Messages['error']], 500);
             } else {
+
                 return redirect()->back()->with('errors', $Messages['error']);
             }
         }

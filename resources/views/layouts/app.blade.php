@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Pillbox') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="{{ asset('img/App_Logo.svg') }}" type="image/x-icon" />
 
 
     <!-- Scripts -->
@@ -34,9 +35,6 @@
         <div class= " max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
 
             @include('components.auth-session-status', ['status' => session('status')])
-            {{-- @include('components.auth-session-status', ['status' => session('errors')]) --}}
-            {{-- @include('components.auth-session-status', ['status' => session('status')]) --}}
-            {{-- @include('components.auth-validation-errors', ['errors' => $errors]) --}}
 
         </div>
         <!-- Page Content -->
