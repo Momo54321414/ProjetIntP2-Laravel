@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Alert;
 use Carbon\Carbon;
 use App\Traits\HttpResponses;
+use App\Http\Resources\AlertsResource;
 
 class AlertController extends Controller
 {
@@ -30,7 +31,7 @@ class AlertController extends Controller
 
         if (request()->is('api/*')) {
            
-            return $this->successResponse($alerts, 'Alerts retrieved successfully', 200);
+            return  AlertsResource::collection($alerts);
         } else {
             
             return view('alerts.index', [

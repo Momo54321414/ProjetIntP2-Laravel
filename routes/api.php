@@ -10,14 +10,13 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-
 });
 
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
 
-Route::group(['middleware' =>['auth:sanctum']],function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('logout',  [UserController::class, 'logout']);
 
@@ -30,6 +29,7 @@ Route::group(['middleware' =>['auth:sanctum']],function () {
 
     Route::get('alerts', [AlertController::class, 'index']);
 });
+
 
    
 

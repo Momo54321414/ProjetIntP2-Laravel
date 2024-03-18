@@ -55,9 +55,7 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->forceFill([
-            'api_token' => null,
-        ])->save();
+       $request->user()->currentAccessToken()->delete();
 
         return $this->successResponse(null, 'User logged out successfully', 200);
     }
