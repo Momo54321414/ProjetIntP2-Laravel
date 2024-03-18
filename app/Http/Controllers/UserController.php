@@ -3,38 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\HttpResponses;
+
 
 class UserController extends Controller
 {
-    public function index(Request $request)
-    {
-        return $request->user();
-    }
-    public function alluser(Request $request)
-    {
-        $users = User::all();
-        return response()->json($users);
-    }
+    use HttpResponses;
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-        ]);
+        dd($request->all());
+        $validated =  $request->validated($request->all());
+        dd($validated->all());
+        if ($validated->fails()) {
+            return $this->errorResponse($validated->errors(), 400);
+        }
 
         $result = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'name' => $validated->name,
+            'email' => $validated->email,
+            'password' => bcrypt($validated->password),
 
         ]);
-
-        return $result;
+        
+        return $this->successResponse($result, 'User created successfully', 201);
+       
     }
 
     public function login(LoginRequest $request)
@@ -45,10 +42,11 @@ class UserController extends Controller
             $user = Auth::user();
             $token = $user->createToken('api-token')->plainTextToken;
 
-            return response()->json(['token' => $token], 200);
+            return $this->successResponse($token, 'User logged in successfully', 200);
+
         }
 
-        return response()->json(['message' => 'Incorrect credentials'], 401);
+        return $this->errorResponse('Wrong credentials', 401);
     }
     public function logout(Request $request)
     {
@@ -59,4 +57,6 @@ class UserController extends Controller
             'message' => 'Logged out',
         ]);
     }
+
+
 }

@@ -59,63 +59,64 @@ class PrescriptionController extends Controller
                 ->where('prescriptions.user_id', Auth::user()->id)
                 ->get();
 
-        $prescriptions = DB::table('prescriptions')
-            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-            ->select(
-                'medications.id as medicationId',
-                'medications.name as medicationName',
-                'medications.function as medicationFunction',
-                'medications.isInPillBox as medicationIsInPillBox',
-                'prescriptions.nameOfPrescription as nameOfPrescription',
-                'prescriptions.dateOfPrescription as dateOfPrescription',
-                'prescriptions.dateOfStart as dateOfStart',
-                'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-                'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-                'prescriptions.frequencyPerDay  as frequencyPerDay',
-                'prescriptions.id as id'
-            )
-            ->where('prescriptions.user_id', Auth::user()->id)
-            ->get();
+            $prescriptions = DB::table('prescriptions')
+                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+                ->select(
+                    'medications.id as medicationId',
+                    'medications.name as medicationName',
+                    'medications.function as medicationFunction',
+                    'medications.isInPillBox as medicationIsInPillBox',
+                    'prescriptions.nameOfPrescription as nameOfPrescription',
+                    'prescriptions.dateOfPrescription as dateOfPrescription',
+                    'prescriptions.dateOfStart as dateOfStart',
+                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
+                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
+                    'prescriptions.frequencyPerDay  as frequencyPerDay',
+                    'prescriptions.id as id'
+                )
+                ->where('prescriptions.user_id', Auth::user()->id)
+                ->get();
 
 
-        return  view('prescription.index', [
-            'prescriptions' => $prescriptions
-        ]);
+            return  view('prescription.index', [
+                'prescriptions' => $prescriptions
+            ]);
+        }
     }
 
     public function getAssociatedPrescriptions()
     {
-       //Retreive the bearer token from the request
-        $token = request()->bearerToken();
-       
-        //Retreive the user from the database
-        $user = DB::table('users')->where('api_token', $token)->first();
-        dd($user);
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-        //Retreive the prescriptions associated with the user
-        
+        //Retreive the bearer token from the request
+        // $token = request()->bearerToken();
 
-        $prescriptions = DB::table('prescriptions')
-            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-            ->select(
-                'medications.id as medicationId',
-                'medications.name as medicationName',
-                'medications.function as medicationFunction',
-                'medications.isInPillBox as medicationIsInPillBox',
-                'prescriptions.nameOfPrescription as nameOfPrescription',
-                'prescriptions.dateOfPrescription as dateOfPrescription',
-                'prescriptions.dateOfStart as dateOfStart',
-                'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-                'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-                'prescriptions.frequencyPerDay  as frequencyPerDay',
-                'prescriptions.id as id'
-            )
-            ->where('prescriptions.user_id', $user->id)
-            ->get();
+        // //Retreive the user from the database
+        // $user = DB::table('users')->where('api_token', $token)->first();
+        // dd($user);
+        // if (!$user) {
+        //     return response()->json(['error' => 'User not found'], 404);
+        // }
+        // //Retreive the prescriptions associated with the user
 
-        return response()->json($prescriptions, 200);
+
+        // $prescriptions = DB::table('prescriptions')
+        //     ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+        //     ->select(
+        //         'medications.id as medicationId',
+        //         'medications.name as medicationName',
+        //         'medications.function as medicationFunction',
+        //         'medications.isInPillBox as medicationIsInPillBox',
+        //         'prescriptions.nameOfPrescription as nameOfPrescription',
+        //         'prescriptions.dateOfPrescription as dateOfPrescription',
+        //         'prescriptions.dateOfStart as dateOfStart',
+        //         'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
+        //         'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
+        //         'prescriptions.frequencyPerDay  as frequencyPerDay',
+        //         'prescriptions.id as id'
+        //     )
+        //     ->where('prescriptions.user_id', $user->id)
+        //     ->get();
+
+        // return response()->json($prescriptions, 200);
     }
 
 
