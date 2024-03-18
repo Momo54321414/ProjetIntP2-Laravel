@@ -34,6 +34,7 @@ class AlertController extends Controller
                 ->where('Calendars.dateOfIntake', '<=', Carbon::today())
                 ->where('Calendars.active', '=', 1)
                 ->select('Alerts.*', 'Calendars.*', 'Medications.name as medicationName')
+                ->orderBy('Calendars.dateOfIntake', 'desc')
                 ->get();
             return view('alerts.index', [
                 'alerts' => $alerts,
