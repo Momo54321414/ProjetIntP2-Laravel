@@ -31,7 +31,7 @@ class MedicationController extends Controller
         $medication = new Medication();
         $medication->name = $request->name;
         $medication->function = $request->function;
-        $medication->isInPillBox = $request->isInPillBox;
+        $medication->canBeInPillBox = $request->canBeInPillBox;
         
         $medication->save();
     }

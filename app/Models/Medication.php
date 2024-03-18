@@ -17,7 +17,7 @@ class Medication extends Model
      */
 
      protected $fillable = [
-        'name','function','isInPillBox',
+        'name','function','canBeInPillBox',
     ];
     
     public function instructions()

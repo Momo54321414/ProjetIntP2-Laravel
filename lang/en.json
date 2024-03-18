@@ -132,24 +132,28 @@
     "Add": "Add",
     "Update": "Update",
     
-    "Prescription": "Enter a prescriptions name",
+    "Prescription": "Give this prescriptions a name",
     "Prescriptions": "Prescriptions",
     "AddNewPrescription": "Add New Prescription",
     "DeletePrescription": "Delete Prescription",
     "EditPrescription": "Edit prescription",
     "GoToPrescriptionList": "Go to prescription list",
     "Prescription list": "Prescription list",
-    "PrescriptionFrequencyBetweenDosesInHours": "Prescription Frequency Between Doses In Hours",
-    "PrescriptionFrequencyPerDay": "Prescription Frequency Per Day",
-    "PrescriptionName": "Prescription Name",
-    "PrescriptionDateOfStart": "Prescription Date Of Start",
-    "FirstIntakeHour": "First Intake Hour",
-    "PrescriptionDate": "Prescription Date",
+    "PrescriptionFrequencyBetweenDosesInHours": "The frequency between your doses in hours:",
+    "PrescriptionFrequencyPerDay": "Prescription Frequency Per Day:",
+    "PrescriptionName": "Prescription Name:",
+    "PrescriptionDateOfStart": "The starting date for this prescription:",
+    "FirstIntakeHour": "First Intake Hour for your prescription:",
+    "PrescriptionDate": "Prescription Date:",
     "DurationOfPrescriptionInDays": "Duration of the prescription in days:",
     "AreYouSureYouWantToDeleteThisPrescription": "Are you sure you want to delete this prescription?",
     "NoPrescriptionsFound": "No prescriptions found",
     "QuickLinkToPrescriptions": "Quick link to prescriptions",
     "ZoomPrescription": "Zoom on a prescription",
+    "frequencyOfIntakeInDays": "Frequency of intake in days:",
+    "PrescriptionEnterFBDIH": "Enter the number of hours between the doses",
+    "PrescriptionEnterFIID": "Enter the first intake hour for your prescription",
+    "PrescriptionEnterDOPID": "Enter the date of the prescription",
 
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:",
@@ -164,9 +168,7 @@
     "Medication taken": "Medication taken",
     "Medication not taken": "Medication not taken",
     "Error": "Error",
-    "Status: ": "Status: ",
-    "": "",
-    "": "",
-    "": ""
+    "Status: ": "Status: "
+  
 
 }

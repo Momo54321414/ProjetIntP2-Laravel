@@ -10,6 +10,7 @@ use Tests\TestCase;
 
 class PrescriptionTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
@@ -57,6 +58,7 @@ class PrescriptionTest extends TestCase
                 'dateOfStart' => '',
                 'durationOfPrescriptionInDays' => '',
                 'frequencyBetweenDosesInHours' => '',
+                'firstIntakeHour' => '',
                 'user_id' => $user->id,
                 'medication_id' => '',
                 'created_at' => '',
@@ -67,6 +69,7 @@ class PrescriptionTest extends TestCase
                 'dateOfStart',
                 'durationOfPrescriptionInDays',
                 'frequencyBetweenDosesInHours',
+                'firstIntakeHour',
                 'medication_id',
             ]);
 
@@ -89,6 +92,7 @@ class PrescriptionTest extends TestCase
                 'dateOfStart' => Carbon::now()->format('Y-m-d'),
                 'durationOfPrescriptionInDays' => 30,
                 'frequencyBetweenDosesInHours' => 6,
+                'firstIntakeHour' => Carbon::now()->format('H:i'),
                 'user_id' => $user->id,
                 'medication_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

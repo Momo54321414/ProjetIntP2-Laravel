@@ -19,9 +19,9 @@
                                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                         {{ __('ZoomPrescription') }}
                                     </h2>
-                                    <x-hrefbutton :href="route('prescriptions.edit', [$prescription->id])">
+                                    <x-hrefbutton :href="route('prescriptions.edit', [$prescription->id])" class="dark:text-gray-100">
                                         <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg" class="hover:fill-teal-500">
+                                            xmlns="http://www.w3.org/2000/svg" class="hover:fill-teal-500 ">
                                             <path
                                                 d="M12 20H20.5M18 10L14 6M18 10L21 7L17 3L14 6M18 10L17 11M14 6L7.5 12.5M5 15L4 16V20H8L14 14"
                                                 stroke="#000000" stroke-width="1.5" stroke-linecap="round"
@@ -35,7 +35,7 @@
                             <x-input-label for="nameOfPrescription" value="{{ __('PrescriptionName') }}" />
 
                             <x-text-input id="nameOfPrescription" name="nameOfPrescription" type="text"
-                                class="mt-1 block w-3/4 disabled:bg-slate-50" placeholder="{{ __('Prescription') }}"
+                                class="mt-1 block w-3/4 disabled:bg-slate-50  dark:text-gray-700" placeholder="{{ __('Prescription') }}"
                                 value="{{ $prescription->nameOfPrescription }}" readonly disabled />
                         </div>
 
@@ -57,7 +57,7 @@
                             <x-input-label for="dateOfPrescription" value="{{ __('PrescriptionDate') }}" />
 
                             <x-text-input id="dateOfPrescription" name="dateOfPrescription" type="date"
-                                class="mt-1 block w-3/4 disabled:bg-slate-50"
+                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700"
                                 value="{{ $prescription->dateOfPrescription }}" readonly disabled />
                         </div>
 
@@ -65,44 +65,49 @@
                             <x-input-label for="dateOfStart" value="{{ __('PrescriptionDateOfStart') }}" />
 
                             <x-text-input id="dateOfStart" name="dateOfStart" type="date"
-                                class="mt-1 block w-3/4 disabled:bg-slate-50" value="{{ $prescription->dateOfStart }}"
+                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700" value="{{ $prescription->dateOfStart }}"
                                 readonly disabled />
                         </div>
 
                         <div class="mt-6">
                             <x-input-label for="durationOfPrescriptionInDays"
-                                value="{{ __('DurationOfThePrescriptionInDays') }}" />
+                                value="{{ __('DurationOfPrescriptionInDays') }}" />
 
                             <x-text-input id="durationOfPrescriptionInDays" name="durationOfPrescriptionInDays"
-                                type="number" class="mt-1 block w-3/4 disabled:bg-slate-50"
+                                type="number" class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700"
                                 placeholder="{{ __(30) }}"
                                 value="{{ $prescription->durationOfPrescriptionInDays }}" readonly disabled />
                         </div>
-                        {{-- <div class="mt-6">
-                                    <x-input-label for="firstIntakeHour"
-                                        value="{{ __('FirstIntakeHour') }}" />
-            
-                                    <x-text-input id="firstIntakeHour" name="firstIntakeHour"
-                                        type="number" class="mt-1 block w-3/4" placeholder="{{ __(30) }}"
-                                        value="{{ $prescription->firstIntakeHour }}" />
-            
-                                  
-                                </div> --}}
 
+                        <div class="mt-6">
+                            <x-input-label for="frequencyOfIntakeInDays" value="{{ __('frequencyOfIntakeInDays') }}" />
+
+                            <x-text-input id="frequencyOfIntakeInDays" name="frequencyOfIntakeInDays" type="number"
+                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700"
+                                value="{{ $prescription->frequencyOfIntakeInDays }}" readonly disabled />
+                        </div>
                         <div class="mt-6">
                             <x-input-label for="frequencyBetweenDosesInHours"
                                 value="{{ __('PrescriptionFrequencyBetweenDosesInHours') }}" />
 
                             <x-text-input id="frequencyBetweenDosesInHours" name="frequencyBetweenDosesInHours"
-                                type="number" class="mt-1 block w-3/4 disabled:bg-slate-50"
+                                type="number" class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700"
                                 placeholder="{{ __(12) }}"
                                 value="{{ $prescription->frequencyBetweenDosesInHours }}" readonly disabled />
+                        </div>
+                        <div class="mt-6">
+                            <x-input-label for="firstIntakeHour" value="{{ __('FirstIntakeHour') }}" />
+
+                            <x-text-input id="firstIntakeHour" name="firstIntakeHour" type="time"
+                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700" placeholder="{{ __(30) }}"
+                                value="{{ $prescription->firstIntakeHour }}" readonly disabled />
+
                         </div>
                         <div class="mt-6">
                             <x-input-label for="frequencyPerDay" value="{{ __('PrescriptionFrequencyPerDay') }}" />
 
                             <x-text-input id="frequencyPerDay" name="frequencyPerDay" type="number"
-                                class="mt-1 block w-3/4 disabled:bg-slate-50"
+                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700"
                                 value="{{ $prescription->frequencyPerDay }}" readonly disabled />
                         </div>
 

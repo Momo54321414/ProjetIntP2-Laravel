@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Fichier config/database.php
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
             $table->morphs('tokenable');

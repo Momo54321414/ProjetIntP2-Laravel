@@ -16,26 +16,31 @@ class Prescription extends Model
      *
      * @var array<int, string>
      */
-    //Venir enlever frequencyPerDay et remplacer par firstIntakeHour
+
     protected $fillable = [
-        'nameOfPrescription', 'dateOfPrescription', 'dateOfStart',
-        'durationOfPrescriptionInDays','frequencyBetweenDosesInHours',
-        'frequencyPerDay','user_id','medication_id'
+        'nameOfPrescription',
+        'dateOfPrescription',
+        'dateOfStart',
+        'durationOfPrescriptionInDays',
+        'frequencyBetweenDosesInHours',
+        'frequencyOfIntakeInDays',
+        'firstIntakeHour',
+        'user_id',
+        'medication_id'
     ];
 
-    public function user():HasOne
+    public function user(): HasOne
     {
         return $this->hasOne(User::class);
     }
 
-    public function medication():HasMany
+    public function medication(): HasMany
     {
         return $this->hasMany(Medication::class);
     }
 
-    public function calendar():HasOne
+    public function calendar(): HasOne
     {
         return $this->hasOne(Calendar::class);
     }
-
 }

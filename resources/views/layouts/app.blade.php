@@ -34,10 +34,7 @@
         <div class= " max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
 
             @include('components.auth-session-status', ['status' => session('status')])
-            @include('components.auth-session-status', ['status' => session('errors')])
-            {{-- @include('components.auth-session-status', ['status' => session('status')]) --}}
-            {{-- @include('components.auth-validation-errors', ['errors' => $errors]) --}}
-
+            
         </div>
         <!-- Page Content -->
         <main>
