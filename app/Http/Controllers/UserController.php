@@ -8,30 +8,33 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
 {
     use HttpResponses;
 
-    public function register(RegisterRequest $request)
+
+    public function register(Request $request)
     {
-        dd($request->all());
-        $validated =  $request->validated($request->all());
-        dd($validated->all());
-        if ($validated->fails()) {
-            return $this->errorResponse($validated->errors(), 400);
+        $registerRequest = new RegisterRequest();
+        $validator = Validator::make($request->all(), $registerRequest->rules(), $registerRequest->messages());
+
+        if ($validator->fails()) {
+            return $this->errorResponse($validator->errors(), 400);
         }
 
+
+
         $result = User::create([
-            'name' => $validated->name,
-            'email' => $validated->email,
-            'password' => bcrypt($validated->password),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
 
         ]);
-        
+
         return $this->successResponse($result, 'User created successfully', 201);
-       
     }
 
     public function login(LoginRequest $request)
@@ -43,7 +46,6 @@ class UserController extends Controller
             $token = $user->createToken('api-token')->plainTextToken;
 
             return $this->successResponse($token, 'User logged in successfully', 200);
-
         }
 
         return $this->errorResponse('Wrong credentials', 401);
@@ -57,6 +59,4 @@ class UserController extends Controller
             'message' => 'Logged out',
         ]);
     }
-
-
 }
