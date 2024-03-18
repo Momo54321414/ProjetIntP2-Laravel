@@ -10,115 +10,45 @@ use Carbon\Carbon;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
+use App\Traits\HttpResponses;
 
 class PrescriptionController extends Controller
 {
 
+    use HttpResponses;
     //Gestion des messages d'erreurs selon la localisation à faire
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $prescriptions = DB::table('prescriptions')
+            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+            ->select(
+                'medications.id as medicationId',
+                'medications.name as medicationName',
+                'medications.function as medicationFunction',
+                'medications.canBeInPillBox as medicationcanBeInPillBox',
+                'prescriptions.nameOfPrescription as nameOfPrescription',
+                'prescriptions.dateOfPrescription as dateOfPrescription',
+                'prescriptions.dateOfStart as dateOfStart',
+                'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
+                'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
+                'prescriptions.frequencyPerDay  as frequencyPerDay',
+                'prescriptions.id as id'
+            )
+            ->where('prescriptions.user_id', Auth::user()->id)
+            ->get();
+
         if (request()->is('api/*')) {
-            //Vraiment utile pour l'api ou se créer un puisqu'on doit récuperer un api_token?
-            $prescriptions = DB::table('prescriptions')
-                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-                ->select(
-                    'medications.id as medicationId',
-                    'medications.name as medicationName',
-                    'medications.function as medicationFunction',
-                    'medications.canBeInPillBox as medicationCanBeInPillBox',
-                    'prescriptions.nameOfPrescription as nameOfPrescription',
-                    'prescriptions.dateOfPrescription as dateOfPrescription',
-                    'prescriptions.dateOfStart as dateOfStart',
-                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-                    'prescriptions.frequencyPerDay  as frequencyPerDay',
-                    'prescriptions.id as id'
-                )
-                ->get();
-            return response()->json($prescriptions);
+
+            return $this->successResponse($prescriptions, 'Prescriptions found successfully', 200);
         } else {
-            $prescriptions = DB::table('prescriptions')
-                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-                ->select(
-                    'medications.id as medicationId',
-                    'medications.name as medicationName',
-                    'medications.function as medicationFunction',
-                    'medications.canBeInPillBox as medicationcanBeInPillBox',
-                    'prescriptions.nameOfPrescription as nameOfPrescription',
-                    'prescriptions.dateOfPrescription as dateOfPrescription',
-                    'prescriptions.dateOfStart as dateOfStart',
-                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-                    'prescriptions.frequencyPerDay  as frequencyPerDay',
-                    'prescriptions.id as id'
-                )
-                ->where('prescriptions.user_id', Auth::user()->id)
-                ->get();
-
-            $prescriptions = DB::table('prescriptions')
-                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-                ->select(
-                    'medications.id as medicationId',
-                    'medications.name as medicationName',
-                    'medications.function as medicationFunction',
-                    'medications.isInPillBox as medicationIsInPillBox',
-                    'prescriptions.nameOfPrescription as nameOfPrescription',
-                    'prescriptions.dateOfPrescription as dateOfPrescription',
-                    'prescriptions.dateOfStart as dateOfStart',
-                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-                    'prescriptions.frequencyPerDay  as frequencyPerDay',
-                    'prescriptions.id as id'
-                )
-                ->where('prescriptions.user_id', Auth::user()->id)
-                ->get();
-
-
             return  view('prescription.index', [
                 'prescriptions' => $prescriptions
             ]);
         }
     }
-
-    public function getAssociatedPrescriptions()
-    {
-        //Retreive the bearer token from the request
-        // $token = request()->bearerToken();
-
-        // //Retreive the user from the database
-        // $user = DB::table('users')->where('api_token', $token)->first();
-        // dd($user);
-        // if (!$user) {
-        //     return response()->json(['error' => 'User not found'], 404);
-        // }
-        // //Retreive the prescriptions associated with the user
-
-
-        // $prescriptions = DB::table('prescriptions')
-        //     ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-        //     ->select(
-        //         'medications.id as medicationId',
-        //         'medications.name as medicationName',
-        //         'medications.function as medicationFunction',
-        //         'medications.isInPillBox as medicationIsInPillBox',
-        //         'prescriptions.nameOfPrescription as nameOfPrescription',
-        //         'prescriptions.dateOfPrescription as dateOfPrescription',
-        //         'prescriptions.dateOfStart as dateOfStart',
-        //         'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-        //         'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-        //         'prescriptions.frequencyPerDay  as frequencyPerDay',
-        //         'prescriptions.id as id'
-        //     )
-        //     ->where('prescriptions.user_id', $user->id)
-        //     ->get();
-
-        // return response()->json($prescriptions, 200);
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -131,7 +61,12 @@ class PrescriptionController extends Controller
         $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
 
         if (request()->is('api/*')) {
-            return response()->json(['medications' => $medications, 'maxDate' => $maxDate, 'minDate' => $minDate, 'maxDateForStart' => $maxDateForStart], 200);
+            return $this->successResponse([
+                'medications' => $medications,
+                'maxDate' => $maxDate,
+                'minDate' => $minDate,
+                'maxDateForStart' => $maxDateForStart
+            ], 'Prescriptions found successfully', 200);
         }
 
         return view('prescription.create', [
@@ -177,18 +112,17 @@ class PrescriptionController extends Controller
      */
     public function show(string $locale, string $id)
     {
-        //
         try {
             $prescription = Prescription::findOrFail($id);
-            $medications = Medication::all();
+            $medications = Medication::findOrFail($prescription->medication_id);
             if (request()->is('api/*')) {
-                return response()->json($prescription);
+                return $this->successResponse(['prescription' => $prescription, 'medications' => $medications], 'Prescription found successfully', 200);
             } else {
                 return view('prescription.show', ['prescription' => $prescription, 'medications' => $medications]);
             }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {
-                return response()->json(['error' => 'Error finding prescription'], 500);
+                return $this->errorResponse('Error finding prescription', 500);
             } else {
                 return redirect()->back()->with('errors', 'Error finding prescription');
             }
@@ -211,7 +145,14 @@ class PrescriptionController extends Controller
             $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
 
             if (request()->is('api/*')) {
-                return response()->json(['success' => $Messages['success'], $prescription, $medications, $maxDate, $minDate, $maxDateForStart], 200);
+                return $this->successResponse([
+                    'success' => $Messages['success'],
+                    $prescription,
+                    $medications,
+                    $maxDate,
+                    $minDate,
+                    $maxDateForStart
+                ], 200);
             } else {
                 //dd($prescription, $medications, $maxDate, $minDate, $maxDateForStart);
                 return view('prescription.edit', [
@@ -224,7 +165,7 @@ class PrescriptionController extends Controller
             }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {
-                return response()->json(['error' => 'Error editing prescription'], 500);
+                return $this->errorResponse(['error' => 'Error editing prescription'], 500);
             } else {
                 return redirect()->back()->with('errors', 'Error editing prescription');
             }
@@ -271,13 +212,13 @@ class PrescriptionController extends Controller
             $prescription = Prescription::findOrFail($id);
             $prescription->delete();
             if (request()->is('api/*')) {
-                return response()->json(['success' => $Messages['success']], 200);
+                return $this->successResponse(['success' => $Messages['success']], 200);
             } else {
                 return redirect()->back()->with('status', $Messages['success']);
             }
         } catch (\Exception $e) {
             if (request()->is('api/*')) {
-                return response()->json(['error' => $Messages], 500);
+                return $this->errorResponse(['error' => $Messages], 500);
             } else {
                 return redirect()->back()->with('errors', $Messages['error']);
             }

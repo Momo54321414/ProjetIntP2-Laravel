@@ -7,26 +7,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Alert;
 use Carbon\Carbon;
+use App\Traits\HttpResponses;
 
 class AlertController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
-    public function index(string $locale)
+    public function index()
     {
-        if (request()->is('api/*')) {
-            $alerts = DB::table('Alerts')
-                ->join('Calendars', 'Alerts.calendar_id', '=', 'Calendars.id')
-                ->join('Prescriptions', 'Calendars.prescription_id', '=', 'Prescriptions.id')
-                ->join('Medications', 'Prescriptions.medication_id', '=', 'Medications.id')
-                ->where('Calendars.dateOfIntake', '<=', Carbon::today())
-                ->where('Calendars.active', '=', 1)
-                ->select('Alerts.*', 'Calendars.dateOfIntake as dateOfIntake', 'Calendars.hourOfIntake as hourOfIntake',  'Medications.name as medicationName')
-                ->get();
-            return response()->json($alerts);
-        } else {
-            $alerts = DB::table('Alerts')
+        $alerts = DB::table('Alerts')
                 ->join('Calendars', 'Alerts.calendar_id', '=', 'Calendars.id')
                 ->join('Prescriptions', 'Calendars.prescription_id', '=', 'Prescriptions.id')
                 ->join('Medications', 'Prescriptions.medication_id', '=', 'Medications.id')
@@ -36,6 +27,12 @@ class AlertController extends Controller
                 ->select('Alerts.*', 'Calendars.*', 'Medications.name as medicationName')
                 ->orderBy('Calendars.dateOfIntake', 'desc')
                 ->get();
+
+        if (request()->is('api/*')) {
+           
+            return $this->successResponse($alerts, 'Alerts retrieved successfully', 200);
+        } else {
+            
             return view('alerts.index', [
                 'alerts' => $alerts,
             ]);
