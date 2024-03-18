@@ -26,9 +26,9 @@ class PrescriptionRequest extends FormRequest
             'nameOfPrescription' => 'required|string|max:255',
             'dateOfPrescription' => 'required|date_format:Y-m-d',
             'dateOfStart' => 'required|date_format:Y-m-d',
-            'durationOfPrescriptionInDays' => 'required|integer',
-            'frequencyBetweenDosesInHours' => 'required|integer',
-            'frequencyOfIntakeInDays' => 'required|integer',
+            'durationOfPrescriptionInDays' => 'required|integer|min:1',
+            'frequencyBetweenDosesInHours' => 'required|integer|min:1|max:24',
+            'frequencyOfIntakeInDays' => 'required|integer|min:1|max:24',
             'firstIntakeHour' => 'required|date_format:H:i',
             'medication_id' => 'required|integer',
         ];
@@ -58,13 +58,18 @@ class PrescriptionRequest extends FormRequest
             'dateOfStart' => 'The date of start must be a date',
             'durationOfPrescriptionInDays.required' => 'The duration of the prescription in days is required',
             'durationOfPrescriptionInDays.integer' => 'The duration of the prescription in days must be an number',
+            'durationOfPrescriptionInDays.min' => 'The duration of the prescription in days must be at least 1 day',
             'frequencyBetweenDosesInHours.required' => 'The frequency between doses in hours is required',
             'frequencyBetweenDosesInHours.integer' => 'The frequency between doses in hours must be an number',
+            'frequencyBetweenDosesInHours.min' => 'The frequency between doses in hours must be at least 1 hour',
+            'frequencyBetweenDosesInHours.max' => 'The frequency between doses in hours must be at most 24 hours',
             'frequencyOfIntakeInDays.required' => 'The frequency of intake in days is required',
             'frequencyOfIntakeInDays.integer' => 'The frequency of intake in days must be an number',
+            'frequencyOfIntakeInDays.min' => 'The frequency of intake in days must be at least 1 day',
+            'frequencyOfIntakeInDays.max' => 'The frequency of intake in days must be at most 24 days',
             'firstIntakeHour.required' => 'The first intake hour is required',
             'firstIntakeHour.date_format' => 'The first intake hour must be a time format (HH:MM)',
-            'medication_id.required' => 'The medication is required',
+            'medication_id.required' => 'The medication is required'
         ];
     }
     public function getFrenchMessages(): array
