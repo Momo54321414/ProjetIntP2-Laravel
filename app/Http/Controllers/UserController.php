@@ -27,14 +27,13 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
 
         ]);
-        
+
 
         return $this->successResponse(
             ['user' => $result, 'token' => $result->createToken('API_Token' . $result->name)->plainTextToken],
             __('User_Created_Successfully'),
             201
         );
-
     }
 
     public function login(LoginRequest $request)
@@ -71,7 +70,7 @@ class UserController extends Controller
         }
 
         return $this->errorResponse(__('Feature_Not_Available'), 400);
-        
+
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|confirmed'
@@ -104,7 +103,11 @@ class UserController extends Controller
         $user = $request->user();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->save();
+        try {
+            $user->save();
+        } catch (\Exception $e) {
+            return $this->errorResponse(__('Email_Already_Exists'), 400);
+        }
 
         return $this->successResponse($user, __('Profile_Updated_Successfully'), 200);
     }
@@ -126,6 +129,11 @@ class UserController extends Controller
         $user = $request->user();
 
         $user->name = $request->name;
+        try {
+            $user->save();
+        } catch (\Exception $e) {
+            return $this->errorResponse(__('Name_Updated_Failed'), 400);
+        }
         $user->save();
 
         return $this->successResponse($user, __('Name_Updated_Successfully'), 200);
@@ -140,8 +148,12 @@ class UserController extends Controller
         } else {
             $locale = app()->getLocale();
         }
-
-        $request->user()->currentAccessToken()->delete();
+        try{
+            $request->user()->currentAccessToken()->delete();
+        }
+        catch (\Exception $e){
+            return $this->errorResponse(__('User_Logged_Out_Failed'), 400);
+        }
 
         return $this->successResponse(null, __('User_Logged_Out_Successfully'), 200);
     }
@@ -156,8 +168,12 @@ class UserController extends Controller
         }
 
         return $this->errorResponse(__('Feature_Not_Available'), 400);
-
-        $request->user()->delete();
+        try{
+            $request->user()->delete();
+        }
+        catch (\Exception $e){
+            return $this->errorResponse(__('User_Deleted_Failed'), 400);
+        }
 
         return $this->successResponse(null, 'User_Deleted_Successfully', 200);
     }

@@ -124,7 +124,7 @@
     "Resend Verification Email": "Resend Verification Email",
     "Return": "Return",
     "Log Out": "Log Out",
-    "User_Logged_Out_Successfully": "User logged out successfully",
+    
 
     "Password_Dont_Match": "The provided password does not match your current password",
     "Password_Reset_Link": "We have emailed your password reset link!",
@@ -142,12 +142,15 @@
 
     "Name_Required": "The name field is required",
     "Name_Updated_Successfully": "Name updated successfully",
+    "Name_Updated_Failed": "Name update failed",
+    
 
     "Email_Verification_Link": "A new verification link has been sent to the email address you provided during registration.",
     "Email_Verification_Link_Failed": "Email verification link failed",
     "Email_Verified_Successfully": "Email verified successfully",
     "Email_Verified_Failed": "Email verification failed",
     "Email_Already_Verified": "Email already verified",
+    "Email_Already_Exists": "That email address is already in use",
     "Email_Not_Found": "We can't find a user with that e-mail address",
     "Email_Not_Verified": "Your email address is not verified",
     "Email_Not_Verified_Resend": "Your email address is not verified. Please click the link in the email we sent you, or click below to resend the email.",
@@ -156,6 +159,8 @@
     "User_Deleted_Successfully": "User deleted successfully",
     "User_Created_Failed": "User creation failed",
     "User_Deleted_Failed": "User deletion failed",
+    "User_Logged_Out_Successfully": "User logged out successfully",
+    "User_Logged_Out_Failed": "User logout failed",
 
     "Dashboard": "Dashboard",
     "Documentation": "Documentation",

@@ -119,7 +119,7 @@
     "Resend Verification Email": "Renvoyer l'e-mail de vérification",
     "Return": "Retour",
     "Log Out": "Déconnexion",
-    "User_Logged_Out_Successfully": "Utilisateur déconnecté avec succès",
+    
 
     "Password_Dont_Match": "Les mots de passe ne correspondent pas",
     "Password_Reset_Link": "Le lien de réinitialisation du mot de passe a été envoyé par e-mail",
@@ -138,12 +138,14 @@
 
     "Name_Required": "Le nom est requis",
     "Name_Updated_Successfully": "Nom mis à jour avec succès",
+    "Name_Updated_Failed": "Échec de la mise à jour du nom",
 
     "Email_Verification_Link": "Le lien de vérification a été envoyé par e-mail",
     "Email_Verification_Link_Failed": "Erreur lors de l'envoi du lien de vérification par e-mail",
     "Email_Verified_Successfully": "E-mail vérifié avec succès",
     "Email_Verified_Failed": "Échec de la vérification de l'e-mail",
     "Email_Already_Verified": "E-mail déjà vérifié",
+    "Email_Already_Exists": "E-mail déjà existant",
     "Email_Not_Found": "E-mail non trouvé",
     "Email_Not_Verified": "E-mail non vérifié",
     "Email_Not_Verified_Resend": "E-mail non vérifié. Cliquez ici pour renvoyer l'e-mail de vérification",
@@ -152,6 +154,8 @@
     "User_Deleted_Successfully": "Utilisateur supprimé avec succès",
     "User_Created_Failed": "Échec de la création de l'utilisateur",
     "User_Deleted_Failed": "Échec de la suppression de l'utilisateur",
+    "User_Logged_Out_Successfully": "Utilisateur déconnecté avec succès",
+    "User_Logged_Out_Failed": "Échec de la déconnexion de l'utilisateur",
     
 
     "Dashboard": "Tableau de bord",
