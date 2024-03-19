@@ -109,7 +109,7 @@
 
 
 
-
+    "FeatureNoAvailable": "This feature is not available yet",
     "Email": "Email",
     "Password": "Password",
     "Remember me": "Remember me",
@@ -124,6 +124,10 @@
     "Resend Verification Email": "Resend Verification Email",
     "Return": "Return",
     "Log Out": "Log Out",
+    "UserLoggedOutsuccessfully": "User logged out successfully",
+    "PasswordDontMatch": "The provided password does not match your current password",
+    "PasswordResetLink": "We have emailed your password reset link!",
+    "PasswordReset": "Your password has been reset!",
 
 
     "Dashboard": "Dashboard",
@@ -176,11 +180,11 @@
     "Prescription_Created_Successfully": "Prescription created successfully",
     "Prescription_Updated_Successfully": "Prescription updated successfully",
     "Prescription_Deleted_Successfully": "Prescription deleted successfully",
-    "Prescription_Finding_Successfully": "Prescription finding successfully",
+    "Prescription_Finding_Successfully": "Prescriptions finding successfully",
     "Prescription_Created_Failed": "Prescription creation failed",
     "Prescription_Updated_Failed": "Prescription update failed",
     "Prescription_Deleted_Failed": "Prescription deletion failed",
-    "Prescription_Finding_Failed": "Prescription finding failed",
+    "Prescription_Finding_Failed": "Prescriptions finding failed",
   
    
 

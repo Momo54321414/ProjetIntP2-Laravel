@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -51,13 +52,70 @@ class UserController extends Controller
             200
         );
     }
-    
+
+    public function updatePassword(Request $request)
+    {
+        return $this->errorResponse(__('FeatureNoAvailable'), 400);
+        
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed'
+        ]);
+
+        $user = $request->user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return $this->errorResponse(__('PasswordDontMatch'), 400);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return $this->successResponse(null, 'Password updated successfully', 200);
+    }
+
+    public function updateProfile(ProfileUpdateRequest $request)
+    {
+        return $this->errorResponse(__('FeatureNoAvailable'), 400);
+
+        $request->validated($request->all());
+        $user = $request->user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return $this->successResponse($user, 'Profile updated successfully', 200);
+    }
+
+    public function updateName(Request $request)
+    {
+        return $this->errorResponse(__('FeatureNoAvailable'), 400);
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $user = $request->user();
+
+        $user->name = $request->name;
+        $user->save();
+
+        return $this->successResponse($user, 'Name updated successfully', 200);
+    }
 
 
     public function logout(Request $request)
     {
-       $request->user()->currentAccessToken()->delete();
+        $request->user()->currentAccessToken()->delete();
 
-        return $this->successResponse(null, 'User logged out successfully', 200);
+        return $this->successResponse(null, __('UserLoggedOutsuccessfully'), 200);
+    }
+
+    public function destroy(Request $request)
+    {
+        return $this->errorResponse(__('FeatureNoAvailable'), 400);
+
+        $request->user()->delete();
+
+        return $this->successResponse(null, 'User deleted successfully', 200);
     }
 }

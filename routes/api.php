@@ -18,6 +18,7 @@ Route::post('register', [UserController::class, 'register']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
+
     Route::post('logout',  [UserController::class, 'logout']);
 
     Route::get('prescriptions', [PrescriptionController::class, 'index']);
@@ -28,6 +29,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('alerts', [AlertController::class, 'index']);
     Route::patch('alerts/{alert}', [AlertController::class, 'update']);
+
+    Route::patch('updateProfile', [UserController::class, 'updateProfile']);
+    Route::patch('updatePassword', [UserController::class, 'updatePassword']);
+    Route::patch('updateName', [UserController::class, 'updateName']);
+    Route::delete('deleteUser', [UserController::class, 'destroy']);
 
 });
 

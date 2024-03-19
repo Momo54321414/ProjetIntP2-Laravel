@@ -22,10 +22,10 @@ class PrescriptionController extends Controller
     {
         if (request()->is('api/*')) {
             $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
         } else {
             $locale = app()->getLocale();
         }
-        $messages = $this->getRightMessagesForIndex($locale);
 
         try {
             $prescriptions = DB::table('prescriptions')
@@ -55,7 +55,7 @@ class PrescriptionController extends Controller
             if (request()->is('api/*')) {
 
                 $prescriptionsJson = PrescriptionsResource::collection($prescriptions);
-                return $this->successResponse($prescriptionsJson, $messages['success'], 200);
+                return $this->successResponse($prescriptionsJson, __('Prescription_Finding_Successfully'), 200);
             } else {
 
                 return  view('prescription.index', [
@@ -63,10 +63,12 @@ class PrescriptionController extends Controller
                 ]);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Finding_Failed');
+
             if (request()->is('api/*')) {
-                return $this->errorResponse($messages['error'], 500);
+                return $this->errorResponse($message, 500);
             } else {
-                return redirect()->back()->with('errors', $messages['error']);
+                return redirect()->back()->with('errors', $message);
             }
         }
     }
@@ -96,6 +98,7 @@ class PrescriptionController extends Controller
     {
         if (request()->is('api/*')) {
             $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
         } else {
             $locale = app()->getLocale();
         }
@@ -196,11 +199,13 @@ class PrescriptionController extends Controller
      */
     public function update(PrescriptionRequest $request, string $id)
     {
-        $locale = $request->get('locale');
-        App::setLocale($locale);
+        if (request()->is('api/*')) {
+            $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
+        } else {
+            $locale = app()->getLocale();
+        }
 
-
-        $Messages =  $this->getRightMessagesForUpdate($locale);
 
         $prescription = Prescription::findOrFail($id);
 
@@ -210,18 +215,20 @@ class PrescriptionController extends Controller
             $prescription->user_id = Auth::user()->id;
             $prescription->saveOrFail();
 
+            $message = __('Prescription_Updated_Successfully');
             if (request()->is('api/*')) {
-                return $this->successResponse(['success' => $Messages['success'],], 200);
+                return $this->successResponse(null, $message, 200);
             } else {
 
-                return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
+                return redirect()->route('prescriptions.index')->with('status', $message);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Updating_Failed');
             if (request()->is('api/*')) {
-                return response()->json(['error' => $Messages['error']], 500);
+                return $this->errorResponse($message, 500);
             } else {
 
-                return redirect()->back()->with('errors', $Messages['error']);
+                return redirect()->back()->with('errors', $message);
             }
         }
     }
@@ -231,26 +238,30 @@ class PrescriptionController extends Controller
      */
     public function destroy(Request $request, string $id) // Add missing type hint for $request
     {
-        $locale = $request->get('locale');
-        App::setLocale($locale);
+        if (request()->is('api/*')) {
+            $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
+        } else {
+            $locale = app()->getLocale();
+        }
 
-        $Messages =  $this->getRightMessagesForDelete($locale);
         try {
             $prescription = Prescription::findOrFail($id);
             $prescription->delete();
+            $message = __('Prescription_Deleted_Successfully');
             if (request()->is('api/*')) {
-                return $this->successResponse(['success' => $Messages['success']], 200);
+                return $this->successResponse(null, $message, 200);
             } else {
-                return redirect()->back()->with('status', $Messages['success']);
+                return redirect()->back()->with('status', $message);
             }
         } catch (\Exception $e) {
-            // Handle the exception here if needed
-        }
-        if (request()->is('api/*')) {
-            return $this->errorResponse(['error' => $Messages['error']], 500);
-        } else {
-            return redirect()->back()->with('errors', $Messages['error']);
+            $message = __('Prescription_Deleting_Failed');
+
+            if (request()->is('api/*')) {
+                return $this->errorResponse($message, 500);
+            } else {
+                return redirect()->back()->with('errors', $message);
+            }
         }
     }
-
 }

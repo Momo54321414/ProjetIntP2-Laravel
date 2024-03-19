@@ -103,7 +103,7 @@
 
 
 
-
+    "FeatureNoAvailable": "Cette fonctionnalité n'est pas disponible",
     "Email": "Email",
     "Password": "Mot de passe",
     "Remember me": "Se souvenir de moi",
@@ -119,7 +119,11 @@
     "Resend Verification Email": "Renvoyer l'e-mail de vérification",
     "Return": "Retour",
     "Log Out": "Déconnexion",
-
+    "UserLoggedOutsuccessfully": "Utilisateur déconnecté avec succès",
+    "PasswordDontMatch": "Les mots de passe ne correspondent pas",
+    "PasswordResetLink": "Le lien de réinitialisation du mot de passe a été envoyé par e-mail",
+    "PasswordResetLinkError": "Erreur lors de l'envoi du lien de réinitialisation du mot de passe par e-mail",
+    "PasswordReset": "Le mot de passe a été réinitialisé",
 
     "Dashboard": "Tableau de bord",
     "Documentation": "Documentation",
@@ -172,7 +176,7 @@
     "Prescription_Created_Successfully": "Prescription créée avec succès",
     "Prescription_Updated_Successfully": "Prescription mise à jour avec succès",
     "Prescription_Deleted_Successfully": "Prescription supprimée avec succès",
-    "Prescriptions_Finding_Successful": "Prescriptions trouvées avec succès",
+    "Prescription_Finding_Successfully": "Prescriptions trouvées avec succès",
     "Prescription_Created_Failed": "Échec de la création de la prescription",
     "Prescription_Updated_Failed": "Échec de la mise à jour de la prescription",
     "Prescription_Deleted_Failed": "Échec de la suppression de la prescription",
