@@ -23,11 +23,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('prescriptions', [PrescriptionController::class, 'index']);
     Route::post('prescriptions', [PrescriptionController::class, 'store']);
     Route::get('prescriptions/{prescription}', [PrescriptionController::class, 'show']);
-    Route::put('prescriptions/{prescription}', [PrescriptionController::class, 'update']);
+    Route::patch('prescriptions/{prescription}', [PrescriptionController::class, 'update']);
     Route::delete('prescriptions/{prescription}', [PrescriptionController::class, 'destroy']);
 
     Route::get('alerts', [AlertController::class, 'index']);
-    Route::put('alerts/{alert}', [AlertController::class, 'update']);
+    Route::patch('alerts/{alert}', [AlertController::class, 'update']);
 
 });
 

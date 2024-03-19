@@ -173,6 +173,18 @@
     "P_M.required" :"The medication is required",
     "P_M.integer" :"The medication must be a number",
 
+    "Prescription_Created_Successfully": "Prescription created successfully",
+    "Prescription_Updated_Successfully": "Prescription updated successfully",
+    "Prescription_Deleted_Successfully": "Prescription deleted successfully",
+    "Prescription_Finding_Successfully": "Prescription finding successfully",
+    "Prescription_Created_Failed": "Prescription creation failed",
+    "Prescription_Updated_Failed": "Prescription update failed",
+    "Prescription_Deleted_Failed": "Prescription deletion failed",
+    "Prescription_Finding_Failed": "Prescription finding failed",
+  
+   
+
+
 
 
     
@@ -189,6 +201,10 @@
     "Alerts log": "Alerts log",
     "No alerts to show yet": "No alerts to show yet",
     "Take now": "Take now",
+    "A_IMT.required": "The field isMedicationTaken is required",
+    "A_IMT.boolean": "The field isMedicationTaken must be a boolean",
+    "Alert_Updated_Successfully" :"Alert was updated",
+    "Alert_Updated_Failed" :"Alert was not updated",
 
     "Logs": "Logs",
     "No logs to show yet": "No logs to show yet",

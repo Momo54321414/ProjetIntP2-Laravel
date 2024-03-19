@@ -168,6 +168,17 @@
     "P_M.required" : "La médication est requise",
     "P_M.integer" : "La médication doit être un entier",
 
+    
+    "Prescription_Created_Successfully": "Prescription créée avec succès",
+    "Prescription_Updated_Successfully": "Prescription mise à jour avec succès",
+    "Prescription_Deleted_Successfully": "Prescription supprimée avec succès",
+    "Prescriptions_Finding_Successful": "Prescriptions trouvées avec succès",
+    "Prescription_Created_Failed": "Échec de la création de la prescription",
+    "Prescription_Updated_Failed": "Échec de la mise à jour de la prescription",
+    "Prescription_Deleted_Failed": "Échec de la suppression de la prescription",
+    "Prescriptions_Finding_Failed": "Erreur lors de la recherche des prescriptions",
+
+
 
 
 
@@ -178,6 +189,11 @@
     "Alerts log": "Journal des alertes",
     "No alerts to show yet.": "Pas d'alertes pour le moment.",
     "Take now": "Prendre maintenant",
+    "A_IMT.required":"Le champ médicamentEstPris est requis",
+    "A_IMT.boolean":"Le champ médicamentEstPris doit être un vrai ou faux",
+    "Alert_Updated_Successfully":"Alerte mise à jour",
+    "Alert_Updated_Failed":"Échec de la mise à jour de l'alerte",
+
 
     "Logs": "Journal d'activité",
     "No logs to show yet": "Pas d'activité dans le journal pour le moment.",
