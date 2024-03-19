@@ -27,17 +27,25 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
 
         ]);
-
+        
 
         return $this->successResponse(
             ['user' => $result, 'token' => $result->createToken('API_Token' . $result->name)->plainTextToken],
-            'User created successfully',
+            __('User_Created_Successfully'),
             201
         );
+
     }
 
     public function login(LoginRequest $request)
     {
+        if (request()->is('api/*')) {
+            $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
+        } else {
+            $locale = app()->getLocale();
+        }
+
         $request->validated($request->all());
 
         if (!Auth::attempt($request->only('email', 'password'))) {
@@ -55,7 +63,14 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
-        return $this->errorResponse(__('FeatureNoAvailable'), 400);
+        if (request()->is('api/*')) {
+            $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
+        } else {
+            $locale = app()->getLocale();
+        }
+
+        return $this->errorResponse(__('Feature_Not_Available'), 400);
         
         $request->validate([
             'current_password' => 'required',
@@ -65,18 +80,25 @@ class UserController extends Controller
         $user = $request->user();
 
         if (!Hash::check($request->current_password, $user->password)) {
-            return $this->errorResponse(__('PasswordDontMatch'), 400);
+            return $this->errorResponse(__('Password_Dont_Match'), 400);
         }
 
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return $this->successResponse(null, 'Password updated successfully', 200);
+        return $this->successResponse(null, __('Password_Updated_Successfully'), 200);
     }
 
     public function updateProfile(ProfileUpdateRequest $request)
     {
-        return $this->errorResponse(__('FeatureNoAvailable'), 400);
+        if (request()->is('api/*')) {
+            $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
+        } else {
+            $locale = app()->getLocale();
+        }
+
+        return $this->errorResponse(__('Feature_Not_Available'), 400);
 
         $request->validated($request->all());
         $user = $request->user();
@@ -84,12 +106,19 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        return $this->successResponse($user, 'Profile updated successfully', 200);
+        return $this->successResponse($user, __('Profile_Updated_Successfully'), 200);
     }
 
     public function updateName(Request $request)
     {
-        return $this->errorResponse(__('FeatureNoAvailable'), 400);
+        if (request()->is('api/*')) {
+            $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
+        } else {
+            $locale = app()->getLocale();
+        }
+
+        return $this->errorResponse(__('Feature_Not_Available'), 400);
         $request->validate([
             'name' => 'required'
         ]);
@@ -99,23 +128,37 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->save();
 
-        return $this->successResponse($user, 'Name updated successfully', 200);
+        return $this->successResponse($user, __('Name_Updated_Successfully'), 200);
     }
 
 
     public function logout(Request $request)
     {
+        if (request()->is('api/*')) {
+            $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
+        } else {
+            $locale = app()->getLocale();
+        }
+
         $request->user()->currentAccessToken()->delete();
 
-        return $this->successResponse(null, __('UserLoggedOutsuccessfully'), 200);
+        return $this->successResponse(null, __('User_Logged_Out_Successfully'), 200);
     }
 
     public function destroy(Request $request)
     {
-        return $this->errorResponse(__('FeatureNoAvailable'), 400);
+        if (request()->is('api/*')) {
+            $locale = $_REQUEST['locale'];
+            app()->setLocale($locale);
+        } else {
+            $locale = app()->getLocale();
+        }
+
+        return $this->errorResponse(__('Feature_Not_Available'), 400);
 
         $request->user()->delete();
 
-        return $this->successResponse(null, 'User deleted successfully', 200);
+        return $this->successResponse(null, 'User_Deleted_Successfully', 200);
     }
 }

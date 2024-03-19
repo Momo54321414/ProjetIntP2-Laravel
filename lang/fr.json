@@ -103,7 +103,7 @@
 
 
 
-    "FeatureNoAvailable": "Cette fonctionnalité n'est pas disponible",
+    "Feature_Not_Available": "Cette fonctionnalité n'est pas disponible",
     "Email": "Email",
     "Password": "Mot de passe",
     "Remember me": "Se souvenir de moi",
@@ -119,11 +119,40 @@
     "Resend Verification Email": "Renvoyer l'e-mail de vérification",
     "Return": "Retour",
     "Log Out": "Déconnexion",
-    "UserLoggedOutsuccessfully": "Utilisateur déconnecté avec succès",
-    "PasswordDontMatch": "Les mots de passe ne correspondent pas",
-    "PasswordResetLink": "Le lien de réinitialisation du mot de passe a été envoyé par e-mail",
-    "PasswordResetLinkError": "Erreur lors de l'envoi du lien de réinitialisation du mot de passe par e-mail",
-    "PasswordReset": "Le mot de passe a été réinitialisé",
+    "User_Logged_Out_Successfully": "Utilisateur déconnecté avec succès",
+
+    "Password_Dont_Match": "Les mots de passe ne correspondent pas",
+    "Password_Reset_Link": "Le lien de réinitialisation du mot de passe a été envoyé par e-mail",
+    "Password_Reset_Link_Error": "Erreur lors de l'envoi du lien de réinitialisation du mot de passe par e-mail",
+    "Password_Reset": "Le mot de passe a été réinitialisé",
+    "Password_Updated_Successfully": "Mot de passe mis à jour avec succès",
+    "Password_Updated_Failed": "Échec de la mise à jour du mot de passe",
+    "Password_Required": "Le mot de passe est requis",
+    "Password_Confirmation_Required": "La confirmation du mot de passe est requise",
+    "Password_Min_8": "Le mot de passe doit comporter au moins 8 caractères",
+    "Password_Confirmation_Min_8": "La confirmation du mot de passe doit comporter au moins 8 caractères",
+    "Password_Confirmation_Same_As_Password": "La confirmation du mot de passe doit être identique au mot de passe",
+    
+    "Profile_Updated_Successfully": "Profil mis à jour avec succès",
+    "Profile_Updated_Failed": "Échec de la mise à jour du profil",
+
+    "Name_Required": "Le nom est requis",
+    "Name_Updated_Successfully": "Nom mis à jour avec succès",
+
+    "Email_Verification_Link": "Le lien de vérification a été envoyé par e-mail",
+    "Email_Verification_Link_Failed": "Erreur lors de l'envoi du lien de vérification par e-mail",
+    "Email_Verified_Successfully": "E-mail vérifié avec succès",
+    "Email_Verified_Failed": "Échec de la vérification de l'e-mail",
+    "Email_Already_Verified": "E-mail déjà vérifié",
+    "Email_Not_Found": "E-mail non trouvé",
+    "Email_Not_Verified": "E-mail non vérifié",
+    "Email_Not_Verified_Resend": "E-mail non vérifié. Cliquez ici pour renvoyer l'e-mail de vérification",
+
+    "User_Created_Successfully": "Utilisateur créé avec succès",
+    "User_Deleted_Successfully": "Utilisateur supprimé avec succès",
+    "User_Created_Failed": "Échec de la création de l'utilisateur",
+    "User_Deleted_Failed": "Échec de la suppression de l'utilisateur",
+    
 
     "Dashboard": "Tableau de bord",
     "Documentation": "Documentation",
