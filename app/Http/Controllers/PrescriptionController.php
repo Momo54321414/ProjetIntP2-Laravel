@@ -204,11 +204,8 @@ class PrescriptionController extends Controller
         if (request()->is('api/*')) {
             $locale = $_REQUEST['locale'];
             app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
-
-
+        } 
+        dd($id);
         $prescription = Prescription::findOrFail($id);
 
         try {
@@ -221,7 +218,7 @@ class PrescriptionController extends Controller
             if (request()->is('api/*')) {
                 return $this->successResponse(null, $message, 200);
             } else {
-
+                
                 return redirect()->route('prescriptions.index')->with('status', $message);
             }
         } catch (\Exception $e) {
