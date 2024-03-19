@@ -214,6 +214,8 @@
     "Prescription_Updated_Failed": "Échec de la mise à jour de la prescription",
     "Prescription_Deleted_Failed": "Échec de la suppression de la prescription",
     "Prescriptions_Finding_Failed": "Erreur lors de la recherche des prescriptions",
+    "Prescription_Edit_Successfully": "Prescription modifiée avec succès",
+    "Prescription_Edit_Failed": "Échec de la modification de la prescription",
 
 
 

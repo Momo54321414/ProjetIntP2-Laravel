@@ -103,7 +103,7 @@ class PrescriptionController extends Controller
             $locale = app()->getLocale();
         }
 
-        $Messages =  $this->getRightMessagesForCreate($locale);
+
         $validated = $request->validated();
         $prescription = new Prescription($validated);
         $prescription->user_id = Auth::user()->id;
@@ -111,20 +111,21 @@ class PrescriptionController extends Controller
 
         try {
             $prescription->save();
-
+            $message = __('Prescription_Created_Successfully');
             if (request()->is('api/*')) {
 
-                return $this->successResponse(['success' => $Messages['success']], 200);
+                return $this->successResponse(null, $message, 200);
             } else {
-                return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
+                return redirect()->route('prescriptions.index')->with('status', $message);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Creating_Failed');
 
             if (request()->is('api/*')) {
 
-                return response()->json(['error' => $Messages['error']], 500);
+                return $this->errorResponse($message, 500);
             }
-            return redirect()->back()->with('errors', $Messages['error']);
+            return redirect()->back()->with('errors', $message);
         }
     }
 
@@ -138,15 +139,16 @@ class PrescriptionController extends Controller
             $medications = Medication::findOrFail($prescription->medication_id);
             if (request()->is('api/*')) {
 
-                return $this->successResponse(['prescription' => $prescription, 'medications' => $medications], 'Prescription found successfully', 200);
+                return $this->successResponse(['prescription' => $prescription, 'medications' => $medications], __('Prescription_Finding_Successfully'), 200);
             } else {
                 return view('prescription.show', ['prescription' => $prescription, 'medications' => $medications]);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Finding_Failed');
             if (request()->is('api/*')) {
-                return $this->errorResponse('Error finding prescription', 500);
+                return $this->errorResponse($message, 500);
             } else {
-                return redirect()->back()->with('errors', 'Error finding prescription');
+                return redirect()->back()->with('errors', $message);
             }
         }
     }
@@ -156,8 +158,7 @@ class PrescriptionController extends Controller
      */
     public function edit(string $locale, string $id)
     {
-        $locale = app()->getLocale();
-        $Messages =  $this->getRightMessagesForEdit($locale);
+
         try {
             $prescription = Prescription::findOrFail($id);
 
@@ -168,7 +169,7 @@ class PrescriptionController extends Controller
 
             if (request()->is('api/*')) {
                 return $this->successResponse([
-                    'success' => $Messages['success'],
+                    'success' => __('Prescription_Edit_Successfully'),
                     $prescription,
                     $medications,
                     $maxDate,
@@ -186,10 +187,11 @@ class PrescriptionController extends Controller
                 ]);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Edit_Failed');
             if (request()->is('api/*')) {
-                return $this->errorResponse($Messages['error'], 500);
+                return $this->errorResponse($message, 500);
             } else {
-                return redirect()->back()->with('errors', $Messages['error']);
+                return redirect()->back()->with('errors', $message);
             }
         }
     }
@@ -197,7 +199,7 @@ class PrescriptionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PrescriptionRequest $request, string $id)
+    public function update(PrescriptionRequest $request, string $locale, string $id)
     {
         if (request()->is('api/*')) {
             $locale = $_REQUEST['locale'];

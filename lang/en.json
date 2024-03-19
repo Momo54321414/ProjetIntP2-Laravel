@@ -217,6 +217,8 @@
     "Prescription_Updated_Failed": "Prescription update failed",
     "Prescription_Deleted_Failed": "Prescription deletion failed",
     "Prescription_Finding_Failed": "Prescriptions finding failed",
+    "Prescription_Edit_Successfully": "Prescription edit successfully",
+    "Prescription_Edit_Failed": "Prescription edit failed",
   
    
 
