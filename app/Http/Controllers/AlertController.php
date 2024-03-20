@@ -26,7 +26,7 @@ class AlertController extends Controller
             ->where('prescriptions.user_id', '=', Auth::user()->id)
             ->where('calendars.dateOfIntake', '<=', Carbon::today())
             ->where('calendars.active', '=', 1)
-            ->select('Alerts.*', 'calendars.*', 'medications.name as medicationName')
+            ->select('alerts.*', 'calendars.*', 'medications.name as medicationName')
             ->orderBy('calendars.dateOfIntake', 'desc')
             ->get();
 
