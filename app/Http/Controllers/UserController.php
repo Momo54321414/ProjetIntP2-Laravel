@@ -130,14 +130,13 @@ class UserController extends Controller
     public function destroy(Request $request, string $locale)
     {
 
-
         try {
             $request->user()->tokens()->delete();
             $request->user()->delete();
+            return $this->successResponse(null, __('User_Deleted_Successfully'), 200);
         } catch (\Exception $e) {
+
             return $this->errorResponse(__('User_Deleted_Failed'), 400);
         }
-
-        return $this->successResponse(null, 'User_Deleted_Successfully', 200);
     }
 }
