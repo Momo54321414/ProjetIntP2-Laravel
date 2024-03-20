@@ -19,15 +19,15 @@ class AlertController extends Controller
      */
     public function index()
     {
-        $alerts = DB::table('Alerts')
-            ->join('Calendars', 'Alerts.calendar_id', '=', 'Calendars.id')
-            ->join('Prescriptions', 'Calendars.prescription_id', '=', 'Prescriptions.id')
-            ->join('Medications', 'Prescriptions.medication_id', '=', 'Medications.id')
-            ->where('Prescriptions.user_id', '=', Auth::user()->id)
-            ->where('Calendars.dateOfIntake', '<=', Carbon::today())
-            ->where('Calendars.active', '=', 1)
-            ->select('Alerts.*', 'Calendars.*', 'Medications.name as medicationName')
-            ->orderBy('Calendars.dateOfIntake', 'desc')
+        $alerts = DB::table('alerts')
+            ->join('calendars', 'alerts.calendar_id', '=', 'calendars.id')
+            ->join('prescriptions', 'calendars.prescription_id', '=', 'prescriptions.id')
+            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+            ->where('prescriptions.user_id', '=', Auth::user()->id)
+            ->where('calendars.dateOfIntake', '<=', Carbon::today())
+            ->where('calendars.active', '=', 1)
+            ->select('Alerts.*', 'calendars.*', 'medications.name as medicationName')
+            ->orderBy('calendars.dateOfIntake', 'desc')
             ->get();
 
         if (request()->is('api/*')) {
