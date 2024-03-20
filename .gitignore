@@ -22,5 +22,6 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
-
+.composer.lock
+.composer.json
 .env.dev
