@@ -20,9 +20,7 @@ class PrescriptionController extends Controller
 
     public function index()
     {
-        $locale = $request->route('locale') ?? app()->getLocale();
-        app()->setLocale($locale);
-
+   
         try {
             $prescriptions = DB::table('prescriptions')
                 ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
@@ -90,11 +88,8 @@ class PrescriptionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PrescriptionRequest $request)
+    public function store(PrescriptionRequest $request, string $locale)
     {
-        $locale = $request->route('locale') ?? app()->getLocale();
-        app()->setLocale($locale);
-
 
         $validated = $request->validated();
         $prescription = new Prescription($validated);
@@ -128,12 +123,13 @@ class PrescriptionController extends Controller
     {
         try {
             $prescription = Prescription::findOrFail($id);
-            $medications = Medication::findOrFail($prescription->medication_id);
+            $medication = Medication::findOrFail($prescription->medication_id);
             if (request()->is('api/*')) {
 
-                return $this->successResponse(['prescription' => $prescription, 'medications' => $medications], __('Prescription_Finding_Successfully'), 200);
+                return $this->successResponse(['prescription' => $prescription, 'medications' => $medication], __('Prescription_Finding_Successfully'), 200);
             } else {
-                return view('prescription.show', ['prescription' => $prescription, 'medications' => $medications]);
+                
+                return view('prescription.show', ['prescription' => $prescription, 'medication' => $medication]);
             }
         } catch (\Exception $e) {
             $message = __('Prescription_Finding_Failed');
@@ -193,8 +189,6 @@ class PrescriptionController extends Controller
      */
     public function update(PrescriptionRequest $request, string $locale, string $id)
     {
-        $locale = $request->route('locale') ?? app()->getLocale();
-        app()->setLocale($locale);
 
         
         $prescription = Prescription::findOrFail($id);
@@ -226,13 +220,12 @@ class PrescriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, string $id) // Add missing type hint for $request
+    public function destroy(string $locale,string $id)
     {
-       $locale = $request->route('locale') ?? app()->getLocale();
-        app()->setLocale($locale);
+        $prescription = Prescription::findOrFail($id);
 
         try {
-            $prescription = Prescription::findOrFail($id);
+            
             $prescription->delete();
             $message = __('Prescription_Deleted_Successfully');
             if (request()->is('api/*')) {

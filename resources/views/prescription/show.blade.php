@@ -40,17 +40,19 @@
                         </div>
 
                         <div class="mt-6">
+                            @if(isset($medication))
                             <x-input-label for="medication_id" value="{{ __('Medication') }}" />
                             <select name="medication_id" id="medication_id" readonly disabled
                                 class="mt-1 block w-3/4 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm disabled:bg-slate-50 disabled:text-black">
 
-                                @foreach ($medications as $medication)
                                     <option value="{{ $medication->id }}"
-                                        {{ $prescription->medicationId == $medication->id ? 'selected' : '' }}>
+                                        {{ $prescription->medication_id == $medication->id ? 'selected' : '' }}>
                                         {{ $medication->name }}</option>
-                                @endforeach
+                                
                             </select>
-
+                            @else
+                            <p class="text-red-500">{{ __('NoMedications') }}</p>
+                            @endif
                         </div>
 
                         <div class="mt-6">

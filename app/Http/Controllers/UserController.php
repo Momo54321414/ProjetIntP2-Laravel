@@ -17,10 +17,8 @@ class UserController extends Controller
     use HttpResponses;
 
 
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request, string $locale)
     {
-        $locale = $_REQUEST['locale'];
-        app()->setLocale($locale);
 
         $request->validated($request->all());
 
@@ -39,11 +37,8 @@ class UserController extends Controller
         );
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request, string $locale)
     {
-
-        $locale = $_REQUEST['locale'];
-        app()->setLocale($locale);
 
 
         $request->validated($request->all());
@@ -64,14 +59,8 @@ class UserController extends Controller
         );
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(Request $request, string $locale)
     {
-
-        $locale = $_REQUEST['locale'];
-        app()->setLocale($locale);
-
-
-        return $this->errorResponse(__('Feature_Not_Available'), 400);
 
         $request->validate([
             'current_password' => 'required',
@@ -90,14 +79,8 @@ class UserController extends Controller
         return $this->successResponse(null, __('Password_Updated_Successfully'), 200);
     }
 
-    public function updateProfile(ProfileUpdateRequest $request)
+    public function updateProfile(ProfileUpdateRequest $request, string $locale)
     {
-
-        $locale = $_REQUEST['locale'];
-        app()->setLocale($locale);
-
-
-        return $this->errorResponse(__('Feature_Not_Available'), 400);
 
         $request->validated($request->all());
         $user = $request->user();
@@ -114,12 +97,7 @@ class UserController extends Controller
 
     public function updateName(Request $request)
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        }
 
-        return $this->errorResponse(__('Feature_Not_Available'), 400);
         $request->validate([
             'name' => 'required'
         ]);
@@ -138,11 +116,9 @@ class UserController extends Controller
     }
 
 
-    public function logout(Request $request)
+    public function logout(Request $request, string $locale)
     {
 
-        $locale = $_REQUEST['locale'];
-        app()->setLocale($locale);
         try {
             $request->user()->currentAccessToken()->delete();
             return $this->successResponse(null, __('User_Logged_Out_Successfully'), 200);
@@ -151,15 +127,12 @@ class UserController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, string $locale)
     {
 
-        $locale = $_REQUEST['locale'];
-        app()->setLocale($locale);
 
-
-        return $this->errorResponse(__('Feature_Not_Available'), 400);
         try {
+            $request->user()->tokens()->delete();
             $request->user()->delete();
         } catch (\Exception $e) {
             return $this->errorResponse(__('User_Deleted_Failed'), 400);
