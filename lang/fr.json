@@ -103,7 +103,7 @@
 
 
 
-
+    "Feature_Not_Available": "Cette fonctionnalité n'est pas disponible",
     "Email": "Email",
     "Password": "Mot de passe",
     "Remember me": "Se souvenir de moi",
@@ -119,13 +119,53 @@
     "Resend Verification Email": "Renvoyer l'e-mail de vérification",
     "Return": "Retour",
     "Log Out": "Déconnexion",
+    
 
+    "Password_Dont_Match": "Les mots de passe ne correspondent pas",
+    "Password_Reset_Link": "Le lien de réinitialisation du mot de passe a été envoyé par e-mail",
+    "Password_Reset_Link_Error": "Erreur lors de l'envoi du lien de réinitialisation du mot de passe par e-mail",
+    "Password_Reset": "Le mot de passe a été réinitialisé",
+    "Password_Updated_Successfully": "Mot de passe mis à jour avec succès",
+    "Password_Updated_Failed": "Échec de la mise à jour du mot de passe",
+    "Password_Required": "Le mot de passe est requis",
+    "Password_Confirmation_Required": "La confirmation du mot de passe est requise",
+    "Password_Min_8": "Le mot de passe doit comporter au moins 8 caractères",
+    "Password_Confirmation_Min_8": "La confirmation du mot de passe doit comporter au moins 8 caractères",
+    "Password_Confirmation_Same_As_Password": "La confirmation du mot de passe doit être identique au mot de passe",
+    
+    "Profile_Updated_Successfully": "Profil mis à jour avec succès",
+    "Profile_Updated_Failed": "Échec de la mise à jour du profil",
+
+    "Name_Required": "Le nom est requis",
+    "Name_Updated_Successfully": "Nom mis à jour avec succès",
+    "Name_Updated_Failed": "Échec de la mise à jour du nom",
+
+    "Email_Verification_Link": "Le lien de vérification a été envoyé par e-mail",
+    "Email_Verification_Link_Failed": "Erreur lors de l'envoi du lien de vérification par e-mail",
+    "Email_Verified_Successfully": "E-mail vérifié avec succès",
+    "Email_Verified_Failed": "Échec de la vérification de l'e-mail",
+    "Email_Already_Verified": "E-mail déjà vérifié",
+    "Email_Already_Exists": "E-mail déjà existant",
+    "Email_Not_Found": "E-mail non trouvé",
+    "Email_Not_Verified": "E-mail non vérifié",
+    "Email_Not_Verified_Resend": "E-mail non vérifié. Cliquez ici pour renvoyer l'e-mail de vérification",
+
+    "User_Created_Successfully": "Utilisateur créé avec succès",
+    "User_Deleted_Successfully": "Utilisateur supprimé avec succès",
+    "User_Created_Failed": "Échec de la création de l'utilisateur",
+    "User_Deleted_Failed": "Échec de la suppression de l'utilisateur",
+    "User_Log_In_Successfully": "Utilisateur connecté avec succès",
+    "User_Log_In_Failed": "Échec de la connexion de l'utilisateur",
+    "User_Logged_Out_Successfully": "Utilisateur déconnecté avec succès",
+    "User_Logged_Out_Failed": "Échec de la déconnexion de l'utilisateur",
+    
 
     "Dashboard": "Tableau de bord",
     "Documentation": "Documentation",
     "Download": "Téléchargement",
     "Add": "Ajouter",
     "Update": "Mettre à jour",
+    "Delete": "Supprimer",
 
     "Prescription":"Prescription",
     "Prescriptions":"Prescriptions",
@@ -150,6 +190,40 @@
     "PrescriptionEnterFIID": "Entrez la fréquence de la prescription par jour",
     "PrescriptionEnterDOPID": "Entrez la date de la prescription",
 
+    "P_NOP.required": "Le nom de la prescription est requis",
+    "P_NOP.string": "Le nom de la prescription doit être une chaîne de caractères",
+    "P_NOP.max": "Le nom de la prescription doit comporter moins de 255 caractères",
+    "P_DOP.required": "La date de la prescription est requise",
+    "P_DOP.date_format": "La date de la prescription doit être au format YYYY-MM-DD",
+    "P_DOS.required": "La date de début de la prescription est requise",
+    "P_DOS.date_format": "La date de début de la prescription doit être au format YYYY-MM-DD",
+    "P_DOPID.required" :"La duration de la prescription en jours est requise",
+    "P_DOPID.integer" :"La duration de la prescription en jours doit être un entier",
+    "P_FBDIH.required" :"La fréquence de la prescription entre les doses en heures est requise",
+    "P_FBDIH.integer" :"La fréquence de la prescription entre les doses en heures doit être un entier",
+    "P_FOIID.required" :"La fréquence de la prescription en jour est requise",
+    "P_FOIID.integer" :"La fréquence de la prescription en jour doit être un entier",
+    "P_FIH.required" :"La première heure d'admission de votre prescription est requise",
+    "P_FIH.date_format" :"La première heure d'admission de votre prescription doit être au format HH:MM",
+    "P_M.required" : "La médication est requise",
+    "P_M.integer" : "La médication doit être un entier",
+
+    
+    "Prescription_Created_Successfully": "Prescription créée avec succès",
+    "Prescription_Updated_Successfully": "Prescription mise à jour avec succès",
+    "Prescription_Deleted_Successfully": "Prescription supprimée avec succès",
+    "Prescription_Finding_Successfully": "Prescriptions trouvées avec succès",
+    "Prescription_Created_Failed": "Échec de la création de la prescription",
+    "Prescription_Updated_Failed": "Échec de la mise à jour de la prescription",
+    "Prescription_Deleted_Failed": "Échec de la suppression de la prescription",
+    "Prescriptions_Finding_Failed": "Erreur lors de la recherche des prescriptions",
+    "Prescription_Edit_Successfully": "Prescription modifiée avec succès",
+    "Prescription_Edit_Failed": "Échec de la modification de la prescription",
+
+
+
+
+
     "MedicationName": "Nom du médicament:",
     "MedicationFunction": "Fonction de médication:",
 
@@ -157,6 +231,11 @@
     "Alerts log": "Journal des alertes",
     "No alerts to show yet.": "Pas d'alertes pour le moment.",
     "Take now": "Prendre maintenant",
+    "A_IMT.required":"Le champ médicamentEstPris est requis",
+    "A_IMT.boolean":"Le champ médicamentEstPris doit être un vrai ou faux",
+    "Alert_Updated_Successfully":"Alerte mise à jour",
+    "Alert_Updated_Failed":"Échec de la mise à jour de l'alerte",
+
 
     "Logs": "Journal d'activité",
     "No logs to show yet": "Pas d'activité dans le journal pour le moment.",

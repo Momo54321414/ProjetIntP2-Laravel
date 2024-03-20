@@ -35,22 +35,24 @@
                             <x-input-label for="nameOfPrescription" value="{{ __('PrescriptionName') }}" />
 
                             <x-text-input id="nameOfPrescription" name="nameOfPrescription" type="text"
-                                class="mt-1 block w-3/4 disabled:bg-slate-50  dark:text-gray-700" placeholder="{{ __('Prescription') }}"
-                                value="{{ $prescription->nameOfPrescription }}" readonly disabled />
+                                class="mt-1 block w-3/4 disabled:bg-slate-50  dark:text-gray-700"
+                                placeholder="{{ __('Prescription') }}" value="{{ $prescription->nameOfPrescription }}"
+                                readonly disabled />
                         </div>
 
                         <div class="mt-6">
-                            <x-input-label for="medication_id" value="{{ __('Medication') }}" />
-                            <select name="medication_id" id="medication_id" readonly disabled
-                                class="mt-1 block w-3/4 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm disabled:bg-slate-50 disabled:text-black">
-
-                                @foreach ($medications as $medication)
+                            @if (isset($medication))
+                                <x-input-label for="medication_id" value="{{ __('Medication') }}" />
+                                <select name="medication_id" id="medication_id" readonly disabled
+                                    class="mt-1 block w-3/4 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm disabled:bg-slate-50 disabled:text-black">
                                     <option value="{{ $medication->id }}"
-                                        {{ $prescription->medicationId == $medication->id ? 'selected' : '' }}>
+                                        {{ $prescription->medication_id == $medication->id ? 'selected' : '' }}>
                                         {{ $medication->name }}</option>
-                                @endforeach
-                            </select>
 
+                                </select>
+                            @else
+                                <p class="text-red-500">{{ __('NoMedications') }}</p>
+                            @endif
                         </div>
 
                         <div class="mt-6">
@@ -65,8 +67,8 @@
                             <x-input-label for="dateOfStart" value="{{ __('PrescriptionDateOfStart') }}" />
 
                             <x-text-input id="dateOfStart" name="dateOfStart" type="date"
-                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700" value="{{ $prescription->dateOfStart }}"
-                                readonly disabled />
+                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700"
+                                value="{{ $prescription->dateOfStart }}" readonly disabled />
                         </div>
 
                         <div class="mt-6">
@@ -99,8 +101,9 @@
                             <x-input-label for="firstIntakeHour" value="{{ __('FirstIntakeHour') }}" />
 
                             <x-text-input id="firstIntakeHour" name="firstIntakeHour" type="time"
-                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700" placeholder="{{ __(30) }}"
-                                value="{{ $prescription->firstIntakeHour }}" readonly disabled />
+                                class="mt-1 block w-3/4 disabled:bg-slate-50 dark:text-gray-700"
+                                placeholder="{{ __(30) }}" value="{{ $prescription->firstIntakeHour }}"
+                                readonly disabled />
 
                         </div>
                         <div class="mt-6">

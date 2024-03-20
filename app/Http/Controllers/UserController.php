@@ -2,77 +2,141 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    use HttpResponses;
+
+
+    public function register(RegisterRequest $request, string $locale)
     {
-        return $request->user();
 
-    }
-    public function alluser(Request $request)
-{
-    $users = User::all();
-    return response()->json($users);
-}
+        $request->validated($request->all());
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-        ]);
-
-    $result = User::create([
+        $result = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
+
         ]);
 
-        return $result;
+
+        return $this->successResponse(
+            ['user' => $result, 'token' => $result->createToken('API_Token' . $result->name)->plainTextToken],
+            __('User_Created_Successfully'),
+            201
+        );
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request, string $locale)
     {
-        $credentials=$request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-// je me suis arreté ici
-        if(Auth:: attempt($credentials))
-            {
-                $user = Auth::user();
-            $token = md5(time()).'.'.md5($request->email);
-            $user -> forceFill([
-                'api_token' => $token,
-            
-            ])->save();
-            return response()->json([
-                'token' => $token,
+
+
+        $request->validated($request->all());
+
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return $this->errorResponse('Wrong credentials', 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        return $this->successResponse(
+            [
                 'user' => $user,
-                
-            ]);
-
-
-            }
-            return response()->json([
-                'message' => 'Invalid credentials',
-            ]);
-
-    //
+                'token' => $user->createToken('API_Token' . $user->name)->plainTextToken
+            ],
+            __('User_Log_In_Successfully'),
+            200
+        );
     }
-    public function logout(Request $request)
+
+    public function updatePassword(Request $request, string $locale)
     {
-        $request->user()->forceFill([
-            'api_token' => null,
-        ])->save();
-        return response()->json([
-            'message' => 'Logged out',
+
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed'
         ]);
+
+        $user = $request->user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return $this->errorResponse(__('Password_Dont_Match'), 400);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return $this->successResponse(null, __('Password_Updated_Successfully'), 200);
+    }
+
+    public function updateProfile(ProfileUpdateRequest $request, string $locale)
+    {
+
+        $request->validated($request->all());
+        $user = $request->user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        try {
+            $user->save();
+        } catch (\Exception $e) {
+            return $this->errorResponse(__('Email_Already_Exists'), 400);
+        }
+
+        return $this->successResponse($user, __('Profile_Updated_Successfully'), 200);
+    }
+
+    public function updateName(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $user = $request->user();
+
+        $user->name = $request->name;
+        try {
+            $user->save();
+        } catch (\Exception $e) {
+            return $this->errorResponse(__('Name_Updated_Failed'), 400);
+        }
+        $user->save();
+
+        return $this->successResponse($user, __('Name_Updated_Successfully'), 200);
+    }
+
+
+    public function logout(Request $request, string $locale)
+    {
+
+        try {
+            $request->user()->currentAccessToken()->delete();
+            return $this->successResponse(null, __('User_Logged_Out_Successfully'), 200);
+        } catch (\Exception $e) {
+            return $this->errorResponse(__('User_Logged_Out_Failed'), 400);
+        }
+    }
+
+    public function destroy(Request $request, string $locale)
+    {
+
+        try {
+            $request->user()->tokens()->delete();
+            $request->user()->delete();
+            return $this->successResponse(null, __('User_Deleted_Successfully'), 200);
+        } catch (\Exception $e) {
+
+            return $this->errorResponse(__('User_Deleted_Failed'), 400);
+        }
     }
 }
-

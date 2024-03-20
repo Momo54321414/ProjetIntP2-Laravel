@@ -34,63 +34,27 @@ class PrescriptionRequest extends FormRequest
         ];
     }
 
+
     public function messages(): array
     {
-        $locale = app()->getLocale();
-        switch ($locale) {
-            case 'en':
-                return $this->getEnglishMessages();
-            case 'fr':
-                return $this->getFrenchMessages();
-            default:
-                return $this->getEnglishMessages();
-        }
-    }
-    public function getEnglishMessages(): array
-    {
         return [
-            'nameOfPrescription.required' => 'The name of the prescription is required',
-            'nameOfPrescription.string' => 'The name of the prescription must be a string',
-            'nameOfPrescription.max' => 'The name of the prescription must not exceed 255 characters',
-            'dateOfPrescription.required' => 'The date of the prescription is required',
-            'dateOfPrescription' => 'The date of the prescription must be a date',
-            'dateOfStart.required' => 'The date of start is required',
-            'dateOfStart' => 'The date of start must be a date',
-            'durationOfPrescriptionInDays.required' => 'The duration of the prescription in days is required',
-            'durationOfPrescriptionInDays.integer' => 'The duration of the prescription in days must be an number',
-            'durationOfPrescriptionInDays.min' => 'The duration of the prescription in days must be at least 1 day',
-            'frequencyBetweenDosesInHours.required' => 'The frequency between doses in hours is required',
-            'frequencyBetweenDosesInHours.integer' => 'The frequency between doses in hours must be an number',
-            'frequencyBetweenDosesInHours.min' => 'The frequency between doses in hours must be at least 1 hour',
-            'frequencyBetweenDosesInHours.max' => 'The frequency between doses in hours must be at most 24 hours',
-            'frequencyOfIntakeInDays.required' => 'The frequency of intake in days is required',
-            'frequencyOfIntakeInDays.integer' => 'The frequency of intake in days must be an number',
-            'frequencyOfIntakeInDays.min' => 'The frequency of intake in days must be at least 1 day',
-            'frequencyOfIntakeInDays.max' => 'The frequency of intake in days must be at most 24 days',
-            'firstIntakeHour.required' => 'The first intake hour is required',
-            'firstIntakeHour.date_format' => 'The first intake hour must be a time format (HH:MM)',
-            'medication_id.required' => 'The medication is required'
-        ];
-    }
-    public function getFrenchMessages(): array
-    {
-        return [
-            'nameOfPrescription.required' => 'Le nom de la prescription est requis',
-            'nameOfPrescription.string' => 'Le nom de la prescription doit être une chaîne de caractères',
-            'nameOfPrescription.max' => 'Le nom de la prescription ne doit pas dépasser 255 caractères',
-            'dateOfPrescription.required' => 'La date de la prescription est requise',
-            'dateOfPrescription' => 'La date de la prescription doit être une date',
-            'dateOfStart.required' => 'La date de début est requise',
-            'dateOfStart' => 'La date de début doit être une date',
-            'durationOfPrescriptionInDays.required' => 'La durée de la prescription en jours est requise',
-            'durationOfPrescriptionInDays.integer' => 'La durée de la prescription en jours doit être un nombre',
-            'frequencyBetweenDosesInHours.required' => 'La fréquence entre les doses en heures est requise',
-            'frequencyBetweenDosesInHours.integer' => 'La fréquence entre les doses en heures doit être un nombre',
-            'frequencyOfIntakeInDays.required' => 'La fréquence de prise en jours est requise',
-            'frequencyOfIntakeInDays.integer' => 'La fréquence de prise en jours doit être un nombre',
-            'firstIntakeHour.required' => 'La première heure de prise est requise',
-            'firstIntakeHour.date_format' => 'La première heure de prise doit être au format heure (H:i:s)',
-            'medication_id.required' => 'Le médicament est requis',
+            'nameOfPrescription.required' => __('P_NOP.required',[],[], $this->getLocale()),
+            'nameOfPrescription.string' => __('P_NOP.string',[],[], $this->getLocale()),
+            'nameOfPrescription.max' => __('P_NOP.max',[],[], $this->getLocale()),
+            'dateOfPrescription.required' => __('P_DOP.required',[],[], $this->getLocale()),
+            'dateOfPrescription.date_format' => __('P_DOP.date_format',[],$this->getLocale()),
+            'dateOfStart.required' => __('P_DOS.required',[],$this->getLocale()),
+            'dateOfStart.date_format' => __('P_DOS.date_format',[],$this->getLocale()),
+            'durationOfPrescriptionInDays.required' => __('P_DOPID.required',[],$this->getLocale()),
+            'durationOfPrescriptionInDays.integer' => __('P_DOPID.integer',[],$this->getLocale()),
+            'frequencyBetweenDosesInHours.required' => __('P_FBDIH.required',[],$this->getLocale()),
+            'frequencyBetweenDosesInHours.integer' => __('P_FBDIH.integer',[],$this->getLocale()),
+            'frequencyOfIntakeInDays.required' => __('P_FOIID.required',[],$this->getLocale()),
+            'frequencyOfIntakeInDays.integer' => __('P_FOIID.integer',[],$this->getLocale()),
+            'firstIntakeHour.required' => __('P_FIH.required',[],$this->getLocale()),
+            'firstIntakeHour.date_format' => __('P_FIH.date_format',[],$this->getLocale()),
+            'medication_id.required' => __('P_M.required',[],$this->getLocale()),
+            'medication_id.integer' => __('P_M.integer',[],$this->getLocale()),
         ];
     }
 }

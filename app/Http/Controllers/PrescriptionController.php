@@ -3,41 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PrescriptionRequest;
+use App\Http\Resources\PrescriptionsResource;
 use App\Models\Medication;
 use App\Models\Prescription;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
 {
 
-    //Gestion des messages d'erreurs selon la localisation à faire
-    /**
-     * Display a listing of the resource.
-     */
+    use HttpResponses;
+
     public function index()
     {
-        if (request()->is('api/*')) {
-            //Vraiment utile pour l'api ou se créer un puisqu'on doit récuperer un api_token?
-            $prescriptions = DB::table('prescriptions')
-                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-                ->select(
-                    'medications.id as medicationId',
-                    'medications.name as medicationName',
-                    'medications.function as medicationFunction',
-                    'medications.canBeInPillBox as medicationCanBeInPillBox',
-                    'prescriptions.nameOfPrescription as nameOfPrescription',
-                    'prescriptions.dateOfPrescription as dateOfPrescription',
-                    'prescriptions.dateOfStart as dateOfStart',
-                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-                    'prescriptions.frequencyPerDay  as frequencyPerDay',
-                    'prescriptions.id as id'
-                )
-                ->get();
-            return response()->json($prescriptions);
-        } else {
+   
+        try {
             $prescriptions = DB::table('prescriptions')
                 ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
                 ->select(
@@ -51,19 +35,37 @@ class PrescriptionController extends Controller
                     'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
                     'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
                     'prescriptions.frequencyPerDay  as frequencyPerDay',
-                    'prescriptions.id as id'
+                    'prescriptions.id as id',
+                    'prescriptions.user_id as user_id',
+                    'prescriptions.firstIntakeHour as firstIntakeHour',
+                    'prescriptions.frequencyOfIntakeInDays as frequencyOfIntakeInDays',
+                    'prescriptions.created_at as created_at',
+                    'prescriptions.updated_at as updated_at'
+
                 )
                 ->where('prescriptions.user_id', Auth::user()->id)
                 ->get();
 
+            if (request()->is('api/*')) {
 
-            return  view('prescription.index', [
-                'prescriptions' => $prescriptions
-            ]);
+                $prescriptionsJson = PrescriptionsResource::collection($prescriptions);
+                return $this->successResponse($prescriptionsJson, __('Prescription_Finding_Successfully'), 200);
+            } else {
+
+                return  view('prescription.index', [
+                    'prescriptions' => $prescriptions
+                ]);
+            }
+        } catch (\Exception $e) {
+            $message = __('Prescription_Finding_Failed');
+
+            if (request()->is('api/*')) {
+                return $this->errorResponse($message, 500);
+            } else {
+                return redirect()->back()->with('errors', $message);
+            }
         }
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -74,10 +76,6 @@ class PrescriptionController extends Controller
         $maxDate = Carbon::now()->toDateString();
         $minDate = Carbon::now()->subDecades(2)->toDateString();
         $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
-
-        if (request()->is('api/*')) {
-            return response()->json(['medications' => $medications, 'maxDate' => $maxDate, 'minDate' => $minDate, 'maxDateForStart' => $maxDateForStart], 200);
-        }
 
         return view('prescription.create', [
             'medications' => $medications,
@@ -92,7 +90,7 @@ class PrescriptionController extends Controller
      */
     public function store(PrescriptionRequest $request, string $locale)
     {
-        $Messages =  $this->getRightMessagesForCreate($locale);
+
         $validated = $request->validated();
         $prescription = new Prescription($validated);
         $prescription->user_id = Auth::user()->id;
@@ -100,20 +98,21 @@ class PrescriptionController extends Controller
 
         try {
             $prescription->save();
-
+            $message = __('Prescription_Created_Successfully');
             if (request()->is('api/*')) {
 
-                return response()->json(['success' => $Messages['success']], 200);
+                return $this->successResponse(null, $message, 200);
             } else {
-                return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
+                return redirect()->route('prescriptions.index')->with('status', $message);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Creating_Failed');
 
             if (request()->is('api/*')) {
 
-                return response()->json(['error' => $Messages['error']], 500);
+                return $this->errorResponse($message, 500);
             }
-            return redirect()->back()->withErrors('errors');
+            return redirect()->back()->with('errors', $message);
         }
     }
 
@@ -122,20 +121,22 @@ class PrescriptionController extends Controller
      */
     public function show(string $locale, string $id)
     {
-        //
         try {
             $prescription = Prescription::findOrFail($id);
-            $medications = Medication::all();
+            $medication = Medication::findOrFail($prescription->medication_id);
             if (request()->is('api/*')) {
-                return response()->json($prescription);
+
+                return $this->successResponse(['prescription' => $prescription, 'medication' => $medication], __('Prescription_Finding_Successfully'), 200);
             } else {
-                return view('prescription.show', ['prescription' => $prescription, 'medications' => $medications]);
+                
+                return view('prescription.show', ['prescription' => $prescription, 'medication' => $medication]);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Finding_Failed');
             if (request()->is('api/*')) {
-                return response()->json(['error' => 'Error finding prescription'], 500);
+                return $this->errorResponse($message, 500);
             } else {
-                return redirect()->back()->with('errors', 'Error finding prescription');
+                return redirect()->back()->with('errors', $message);
             }
         }
     }
@@ -145,8 +146,7 @@ class PrescriptionController extends Controller
      */
     public function edit(string $locale, string $id)
     {
-        $locale = app()->getLocale();
-        $Messages =  $this->getRightMessagesForEdit($locale);
+
         try {
             $prescription = Prescription::findOrFail($id);
 
@@ -156,7 +156,14 @@ class PrescriptionController extends Controller
             $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
 
             if (request()->is('api/*')) {
-                return response()->json(['success' => $Messages['success'], $prescription, $medications, $maxDate, $minDate, $maxDateForStart], 200);
+                return $this->successResponse([
+                    'success' => __('Prescription_Edit_Successfully'),
+                    $prescription,
+                    $medications,
+                    $maxDate,
+                    $minDate,
+                    $maxDateForStart
+                ], 200);
             } else {
                 //dd($prescription, $medications, $maxDate, $minDate, $maxDateForStart);
                 return view('prescription.edit', [
@@ -168,10 +175,11 @@ class PrescriptionController extends Controller
                 ]);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Edit_Failed');
             if (request()->is('api/*')) {
-                return response()->json(['error' => 'Error editing prescription'], 500);
+                return $this->errorResponse($message, 500);
             } else {
-                return redirect()->back()->with('errors', 'Error editing prescription');
+                return redirect()->back()->with('errors', $message);
             }
         }
     }
@@ -181,7 +189,8 @@ class PrescriptionController extends Controller
      */
     public function update(PrescriptionRequest $request, string $locale, string $id)
     {
-        $Messages =  $this->getRightMessagesForUpdate($locale);
+
+        
         $prescription = Prescription::findOrFail($id);
 
         try {
@@ -190,18 +199,20 @@ class PrescriptionController extends Controller
             $prescription->user_id = Auth::user()->id;
             $prescription->saveOrFail();
 
+            $message = __('Prescription_Updated_Successfully');
             if (request()->is('api/*')) {
-                return response()->json(['success' => $Messages['success']], 200);
+                return $this->successResponse(null, $message, 200);
             } else {
-
-                return redirect()->route('prescriptions.index')->with('status', $Messages['success']);
+                
+                return redirect()->route('prescriptions.index')->with('status', $message);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Updating_Failed');
             if (request()->is('api/*')) {
-                return response()->json(['error' => $Messages['error']], 500);
+                return $this->errorResponse($message, 500);
             } else {
 
-                return redirect()->back()->with('errors', $Messages['error']);
+                return redirect()->back()->with('errors', $message);
             }
         }
     }
@@ -209,132 +220,27 @@ class PrescriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $locale, string $id)
+    public function destroy(string $locale,string $id)
     {
-        $Messages =  $this->getRightMessagesForDelete($locale);
+        $prescription = Prescription::findOrFail($id);
+
         try {
-            $prescription = Prescription::findOrFail($id);
+            
             $prescription->delete();
+            $message = __('Prescription_Deleted_Successfully');
             if (request()->is('api/*')) {
-                return response()->json(['success' => $Messages['success']], 200);
+                return $this->successResponse(null, $message, 200);
             } else {
-                return redirect()->back()->with('status', $Messages['success']);
+                return redirect()->back()->with('status', $message);
             }
         } catch (\Exception $e) {
+            $message = __('Prescription_Deleting_Failed');
+
             if (request()->is('api/*')) {
-                return response()->json(['error' => $Messages], 500);
+                return $this->errorResponse($message, 500);
             } else {
-                return redirect()->back()->with('errors', $Messages['error']);
+                return redirect()->back()->with('errors', $message);
             }
         }
-    }
-
-
-    public function getRightMessagesForCreate(string $locale)
-    {
-        $Messages = [];
-        switch ($locale) {
-            case 'en':
-                $Messages = [
-                    'error' => 'Error finding prescription',
-                    'success' => 'Prescription found successfully',
-                ];
-
-                break;
-            case 'fr':
-                $Messages = [
-                    'error' => 'Erreur lors de la recherche de la prescription',
-                    'success' => 'Prescription à été trouvée avec succès',
-                ];
-                break;
-            default:
-                $Messages = [
-                    'error' => 'Error finding prescription',
-                    'success' => 'Prescription found successfully',
-                ];
-                break;
-        }
-        return $Messages;
-    }
-    public function getRightMessagesForEdit(string $locale)
-    {
-        $Messages = [];
-        switch ($locale) {
-            case 'en':
-                $Messages = [
-                    'error' => 'Error editing prescription',
-                    'success' => 'Prescription edited successfully',
-                ];
-
-                break;
-            case 'fr':
-                $Messages = [
-                    'error' => 'Erreur lors de la modification de la prescription',
-                    'success' => 'Prescription modifiée avec succès',
-                ];
-                break;
-            default:
-                $Messages = [
-                    'error' => 'Error editing prescription',
-                    'success' => 'Prescription edited successfully',
-                ];
-                break;
-        }
-        return $Messages;
-    }
-
-
-    public function getRightMessagesForUpdate(string $locale)
-    {
-        $Messages = [];
-        switch ($locale) {
-            case 'en':
-                $Messages = [
-                    'error' => 'Error updating prescription',
-                    'success' => 'Prescription updated successfully',
-                ];
-
-                break;
-            case 'fr':
-                $Messages = [
-                    'error' => 'Erreur lors de la mise à jour de la prescription',
-                    'success' => 'Prescription mise à jour avec succès',
-                ];
-                break;
-            default:
-                $Messages = [
-                    'error' => 'Error updating prescription',
-                    'success' => 'Prescription updated successfully',
-                ];
-                break;
-        }
-        return $Messages;
-    }
-
-    public function getRightMessagesForDelete(string $locale)
-    {
-        $Messages = [];
-        switch ($locale) {
-            case 'en':
-                $Messages = [
-                    'error' => 'Error deleting prescription',
-                    'success' => 'Prescription deleted successfully',
-                ];
-
-                break;
-            case 'fr':
-                $Messages = [
-                    'error' => 'Erreur lors de la suppression de la prescription',
-                    'success' => 'Prescription supprimée avec succès',
-                ];
-                break;
-            default:
-                $Messages = [
-                    'error' => 'Error deleting prescription',
-                    'success' => 'Prescription deleted successfully',
-                ];
-                break;
-        }
-        return $Messages;
     }
 }

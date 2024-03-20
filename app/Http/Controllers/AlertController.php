@@ -2,40 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlertRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Alert;
 use Carbon\Carbon;
+use App\Traits\HttpResponses;
+use App\Http\Resources\AlertsResource;
 
 class AlertController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
-    public function index(string $locale)
+    public function index()
     {
+        $alerts = DB::table('alerts')
+            ->join('calendars', 'alerts.calendar_id', '=', 'calendars.id')
+            ->join('prescriptions', 'calendars.prescription_id', '=', 'prescriptions.id')
+            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+            ->where('prescriptions.user_id', '=', Auth::user()->id)
+            ->where('calendars.dateOfIntake', '<=', Carbon::today())
+            ->where('calendars.active', '=', 1)
+            ->select('alerts.*', 'calendars.*', 'medications.name as medicationName')
+            ->orderBy('calendars.dateOfIntake', 'desc')
+            ->get();
+
         if (request()->is('api/*')) {
-            $alerts = DB::table('Alerts')
-                ->join('Calendars', 'Alerts.calendar_id', '=', 'Calendars.id')
-                ->join('Prescriptions', 'Calendars.prescription_id', '=', 'Prescriptions.id')
-                ->join('Medications', 'Prescriptions.medication_id', '=', 'Medications.id')
-                ->where('Calendars.dateOfIntake', '<=', Carbon::today())
-                ->where('Calendars.active', '=', 1)
-                ->select('Alerts.*', 'Calendars.dateOfIntake as dateOfIntake', 'Calendars.hourOfIntake as hourOfIntake',  'Medications.name as medicationName')
-                ->get();
-            return response()->json($alerts);
+
+            return  AlertsResource::collection($alerts);
         } else {
-            $alerts = DB::table('Alerts')
-                ->join('Calendars', 'Alerts.calendar_id', '=', 'Calendars.id')
-                ->join('Prescriptions', 'Calendars.prescription_id', '=', 'Prescriptions.id')
-                ->join('Medications', 'Prescriptions.medication_id', '=', 'Medications.id')
-                ->where('Prescriptions.user_id', '=', Auth::user()->id)
-                ->where('Calendars.dateOfIntake', '<=', Carbon::today())
-                ->where('Calendars.active', '=', 1)
-                ->select('Alerts.*', 'Calendars.*', 'Medications.name as medicationName')
-                ->orderBy('Calendars.dateOfIntake', 'desc')
-                ->get();
+
             return view('alerts.index', [
                 'alerts' => $alerts,
             ]);
@@ -45,29 +44,25 @@ class AlertController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, String $locale, string $id)
+    public function update(AlertRequest $request, string $id)
     {
+        $alert = Alert::findOrFail($id);
+        $validated = $request->validated();
+        $alert->isTheMedicationTaken = $validated['isTheMedicationTaken'];
+        $alert->updated_at = Carbon::now();
 
         try {
-            $alert = Alert::findOrFail($id);
-            
-            $alert->isTheMedicationTaken = $request->isTheMedicationTaken;
-            $alert->updated_at = Carbon::now();
-           
-            $alert->saveOrFail();
-            
+            $alert->save();
 
-            if (request()->is('api/*')) {
-                return response()->json(['status' => 'Alert updated successfully'], 200);
-            } else {
-                return redirect()->back()->with('status', 'Alert updated successfully');
-            }
+            $message = ['status' => __('Alert_Updated_Successfully')];
         } catch (\Exception $e) {
-            if (request()->is('api/*')) {
-                return response()->json(['error' => 'Error updating alert'], 500);
-            } else {
-                return redirect()->back()->with('errors', 'Error updating alert');
-            }
+            $message = ['error' => __('Alert_Updated_Failed')];
+        }
+
+        if (request()->is('api/*')) {
+            return response()->json($message);
+        } else {
+            return redirect()->back()->with($message);
         }
     }
 }

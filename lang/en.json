@@ -109,7 +109,7 @@
 
 
 
-
+    "Feature_Not_Available": "This feature is not available yet",
     "Email": "Email",
     "Password": "Password",
     "Remember me": "Remember me",
@@ -124,13 +124,52 @@
     "Resend Verification Email": "Resend Verification Email",
     "Return": "Return",
     "Log Out": "Log Out",
+    
 
+    "Password_Dont_Match": "The provided password does not match your current password",
+    "Password_Reset_Link": "We have emailed your password reset link!",
+    "Password_Reset": "Your password has been reset!",
+    "Password_Updated_Successfully": "Password updated successfully",
+    "Password_Updated_Failed": "Password update failed",
+    "Password_Required": "The password field is required",
+    "Password_Confirmation_Required": "The password confirmation field is required",
+    "Password_Min_8": "The password must be at least 8 characters",
+    "Password_Confirmation_Same_As_Password": "The password and password confirmation must match",
+    "Password_Confirmation_Min_8": "The password confirmation field is required",
+
+    "Profile_Updated_Successfully": "Profile updated successfully",
+    "Profile_Updated_Failed": "Profile update failed",
+
+    "Name_Required": "The name field is required",
+    "Name_Updated_Successfully": "Name updated successfully",
+    "Name_Updated_Failed": "Name update failed",
+    
+
+    "Email_Verification_Link": "A new verification link has been sent to the email address you provided during registration.",
+    "Email_Verification_Link_Failed": "Email verification link failed",
+    "Email_Verified_Successfully": "Email verified successfully",
+    "Email_Verified_Failed": "Email verification failed",
+    "Email_Already_Verified": "Email already verified",
+    "Email_Already_Exists": "That email address is already in use",
+    "Email_Not_Found": "We can't find a user with that e-mail address",
+    "Email_Not_Verified": "Your email address is not verified",
+    "Email_Not_Verified_Resend": "Your email address is not verified. Please click the link in the email we sent you, or click below to resend the email.",
+
+    "User_Created_Successfully": "Utilisateur créé avec succès",
+    "User_Deleted_Successfully": "User deleted successfully",
+    "User_Created_Failed": "User creation failed",
+    "User_Deleted_Failed": "User deletion failed",
+    "User_Log_In_Successfully": "User logged in successfully",
+    "User_Log_In_Failed": "User login failed",
+    "User_Logged_Out_Successfully": "User logged out successfully",
+    "User_Logged_Out_Failed": "User logout failed",
 
     "Dashboard": "Dashboard",
     "Documentation": "Documentation",
     "Download": "Download",
     "Add": "Add",
     "Update": "Update",
+    "Delete": "Delete",
     
     "Prescription": "Give this prescriptions a name",
     "Prescriptions": "Prescriptions",
@@ -155,6 +194,47 @@
     "PrescriptionEnterFIID": "Enter the first intake hour for your prescription",
     "PrescriptionEnterDOPID": "Enter the date of the prescription",
 
+    "P_NOP.required": "The name of the prescription is required",
+    "P_NOP.string": "The name of the prescription must be a string",
+    "P_NOP.max": "The name of the prescription must be less than 255 characters",
+    "P_DOP.required": "The date of the prescription is required",
+    "P_DOP.date_format": "The date of the prescription must be in the format YYYY-MM-DD",
+    "P_DOS.required": "The date of start for the prescription is required",
+    "P_DOS.date_format": "The date of start for the prescription must be in the format YYYY-MM-DD",
+    "P_DOPID.required": "The duration of the prescription in days is required",
+    "P_DOPID.integer": "The duration of the prescription in days must be an number",
+    "P_FBDIH.required": "The frequency between doses in hours is required",
+    "P_FBDIH.integer": "The frequency between doses in hours must be an number",
+    "P_FOIID.required" :"The frequency of intake in days is required",
+    "P_FOIID.integer" :"The frequency of intake in days must be an number",
+    "P_FIH.required" :"The first intake hour for your prescription is required",
+    "P_FIH.date_format" :"The first intake hour for your prescription must be in the format HH:MM",
+    "P_M.required" :"The medication is required",
+    "P_M.integer" :"The medication must be a number",
+
+    "Prescription_Created_Successfully": "Prescription created successfully",
+    "Prescription_Updated_Successfully": "Prescription updated successfully",
+    "Prescription_Deleted_Successfully": "Prescription deleted successfully",
+    "Prescription_Finding_Successfully": "Prescriptions finding successfully",
+    "Prescription_Created_Failed": "Prescription creation failed",
+    "Prescription_Updated_Failed": "Prescription update failed",
+    "Prescription_Deleted_Failed": "Prescription deletion failed",
+    "Prescription_Finding_Failed": "Prescriptions finding failed",
+    "Prescription_Edit_Successfully": "Prescription edit successfully",
+    "Prescription_Edit_Failed": "Prescription edit failed",
+  
+   
+
+
+
+
+    
+
+
+
+
+
+
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:",
 
@@ -162,6 +242,10 @@
     "Alerts log": "Alerts log",
     "No alerts to show yet": "No alerts to show yet",
     "Take now": "Take now",
+    "A_IMT.required": "The field isMedicationTaken is required",
+    "A_IMT.boolean": "The field isMedicationTaken must be a boolean",
+    "Alert_Updated_Successfully" :"Alert was updated",
+    "Alert_Updated_Failed" :"Alert was not updated",
 
     "Logs": "Logs",
     "No logs to show yet": "No logs to show yet",

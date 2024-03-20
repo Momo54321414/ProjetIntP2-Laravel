@@ -87,7 +87,7 @@
 
                         <div class="mt-6">
                             <x-input-label for="frequencyBetweenDosesInHours"
-                                value="{{ __('Frequency between hours') }}" />
+                                value="{{  __('PrescriptionEnterFBDIH')  }}" />
 
                             <x-text-input id="frequencyBetweenDosesInHours" name="frequencyBetweenDosesInHours"
                                 type="number" class="mt-1 block w-3/4"

@@ -11,7 +11,10 @@ class SetLocale
 {
     public function handle(Request $request, Closure $next)
     {
-        app()->setLocale($request->segment(1));
+        //app()->setLocale($request->segment(1));
+
+        $locale = $request->route('locale') ?? app()->getLocale();
+        app()->setLocale($locale);
  
         URL::defaults(['locale' => $request->segment(1)]);
  
