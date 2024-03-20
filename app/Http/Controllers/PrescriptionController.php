@@ -126,7 +126,7 @@ class PrescriptionController extends Controller
             $medication = Medication::findOrFail($prescription->medication_id);
             if (request()->is('api/*')) {
 
-                return $this->successResponse(['prescription' => $prescription, 'medications' => $medication], __('Prescription_Finding_Successfully'), 200);
+                return $this->successResponse(['prescription' => $prescription, 'medication' => $medication], __('Prescription_Finding_Successfully'), 200);
             } else {
                 
                 return view('prescription.show', ['prescription' => $prescription, 'medication' => $medication]);
