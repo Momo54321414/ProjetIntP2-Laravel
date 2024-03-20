@@ -154,6 +154,8 @@
     "User_Deleted_Successfully": "Utilisateur supprimé avec succès",
     "User_Created_Failed": "Échec de la création de l'utilisateur",
     "User_Deleted_Failed": "Échec de la suppression de l'utilisateur",
+    "User_Log_In_Successfully": "Utilisateur connecté avec succès",
+    "User_Log_In_Failed": "Échec de la connexion de l'utilisateur",
     "User_Logged_Out_Successfully": "Utilisateur déconnecté avec succès",
     "User_Logged_Out_Failed": "Échec de la déconnexion de l'utilisateur",
     

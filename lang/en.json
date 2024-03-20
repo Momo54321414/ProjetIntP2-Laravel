@@ -159,6 +159,8 @@
     "User_Deleted_Successfully": "User deleted successfully",
     "User_Created_Failed": "User creation failed",
     "User_Deleted_Failed": "User deletion failed",
+    "User_Log_In_Successfully": "User logged in successfully",
+    "User_Log_In_Failed": "User login failed",
     "User_Logged_Out_Successfully": "User logged out successfully",
     "User_Logged_Out_Failed": "User logout failed",
 

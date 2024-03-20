@@ -20,12 +20,8 @@ class PrescriptionController extends Controller
 
     public function index()
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
+        $locale = $request->route('locale') ?? app()->getLocale();
+        app()->setLocale($locale);
 
         try {
             $prescriptions = DB::table('prescriptions')
@@ -96,12 +92,8 @@ class PrescriptionController extends Controller
      */
     public function store(PrescriptionRequest $request)
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
+        $locale = $request->route('locale') ?? app()->getLocale();
+        app()->setLocale($locale);
 
 
         $validated = $request->validated();
@@ -201,11 +193,10 @@ class PrescriptionController extends Controller
      */
     public function update(PrescriptionRequest $request, string $locale, string $id)
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } 
-        dd($id);
+        $locale = $request->route('locale') ?? app()->getLocale();
+        app()->setLocale($locale);
+
+        
         $prescription = Prescription::findOrFail($id);
 
         try {
@@ -237,12 +228,8 @@ class PrescriptionController extends Controller
      */
     public function destroy(Request $request, string $id) // Add missing type hint for $request
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
+       $locale = $request->route('locale') ?? app()->getLocale();
+        app()->setLocale($locale);
 
         try {
             $prescription = Prescription::findOrFail($id);

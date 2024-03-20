@@ -19,6 +19,9 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        $locale = $_REQUEST['locale'];
+        app()->setLocale($locale);
+
         $request->validated($request->all());
 
         $result = User::create([
@@ -38,12 +41,10 @@ class UserController extends Controller
 
     public function login(LoginRequest $request)
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
+
+        $locale = $_REQUEST['locale'];
+        app()->setLocale($locale);
+
 
         $request->validated($request->all());
 
@@ -54,20 +55,21 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         return $this->successResponse(
-            ['user' => $user, 'token' => $user->createToken('API_Token' . $user->name)->plainTextToken],
-            'User logged in successfully',
+            [
+                'user' => $user,
+                'token' => $user->createToken('API_Token' . $user->name)->plainTextToken
+            ],
+            __('User_Log_In_Successfully'),
             200
         );
     }
 
     public function updatePassword(Request $request)
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
+
+        $locale = $_REQUEST['locale'];
+        app()->setLocale($locale);
+
 
         return $this->errorResponse(__('Feature_Not_Available'), 400);
 
@@ -90,12 +92,10 @@ class UserController extends Controller
 
     public function updateProfile(ProfileUpdateRequest $request)
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
+
+        $locale = $_REQUEST['locale'];
+        app()->setLocale($locale);
+
 
         return $this->errorResponse(__('Feature_Not_Available'), 400);
 
@@ -117,8 +117,6 @@ class UserController extends Controller
         if (request()->is('api/*')) {
             $locale = $_REQUEST['locale'];
             app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
         }
 
         return $this->errorResponse(__('Feature_Not_Available'), 400);
@@ -142,36 +140,28 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
-        try{
+
+        $locale = $_REQUEST['locale'];
+        app()->setLocale($locale);
+        try {
             $request->user()->currentAccessToken()->delete();
-        }
-        catch (\Exception $e){
+            return $this->successResponse(null, __('User_Logged_Out_Successfully'), 200);
+        } catch (\Exception $e) {
             return $this->errorResponse(__('User_Logged_Out_Failed'), 400);
         }
-
-        return $this->successResponse(null, __('User_Logged_Out_Successfully'), 200);
     }
 
     public function destroy(Request $request)
     {
-        if (request()->is('api/*')) {
-            $locale = $_REQUEST['locale'];
-            app()->setLocale($locale);
-        } else {
-            $locale = app()->getLocale();
-        }
+
+        $locale = $_REQUEST['locale'];
+        app()->setLocale($locale);
+
 
         return $this->errorResponse(__('Feature_Not_Available'), 400);
-        try{
+        try {
             $request->user()->delete();
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return $this->errorResponse(__('User_Deleted_Failed'), 400);
         }
 
