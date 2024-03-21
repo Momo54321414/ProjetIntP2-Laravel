@@ -22,7 +22,17 @@ class PrescriptionController extends Controller
     {
    
         try {
-            $prescriptions = DB::table('prescriptions')
+
+            
+
+            if (request()->is('api/*')) {
+                $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
+
+                $prescriptionsJson = PrescriptionsResource::collection($prescriptions);
+                return $this->successResponse($prescriptionsJson, __('Prescription_Finding_Successfully'), 200);
+            } else {
+
+                $prescriptions = DB::table('prescriptions')
                 ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
                 ->select(
                     'medications.id as medicationId',
@@ -45,12 +55,6 @@ class PrescriptionController extends Controller
                 )
                 ->where('prescriptions.user_id', Auth::user()->id)
                 ->get();
-
-            if (request()->is('api/*')) {
-
-                $prescriptionsJson = PrescriptionsResource::collection($prescriptions);
-                return $this->successResponse($prescriptionsJson, __('Prescription_Finding_Successfully'), 200);
-            } else {
 
                 return  view('prescription.index', [
                     'prescriptions' => $prescriptions
