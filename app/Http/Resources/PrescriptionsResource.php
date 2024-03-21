@@ -29,10 +29,7 @@ class PrescriptionsResource extends JsonResource
                 'updated_at' => $this->updated_at,
             ],
             'medications' => [
-                'medicationId' => $this->medicationId,
-                'medicationName' => $this->medicationName,
-                'medicationFunction' => $this->medicationFunction,
-                'medicationcanBeInPillBox' => $this->medicationcanBeInPillBox,
+                'medication_id' => $this->medication_id,
             ],
             'user' => [
                 'user_id' => $this->user_id,

@@ -20,56 +20,56 @@ class PrescriptionController extends Controller
 
     public function index()
     {
-   
-        try {
 
-            
+        if (request()->is('api/*')) {
 
-            if (request()->is('api/*')) {
+            try {
                 $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
 
-                $prescriptionsJson = PrescriptionsResource::collection($prescriptions);
-                return $this->successResponse($prescriptionsJson, __('Prescription_Finding_Successfully'), 200);
-            } else {
+                return $this->successResponse(['prescriptions' => $prescriptions], __('Prescription_Finding_Successfully'), 200);
+            } catch (\Exception $e) {
 
+                return $this->errorResponse(__('Prescription_Finding_Failed'), 500);
+            }
+        } else {
+
+            try {
                 $prescriptions = DB::table('prescriptions')
-                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-                ->select(
-                    'medications.id as medicationId',
-                    'medications.name as medicationName',
-                    'medications.function as medicationFunction',
-                    'medications.canBeInPillBox as medicationcanBeInPillBox',
-                    'prescriptions.nameOfPrescription as nameOfPrescription',
-                    'prescriptions.dateOfPrescription as dateOfPrescription',
-                    'prescriptions.dateOfStart as dateOfStart',
-                    'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
-                    'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
-                    'prescriptions.frequencyPerDay  as frequencyPerDay',
-                    'prescriptions.id as id',
-                    'prescriptions.user_id as user_id',
-                    'prescriptions.firstIntakeHour as firstIntakeHour',
-                    'prescriptions.frequencyOfIntakeInDays as frequencyOfIntakeInDays',
-                    'prescriptions.created_at as created_at',
-                    'prescriptions.updated_at as updated_at'
+                    ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+                    ->select(
+                        'medications.id as medicationId',
+                        'medications.name as medicationName',
+                        'medications.function as medicationFunction',
+                        'medications.canBeInPillBox as medicationcanBeInPillBox',
+                        'prescriptions.nameOfPrescription as nameOfPrescription',
+                        'prescriptions.dateOfPrescription as dateOfPrescription',
+                        'prescriptions.dateOfStart as dateOfStart',
+                        'prescriptions.durationOfPrescriptionInDays as durationOfPrescriptionInDays',
+                        'prescriptions.frequencyBetweenDosesInHours as frequencyBetweenDosesInHours',
+                        'prescriptions.frequencyPerDay  as frequencyPerDay',
+                        'prescriptions.id as id',
+                        'prescriptions.user_id as user_id',
+                        'prescriptions.firstIntakeHour as firstIntakeHour',
+                        'prescriptions.frequencyOfIntakeInDays as frequencyOfIntakeInDays',
+                        'prescriptions.created_at as created_at',
+                        'prescriptions.updated_at as updated_at'
 
-                )
-                ->where('prescriptions.user_id', Auth::user()->id)
-                ->get();
+                    )
+                    ->where('prescriptions.user_id', Auth::user()->id)
+                    ->get();
 
                 return  view('prescription.index', [
                     'prescriptions' => $prescriptions
                 ]);
-            }
-        } catch (\Exception $e) {
-            $message = __('Prescription_Finding_Failed');
+            } catch (\Exception $e) {
+                $message = __('Prescription_Finding_Failed');
 
-            if (request()->is('api/*')) {
-                return $this->errorResponse($message, 500);
-            } else {
                 return redirect()->back()->with('errors', $message);
             }
         }
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -132,7 +132,7 @@ class PrescriptionController extends Controller
 
                 return $this->successResponse(['prescription' => $prescription, 'medication' => $medication], __('Prescription_Finding_Successfully'), 200);
             } else {
-                
+
                 return view('prescription.show', ['prescription' => $prescription, 'medication' => $medication]);
             }
         } catch (\Exception $e) {
@@ -194,7 +194,7 @@ class PrescriptionController extends Controller
     public function update(PrescriptionRequest $request, string $locale, string $id)
     {
 
-        
+
         $prescription = Prescription::findOrFail($id);
 
         try {
@@ -207,7 +207,7 @@ class PrescriptionController extends Controller
             if (request()->is('api/*')) {
                 return $this->successResponse(null, $message, 200);
             } else {
-                
+
                 return redirect()->route('prescriptions.index')->with('status', $message);
             }
         } catch (\Exception $e) {
@@ -224,12 +224,12 @@ class PrescriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $locale,string $id)
+    public function destroy(string $locale, string $id)
     {
         $prescription = Prescription::findOrFail($id);
 
         try {
-            
+
             $prescription->delete();
             $message = __('Prescription_Deleted_Successfully');
             if (request()->is('api/*')) {
