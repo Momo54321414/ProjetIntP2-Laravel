@@ -226,6 +226,8 @@
 
     "MedicationName": "Nom du médicament:",
     "MedicationFunction": "Fonction de médication:",
+    "Medicatons_Retrieved_Successfully": "Médicaments récupérés avec succès",
+    "Medicatons_Retrieved_Failed": "Échec de la récupération des médicaments",
 
     "Alerts": "Alertes",
     "Alerts log": "Journal des alertes",

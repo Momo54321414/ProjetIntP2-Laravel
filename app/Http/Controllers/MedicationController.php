@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
-use Illuminate\Http\Controllers\CalendarController;
+use App\Models\Medication;
 
 class MedicationController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        try {
+            $medications = Medication::all();
+            return $this->successResponse($medications, __('Medicatons_Retrieved_Successfully'), 200);
+        } catch (\Exception $e) {
+            return $this->errorResponse(__('Medicatons_Retrieved_Failed'), 500);
+        }
     }
 
     /**
@@ -32,7 +39,7 @@ class MedicationController extends Controller
         $medication->name = $request->name;
         $medication->function = $request->function;
         $medication->canBeInPillBox = $request->canBeInPillBox;
-        
+
         $medication->save();
     }
 

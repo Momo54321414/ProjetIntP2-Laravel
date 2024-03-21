@@ -237,6 +237,8 @@
 
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:",
+    "Medicatons_Retrieved_Successfully": "Medications retrieved successfully",
+    "Medicatons_Retrieved_Failed": "Medications retrieval failed",
 
     "Alerts": "Alerts",
     "Alerts log": "Alerts log",

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlertController;
 use App\Http\Controllers\PrescriptionController;
+use App\Http\Controllers\MedicationController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -38,6 +39,8 @@ Route::prefix('{locale}')
             Route::patch('updatePassword', [UserController::class, 'updatePassword']);
             Route::patch('updateName', [UserController::class, 'updateName']);
             Route::delete('deleteUser', [UserController::class, 'destroy']);
+
+            Route::get('medications', [MedicationController::class, 'index']);
         });
     });
 
