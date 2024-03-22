@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Log;
+use App\Traits\HttpResponses;
 
 
 class LogController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
@@ -14,11 +18,17 @@ class LogController extends Controller
     {
         if(request()->is('api/*'))
         {
-            $logs = DB::table('logs')
+            try {
+                $logs = DB::table('logs')
                 ->join('device', 'logs.device_id', '=', 'device.id')
                 ->select('logs.*', 'device.noSerie as deviceNoSerie')
+                ->where('device.user_id', auth()->user()->id)
                 ->get();
-            return response()->json($logs);
+                return $this->successResponse(["logs"=>$logs],__('Logs_Retrieved_Successfully'),200);
+            } catch (\Exception $e) {
+                return $this->errorResponse(__('Logs_Retrieved_Failed'), 500);
+            }
+            
         }
         else
         {

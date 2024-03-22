@@ -14,22 +14,29 @@ class CalendarController extends Controller
      */
     public function index()
     {
-    $calendar = DB::table('calendar')
-        ->join('prescriptions', 'calendar.prescription_id', '=', 'prescriptions.id')
-        ->join('users', 'prescriptions.user_id', '=', 'users.id')
-        ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-        ->select('calendar.dateOfIntake as dateOfIntake', 
-            'calendar.timeOfIntake as timeOfIntake',
-         'prescriptions.nameOfPrescription as prescriptionName',
-         'medications.name as medicationName',)
-        ->where('prescriptions.user_id', Auth::user()->id)
-        ->get();    
+   
         
         //check if the route is an API
         if (request()->is('api/*')) {
+            $calendar = DB::table('calendars')
+            ->join('prescriptions', 'calendar.prescription_id', '=', 'prescriptions.id')
+            ->join('users', 'prescriptions.user_id', '=', 'users.id')
+            ->where('prescriptions.user_id', Auth::user()->id)
+            ->select('calendars.*')
+            ->get();
             return response()->json($calendar);
         }
         else {
+            $calendar = DB::table('calendars')
+            ->join('prescriptions', 'calendar.prescription_id', '=', 'prescriptions.id')
+            ->join('users', 'prescriptions.user_id', '=', 'users.id')
+            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+            ->select('calendar.dateOfIntake as dateOfIntake', 
+                'calendar.timeOfIntake as timeOfIntake',
+             'prescriptions.nameOfPrescription as prescriptionName',
+             'medications.name as medicationName',)
+            ->where('prescriptions.user_id', Auth::user()->id)
+            ->get();    
             return view('calendar.index', [
                 'calendar' => $calendar,
             ]);
