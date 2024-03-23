@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AlertController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\MedicationController;
+use App\Http\Controllers\CalendarController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -34,6 +36,14 @@ Route::prefix('{locale}')
 
             Route::get('alerts', [AlertController::class, 'index']);
             Route::patch('alerts/{alert}', [AlertController::class, 'update']);
+
+            Route::get('devices', [DeviceController::class, 'index']);
+            Route::post('devices', [DeviceController::class, 'store']);
+            Route::delete('devices/{device}', [DeviceController::class, 'destroy']);
+
+            Route::get('calendars', [CalendarController::class, 'index']);
+
+
 
             Route::patch('updateProfile', [UserController::class, 'updateProfile']);
             Route::patch('updatePassword', [UserController::class, 'updatePassword']);

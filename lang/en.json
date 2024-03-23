@@ -254,7 +254,13 @@
     "Medication taken": "Medication taken",
     "Medication not taken": "Medication not taken",
     "Error": "Error",
-    "Status: ": "Status: "
+    "Status: ": "Status: ",
+
+    "Devices_Retrieved_Successfully": "Devices retrieved successfully",
+    "Devices_Retrieved_Failed": "Devices retrieval failed"
+
+   
+
   
 
 }

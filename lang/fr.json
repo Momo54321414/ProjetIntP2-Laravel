@@ -244,5 +244,8 @@
     "Medication taken": "Médicament pris",
     "Medication not taken": "Médicament non pris",
     "Error": "Erreur",
-    "Status: ": "Statut: "
+    "Status: ": "Statut: ",
+
+    "Devices_Retrieved_Successfully": "Appareils récupérés avec succès",
+    "Devices_Retrieved_Failed": "Échec de la récupération des appareils"
 }
