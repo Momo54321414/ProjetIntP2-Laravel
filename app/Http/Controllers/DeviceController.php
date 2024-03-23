@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeviceRequest;
+use App\Models\Device;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +29,7 @@ class DeviceController extends Controller
         } catch (\Throwable $e) {
             return $this->errorResponse($e->getMessage(), 500);
         } catch (\Error $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+            return $this->errorResponse(__('Devices_Retrieved_Failed'), 500);
         }
     }
 
@@ -36,34 +38,33 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        //
+        return view('devices.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, string $locale)
+    public function store(DeviceRequest $request, string $locale)
     {
+
         try {
-            $device = DB::table('devices')
-                ->insert([
-                    'name' => $request->name,
-                    'user_id' => Auth::user()->id,
-                    'device_id' => $request->device_id,
-                    'device_type' => $request->device_type,
-                    'device_token' => $request->device_token,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
+           $validated = $request->validated();
+
+            $device = Device::create([
+                'noSerie' => $validated['noSerie'],
+                'associatedPatientFullName' => $validated['associatedPatientFullName'],
+                'user_id' => Auth::user()->id
+            ]);
+   
             return $this->successResponse(['device' => $device], __('Device_Created_Successfully'), 200);
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), 500);
         } catch (\Throwable $e) {
             return $this->errorResponse($e->getMessage(), 500);
         } catch (\Error $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+            return $this->errorResponse(__('Devices_Created_Failed'), 500);
         }
-        
+
     }
 
     /**
@@ -85,9 +86,26 @@ class DeviceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,string $locale, string $id)
+    public function update(DeviceRequest $request,string $locale, string $id)
     {
-        //
+        try{
+            $validated = $request->validated();
+            $device = DB::table('devices')
+                ->where('id', $id)
+                ->where('user_id', Auth::user()->id)
+                ->update([
+                    'noSerie' => $validated['noSerie'],
+                    'associatedPatientFullName' => $validated['associatedPatientFullName'],
+                ]);
+            return $this->successResponse(['device' => $device], __('Device_Updated_Successfully'), 200);
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 500);
+        } catch (\Throwable $e) {
+            return $this->errorResponse($e->getMessage(), 500);
+        } catch (\Error $e) {
+            return $this->errorResponse(__('Devices_Updated_Failed'), 500);
+        }
+        
     }
 
     /**
@@ -106,7 +124,7 @@ class DeviceController extends Controller
         } catch (\Throwable $e) {
             return $this->errorResponse($e->getMessage(), 500);
         } catch (\Error $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+            return $this->errorResponse(__('Devices_Deleted_Failed'), 500);
         }
     }
 }

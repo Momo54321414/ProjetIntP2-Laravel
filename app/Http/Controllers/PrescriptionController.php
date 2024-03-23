@@ -58,7 +58,7 @@ class PrescriptionController extends Controller
                     ->where('prescriptions.user_id', Auth::user()->id)
                     ->get();
 
-                return  view('prescription.index', [
+                return  view('prescriptions.index', [
                     'prescriptions' => $prescriptions
                 ]);
             } catch (\Exception $e) {
@@ -81,7 +81,7 @@ class PrescriptionController extends Controller
         $minDate = Carbon::now()->subDecades(2)->toDateString();
         $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
 
-        return view('prescription.create', [
+        return view('prescriptions.create', [
             'medications' => $medications,
             'maxDate' => $maxDate,
             'minDate' => $minDate,
@@ -133,7 +133,7 @@ class PrescriptionController extends Controller
                 return $this->successResponse(['prescription' => $prescription, 'medication' => $medication], __('Prescription_Finding_Successfully'), 200);
             } else {
 
-                return view('prescription.show', ['prescription' => $prescription, 'medication' => $medication]);
+                return view('prescriptions.show', ['prescription' => $prescription, 'medication' => $medication]);
             }
         } catch (\Exception $e) {
             $message = __('Prescription_Finding_Failed');
@@ -170,7 +170,7 @@ class PrescriptionController extends Controller
                 ], 200);
             } else {
                 //dd($prescription, $medications, $maxDate, $minDate, $maxDateForStart);
-                return view('prescription.edit', [
+                return view('prescriptions.edit', [
                     'prescription' => $prescription,
                     'medications' => $medications,
                     'maxDate' => $maxDate,

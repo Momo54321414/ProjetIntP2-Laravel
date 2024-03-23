@@ -246,6 +246,20 @@
     "Error": "Erreur",
     "Status: ": "Statut: ",
 
+    "AddNewDevice": "Ajouter un nouvel appareil",
+    "DeviceNoSeries": "Numéro de série de l'appareil:",
+    "DeviceAssociatedPatientFullName": "Nom complet du patient associé à l'appareil:",
     "Devices_Retrieved_Successfully": "Appareils récupérés avec succès",
-    "Devices_Retrieved_Failed": "Échec de la récupération des appareils"
+    "Devices_Retrieved_Failed": "Échec de la récupération des appareils",
+    "Device_Created_Successfully": "Appareil créé avec succès",
+    "Device_Created_Failed": "Échec de la création de l'appareil",
+    "Device_Updated_Successfully": "Appareil mis à jour avec succès",
+    "Device_Updated_Failed": "Échec de la mise à jour de l'appareil",
+    "Device_Deleted_Successfully": "Appareil supprimé avec succès",
+    "Device_Deleted_Failed": "Échec de la suppression de l'appareil",
+    "D_NS.required":"Le numéro de série de l'appareil est requis",
+    "D_NS.string":"Le numéro de série de l'appareil doit être une chaîne de caractères",
+    "D_NS.unique":"Le numéro de série de l'appareil est unique",
+    "D_APFN.required":"Le nom complet du patient associé est requis",
+    "D_APFN.string":"Le nom complet du patient associé doit être une chaîne de caractères"
 }

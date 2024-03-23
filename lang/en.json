@@ -256,8 +256,22 @@
     "Error": "Error",
     "Status: ": "Status: ",
 
+    "AddNewDevice": "Add New Device",
+    "DeviceNoSerie": "Device Serial Number:",
+    "DeviceAssociatedPatientFullName": "Associated Patient Full Name:",
     "Devices_Retrieved_Successfully": "Devices retrieved successfully",
-    "Devices_Retrieved_Failed": "Devices retrieval failed"
+    "Devices_Retrieved_Failed": "Devices retrieval failed",
+    "Devices_Created_Successfully": "Device created successfully",
+    "Devices_Created_Failed": "Device creation failed",
+    "Devices_Updated_Successfully": "Device updated successfully",
+    "Devices_Updated_Failed": "Device update failed",
+    "Devices_Deleted_Successfully": "Device deleted successfully",
+    "Devices_Deleted_Failed": "Device deletion failed",
+    "D_NS.required": "The serial number of the device is required",
+    "D_NS.string": "The serial number of the device must be a string",
+    "D_APFN.required":"The name of the associated patient is required",
+    "D_APFN.string":"The name of the associated patient must be a string"
+
 
    
 
