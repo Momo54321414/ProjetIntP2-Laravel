@@ -112,12 +112,11 @@ class DeviceController extends Controller
     public function update(DeviceRequest $request, string $locale, string $id)
     {
         try {
-            $validated = $request->validated();
+            $validated = $request->validated('associatedPatientFullName');
             $device = DB::table('devices')
                 ->where('id', $id)
                 ->where('user_id', Auth::user()->id)
                 ->update([
-                    'noSerie' => $validated['noSerie'],
                     'associatedPatientFullName' => $validated['associatedPatientFullName'],
                 ]);
  

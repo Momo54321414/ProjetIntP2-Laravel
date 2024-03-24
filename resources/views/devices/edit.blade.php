@@ -20,7 +20,7 @@
                             @method('PATCH')
 
                             <input type="hidden" name="id" id="id" value="">
-                            <input type="hidden" name="noSerie" id="noSerie" value="{{$device->noSerie}}">
+                            
                             <div class="mt-6">
                                 <x-input-label for="associatedPatientFullName"
                                     value="{{ __('DeviceAssociatedPatientFullName') }}" />
