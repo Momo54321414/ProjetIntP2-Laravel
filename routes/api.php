@@ -8,7 +8,6 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Models\Log;
 use Illuminate\Http\Request;
 
 Route::prefix('{locale}')
@@ -44,8 +43,7 @@ Route::prefix('{locale}')
 
             Route::get('calendars', [CalendarController::class, 'index']);
 
-            Route::get('logs',[LogController::class, 'index']);
-
+            Route::get('logs', [LogController::class, 'index']);
 
             Route::patch('updateProfile', [UserController::class, 'updateProfile']);
             Route::patch('updatePassword', [UserController::class, 'updatePassword']);

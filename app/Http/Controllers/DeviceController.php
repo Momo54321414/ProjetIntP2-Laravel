@@ -120,6 +120,7 @@ class DeviceController extends Controller
                 ->where('user_id', Auth::user()->id)
                 ->update([
                     'associatedPatientFullName' => $validated['associatedPatientFullName'],
+                    'updated_at' => now(),
                 ]);
  
             return $this->handleSuccessResponseRedirectWEB_API(

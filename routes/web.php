@@ -33,8 +33,8 @@ Route::prefix('{locale}')
             Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
             require __DIR__ . '/prescriptions.php';
-            require __DIR__.'/alert.php';
-            require __DIR__.'/devices.php';
+            require __DIR__ . '/alert.php';
+            require __DIR__ . '/devices.php';
         });
 
         require __DIR__ . '/auth.php';
