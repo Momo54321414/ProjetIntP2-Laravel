@@ -20,19 +20,19 @@
 
                                     <div class="cursor-pointer">
 
-                                        <x-hrefbutton :href="route('devices.show', [$devices->id])">
+                                        <x-hrefbutton :href="route('devices.show', [$device->id])">
                                             <div class="text-black dark:text-gray-200 text-lg font-bold">
-                                                {{ $devices->noSerie }}</div>
+                                                {{ $device->noSerie }}</div>
                                         </x-hrefbutton>
                                     </div>
+
 
                                 </div>
                                 <div class="flex items-center space-x-4">
 
-
                                     <div class="text-gray-500 hover:text-gray-300 cursor-pointer">
 
-                                        <x-hrefbutton :href="route('devices.edit', [$devices->id])">
+                                        <x-hrefbutton :href="route('devices.edit', [$device->id])">
                                             <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg" class="hover:fill-teal-500">
                                                 <path
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="text-gray-500 hover:text-gray-300 cursor-pointer">
                                         <button x-data=""
-                                            x-on:click.prevent="$dispatch('open-modal', 'delete-device-modal-{{ $devices->id }}')">
+                                            x-on:click.prevent="$dispatch('open-modal', 'delete-device-modal-{{ $device->id }}')">
                                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24"
                                                 height="24" viewBox="0 0 48 48" class="hover:fill-red-500">
                                                 <path
@@ -55,15 +55,15 @@
 
                                     </div>
                                 </div>
-                                <div class="mt-4 text-gray-500 font-bold text-sm"> {{ __('AssociatedPatientFullName') }}
-                                    <span
-                                        class="text-gray-900 dark:text-gray-100">{{ $device->associatedPatientFullName }}</span>
 
-                                </div>
+                            </div>
+                            <div class="mt-4 mb-4 text-gray-500 font-bold text-sm"> {{ __('AssociatedPatientFullName') }}
+                                {{ $device->associatedPatientFullName }}
+
                             </div>
 
                             <div class="flex items-center gap-4">
-                                @if (!$prescriptions->isEmpty())
+                                @if (!$devices->isEmpty())
                                     <x-modal id="delete-device-modal-{{ $device->id }}"
                                         name="delete-device-modal-{{ $device->id }}" focusable>
                                         <div class="p-6">
@@ -96,11 +96,9 @@
                     @endforeach
                 @endif
                 <x-href-button-primary
-                    href="{{ route('prescriptions.create') }}">{{ __('Add') }}</x-href-button-primary>
+                    href="{{ route('devices.create') }}">{{ __('Add') }}</x-href-button-primary>
             </div>
-
         </div>
-    </div>
     </div>
 
 </x-app-layout>

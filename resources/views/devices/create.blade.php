@@ -8,7 +8,7 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="mt-6 ">
-                    <x-hrefbutton href="{{ route('profile.edit') }}" class="btn">
+                    <x-hrefbutton href="{{ route('devices.index') }}" class="btn">
                         {{ __('Return') }}
                     </x-hrefbutton>
                     <form method="POST" action="{{ route('devices.store') }}" class="p-6">
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="mt-6 flex justify-end">
-                            <x-hrefbutton href="{{ route('profile.edit') }}" class="btn ">
+                            <x-hrefbutton href="{{ route('devices.index') }}" class="btn ">
                                 {{ __('Cancel') }}
                             </x-hrefbutton>
 

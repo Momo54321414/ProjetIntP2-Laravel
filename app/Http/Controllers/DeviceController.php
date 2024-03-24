@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeviceRequest;
 use App\Models\Device;
+use App\Traits\HandleRequestResponses;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class DeviceController extends Controller
 {
+    use HandleRequestResponses;
     use HttpResponses;
     /**
      * Display a listing of the resource.
@@ -23,17 +25,16 @@ class DeviceController extends Controller
                 ->select('devices.*')
                 ->where('devices.user_id', Auth::user()->id)
                 ->get();
-            if (request()->is('api/*')) {
-                return $this->successResponse(['devices' => $devices], __('Devices_Retrieved_Successfully'), 200);
-            } else {
-                return view('devices.index', ['devices' => $devices]);
-            }
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        } catch (\Throwable $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+            return $this->handleSuccessResponseViewWEB_API(
+                'devices.index',
+                ['devices' => $devices],
+                true,
+                __('Devices_Retrieved_Successfully'),
+                200
+            );
+
         } catch (\Error $e) {
-            return $this->errorResponse(__('Devices_Retrieved_Failed'), 500);
+            return $this->handleErrorResponseRedirectWEB_API(__('Devices_Retrieved_Failed'), 500,'/');
         }
     }
 
@@ -59,17 +60,15 @@ class DeviceController extends Controller
                 'associatedPatientFullName' => $validated['associatedPatientFullName'],
                 'user_id' => Auth::user()->id
             ]);
-            if (request()->is('api/*')) {
-                return $this->successResponse(['device' => $device], __('Device_Created_Successfully'), 200);
-            } else {
-                return redirect()->route('devices.index')->with('success', __('Device_Created_Successfully'));
-            }
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        } catch (\Throwable $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+            return $this->handleSuccessResponseRedirectWEB_API(
+                ['devices' => $device],
+                __('Device_Created_Successfully'),
+                200,
+                'status',
+                'devices.index'
+            );
         } catch (\Error $e) {
-            return $this->errorResponse(__('Devices_Created_Failed'), 500);
+            return $this->handleErrorResponseRedirectWEB_API(__('Devices_Created_Failed'), 500, 'devices.index');
         }
     }
 
@@ -84,12 +83,9 @@ class DeviceController extends Controller
                 ->where('user_id', Auth::user()->id)
                 ->first();
             return view('devices.show', ['device' => $device]);
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        } catch (\Throwable $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+
         } catch (\Error $e) {
-            return $this->errorResponse(__('Devices_Retrieved_Failed'), 500);
+            return $this->handleErrorResponseRedirectWEB(__('Devices_Retrieved_Failed'), 'devices.index');
         }
     }
 
@@ -104,13 +100,9 @@ class DeviceController extends Controller
                 ->where('user_id', Auth::user()->id)
                 ->first();
             return view('devices.edit', ['device' => $device]);
-        } catch (\Exception $e) {
-            
-            return $this->errorResponse($e->getMessage(), 500);
-        } catch (\Throwable $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+
         } catch (\Error $e) {
-            return $this->errorResponse(__('Devices_Retrieved_Failed'), 500);
+            return $this->handleErrorResponseRedirectWEB(__('Devices_Retrieved_Failed'), 'devices.index');
         }
     }
 
@@ -128,18 +120,16 @@ class DeviceController extends Controller
                     'noSerie' => $validated['noSerie'],
                     'associatedPatientFullName' => $validated['associatedPatientFullName'],
                 ]);
-                if(request()->is('api/*')){
-                    return $this->successResponse(['device' => $device], __('Device_Updated_Successfully'), 200);
-                }else{
-                    return redirect()->route('devices.index')->with('success', __('Device_Updated_Successfully'));
-                }
-            
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        } catch (\Throwable $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+ 
+            return $this->handleSuccessResponseRedirectWEB_API(
+                null,
+                __('Device_Updated_Successfully'),
+                200,
+                'status',
+                'devices.index'
+            );
         } catch (\Error $e) {
-            return $this->errorResponse(__('Devices_Updated_Failed'), 500);
+            return $this->handleErrorResponseRedirectWEB_API(__('Devices_Updated_Failed'), 500, 'devices.index');
         }
     }
 
@@ -149,23 +139,25 @@ class DeviceController extends Controller
     public function destroy(string $locale, string $id)
     {
         try {
+
             $device = DB::table('devices')
                 ->where('id', $id)
                 ->where('user_id', Auth::user()->id)
                 ->delete();
-            if(request()->is('api/*')){
-                return $this->successResponse(['device' => $device], __('Device_Deleted_Successfully'), 200);
-            }else{
-                return redirect()->route('devices.index')->with('success', __('Device_Deleted_Successfully'));
+
+            if (!$device) {
+                $this->handleErrorResponseRedirectWEB_API(__('Device_Not_Found'), 404, 'devices.index');
             }
 
-            
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        } catch (\Throwable $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+            return $this->handleSuccessResponseRedirectWEB_API(
+                null,
+                __('Device_Deleted_Successfully'),
+                200,
+                'status',
+                'devices.index'
+            );
         } catch (\Error $e) {
-            return $this->errorResponse(__('Devices_Deleted_Failed'), 500);
+            return $this->handleErrorResponseRedirectWEB_API(__('Device_Deleting_Failed'), 500, 'devices.index');
         }
     }
 }

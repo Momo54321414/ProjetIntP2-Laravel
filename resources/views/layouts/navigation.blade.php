@@ -58,6 +58,10 @@
                         <x-dropdown-link :href="route('alerts.index')">
                             {{ __('Alerts') }}
                         </x-dropdown-link>
+                            <x-dropdown-link :href="route('devices.index')">
+                                {{ __('Devices') }}
+                            </x-dropdown-link>
+                            
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -116,6 +120,10 @@
 
                     <x-responsive-nav-link :href="route('prescriptions.index')">
                         {{ __('Prescriptions') }}
+                    </x-responsive-nav-link>
+
+                    <x-responsive-nav-link :href="route('devices.index')">
+                        {{ __('Devices') }}
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->

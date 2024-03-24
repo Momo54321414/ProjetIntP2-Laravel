@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PrescriptionRequest;
-use App\Http\Resources\PrescriptionsResource;
 use App\Models\Medication;
 use App\Models\Prescription;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Traits\HttpResponses;
-use Illuminate\Support\Facades\App;
-use Illuminate\Http\Request;
+use App\Traits\HandleRequestResponses;
+
 
 class PrescriptionController extends Controller
 {
 
     use HttpResponses;
+    use HandleRequestResponses;
 
     public function index()
     {
@@ -102,13 +102,14 @@ class PrescriptionController extends Controller
 
         try {
             $prescription->save();
-            $message = __('Prescription_Created_Successfully');
-            if (request()->is('api/*')) {
 
-                return $this->successResponse(null, $message, 200);
-            } else {
-                return redirect()->route('prescriptions.index')->with('status', $message);
-            }
+            return $this->handleSuccessResponseRedirectWEB_API(
+                ['prescriptions' => $prescription],
+                __('Prescription_Created_Successfully'),
+                200,
+                'status',
+                'prescriptions.index'
+            );
         } catch (\Exception $e) {
             $message = __('Prescription_Creating_Failed');
 
@@ -152,39 +153,31 @@ class PrescriptionController extends Controller
     {
 
         try {
-            $prescription = Prescription::findOrFail($id);
+            $prescription = DB::table('prescriptions')
+                ->where('id', $id)
+                ->where('user_id', Auth::user()->id)
+                ->first();
 
             $medications = Medication::all();
             $maxDate = Carbon::now()->toDateString();
             $minDate = Carbon::now()->subDecades(2)->toDateString();
             $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
 
-            if (request()->is('api/*')) {
-                return $this->successResponse([
-                    'success' => __('Prescription_Edit_Successfully'),
-                    $prescription,
-                    $medications,
-                    $maxDate,
-                    $minDate,
-                    $maxDateForStart
-                ], 200);
-            } else {
-                //dd($prescription, $medications, $maxDate, $minDate, $maxDateForStart);
-                return view('prescriptions.edit', [
+            return $this->handleSuccessResponseViewWEB_API(
+                'prescriptions.edit',
+                [
                     'prescription' => $prescription,
                     'medications' => $medications,
                     'maxDate' => $maxDate,
                     'minDate' => $minDate,
                     'maxDateForStart' => $maxDateForStart,
-                ]);
-            }
+                ],
+                false,
+                __('Prescription_Edit_Successfully'),
+                200
+            );
         } catch (\Exception $e) {
-            $message = __('Prescription_Edit_Failed');
-            if (request()->is('api/*')) {
-                return $this->errorResponse($message, 500);
-            } else {
-                return redirect()->back()->with('errors', $message);
-            }
+            return $this->handleErrorResponseRedirectWEB_API(__('Prescription_Edit_Failed'), 500);
         }
     }
 
@@ -203,21 +196,16 @@ class PrescriptionController extends Controller
             $prescription->user_id = Auth::user()->id;
             $prescription->saveOrFail();
 
-            $message = __('Prescription_Updated_Successfully');
-            if (request()->is('api/*')) {
-                return $this->successResponse(null, $message, 200);
-            } else {
-
-                return redirect()->route('prescriptions.index')->with('status', $message);
-            }
+            return $this->handleSuccessResponseRedirectWEB_API(
+                ['prescriptions' => $prescription],
+                __('Prescription_Updated_Successfully'),
+                200,
+                'status',
+                'prescriptions.index'
+            );
         } catch (\Exception $e) {
-            $message = __('Prescription_Updating_Failed');
-            if (request()->is('api/*')) {
-                return $this->errorResponse($message, 500);
-            } else {
 
-                return redirect()->back()->with('errors', $message);
-            }
+            return $this->handleErrorResponseRedirectWEB_API(__('Prescription_Updating_Failed'), 500);
         }
     }
 
@@ -226,25 +214,29 @@ class PrescriptionController extends Controller
      */
     public function destroy(string $locale, string $id)
     {
-        $prescription = Prescription::findOrFail($id);
+
+
 
         try {
+            $prescription = DB::table('prescriptions')
+                ->where('id', $id)
+                ->where('user_id', Auth::user()->id)
+                ->first()
+                ->delete();
 
-            $prescription->delete();
-            $message = __('Prescription_Deleted_Successfully');
-            if (request()->is('api/*')) {
-                return $this->successResponse(null, $message, 200);
-            } else {
-                return redirect()->back()->with('status', $message);
+            if (!$prescription) {
+                return $this->handleErrorResponseRedirectWEB_API(__('Prescription_Not_Found'), 404, 'prescriptions.index');
             }
+
+            return $this->handleSuccessResponseRedirectWEB_API(
+                null,
+                __('Prescription_Deleted_Successfully'),
+                200,
+                'status',
+                'prescriptions.index'
+            );
         } catch (\Exception $e) {
-            $message = __('Prescription_Deleting_Failed');
-
-            if (request()->is('api/*')) {
-                return $this->errorResponse($message, 500);
-            } else {
-                return redirect()->back()->with('errors', $message);
-            }
+            return $this->handleErrorResponseRedirectWEB_API(__('Prescription_Deleting_Failed'), 500);
         }
     }
 }
