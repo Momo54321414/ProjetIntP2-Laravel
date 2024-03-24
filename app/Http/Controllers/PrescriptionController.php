@@ -111,13 +111,7 @@ class PrescriptionController extends Controller
                 'prescriptions.index'
             );
         } catch (\Exception $e) {
-            $message = __('Prescription_Creating_Failed');
-
-            if (request()->is('api/*')) {
-
-                return $this->errorResponse($message, 500);
-            }
-            return redirect()->back()->with('errors', $message);
+            return $this->handleErrorResponseRedirectWEB_API(__('Prescription_Creating_Failed'), 500);
         }
     }
 

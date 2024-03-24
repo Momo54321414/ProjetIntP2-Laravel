@@ -35,12 +35,12 @@ class MedicationController extends Controller
      */
     public function store(Request $request)
     {
-        $medication = new Medication();
-        $medication->name = $request->name;
-        $medication->function = $request->function;
-        $medication->canBeInPillBox = $request->canBeInPillBox;
+        // $medication = new Medication();
+        // $medication->name = $request->name;
+        // $medication->function = $request->function;
+        // $medication->canBeInPillBox = $request->canBeInPillBox;
 
-        $medication->save();
+        // $medication->save();
     }
 
     /**
