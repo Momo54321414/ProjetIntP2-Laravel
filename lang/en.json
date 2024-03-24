@@ -257,6 +257,8 @@
     "Status: ": "Status: ",
 
     "AddNewDevice": "Add New Device",
+    "EditDevice": "Edit a Device",
+    "ZoomDevice": "Zoom on a device",
     "DeviceNoSerie": "Device Serial Number:",
     "DeviceAssociatedPatientFullName": "Associated Patient Full Name:",
     "Devices_Retrieved_Successfully": "Devices retrieved successfully",

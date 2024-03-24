@@ -247,6 +247,8 @@
     "Status: ": "Statut: ",
 
     "AddNewDevice": "Ajouter un nouvel appareil",
+    "EditDevice": "Modifier l'appareil",
+    "ZoomDevice": "Zoom sur l'appareil",
     "DeviceNoSeries": "Numéro de série de l'appareil:",
     "DeviceAssociatedPatientFullName": "Nom complet du patient associé à l'appareil:",
     "Devices_Retrieved_Successfully": "Appareils récupérés avec succès",
