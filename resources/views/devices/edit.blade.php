@@ -21,15 +21,6 @@
 
                             <input type="hidden" name="id" id="id" value="">
                             <div class="mt-6">
-                                <x-input-label for="noSerie" value="{{ __('DeviceNoSerie') }}" />
-
-                                <x-text-input id="noSerie" name="noSerie" type="text" class="mt-1 block w-3/4"
-                                    placeholder="{{ __('EnterNoSerie') }}" value="{{ $device->noSerie }}" />
-
-                                <x-input-error :messages="$errors->get('noSerie')" class="mt-2" />
-                            </div>
-
-                            <div class="mt-6">
                                 <x-input-label for="associatedPatientFullName"
                                     value="{{ __('DeviceAssociatedPatientFullName') }}" />
 
