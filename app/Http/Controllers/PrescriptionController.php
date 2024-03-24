@@ -123,20 +123,13 @@ class PrescriptionController extends Controller
         try {
             $prescription = Prescription::findOrFail($id);
             $medication = Medication::findOrFail($prescription->medication_id);
-            if (request()->is('api/*')) {
 
-                return $this->successResponse(['prescription' => $prescription, 'medication' => $medication], __('Prescription_Finding_Successfully'), 200);
-            } else {
 
-                return view('prescriptions.show', ['prescription' => $prescription, 'medication' => $medication]);
-            }
+            return view('prescriptions.show', ['prescription' => $prescription, 'medication' => $medication]);
         } catch (\Exception $e) {
             $message = __('Prescription_Finding_Failed');
-            if (request()->is('api/*')) {
-                return $this->errorResponse($message, 500);
-            } else {
-                return redirect()->back()->with('errors', $message);
-            }
+
+            return redirect()->back()->with('errors', $message);
         }
     }
 
@@ -160,7 +153,7 @@ class PrescriptionController extends Controller
             return $this->handleSuccessResponseViewWEB_API(
                 'prescriptions.edit',
                 [
-                    'prescription' => $prescription,
+                    'prescriptions' => $prescription,
                     'medications' => $medications,
                     'maxDate' => $maxDate,
                     'minDate' => $minDate,

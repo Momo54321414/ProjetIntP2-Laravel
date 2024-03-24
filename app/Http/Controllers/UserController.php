@@ -105,7 +105,7 @@ class UserController extends Controller
         $user->email = $request->email;
         try {
             $user->save();
-            return $this->successResponse($user, __('Profile_Updated_Successfully'), 200);
+            return $this->successResponse(['user' => $user], __('Profile_Updated_Successfully'), 200);
         } catch (\Exception $e) {
             return $this->errorResponse(__('Email_Already_Exists'), 400);
         }

@@ -16,7 +16,7 @@ class MedicationController extends Controller
     {
         try {
             $medications = Medication::all();
-            return $this->successResponse($medications, __('Medicatons_Retrieved_Successfully'), 200);
+            return $this->successResponse(['medications' => $medications], __('Medicatons_Retrieved_Successfully'), 200);
         } catch (\Exception $e) {
             return $this->errorResponse(__('Medicatons_Retrieved_Failed'), 500);
         }
