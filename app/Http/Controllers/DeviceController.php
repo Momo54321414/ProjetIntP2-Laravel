@@ -109,10 +109,12 @@ class DeviceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(DeviceRequest $request, string $locale, string $id)
+    public function update(Request $request, string $locale, string $id)
     {
         try {
-            $validated = $request->validated('associatedPatientFullName');
+            $validated = $request->validate([
+                'associatedPatientFullName' => 'required|string|max:255',
+            ]);
             $device = DB::table('devices')
                 ->where('id', $id)
                 ->where('user_id', Auth::user()->id)
