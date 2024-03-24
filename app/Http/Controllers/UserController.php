@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Traits\HttpResponses;
 use Illuminate\Database\DatabaseTransactionsManager;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
@@ -74,10 +75,20 @@ class UserController extends Controller
     public function updatePassword(Request $request, string $locale)
     {
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'current_password' => 'required',
-            'password' => 'required|confirmed'
+            'password' => 'required|string|min:8|confirmed'
+        ], [
+            'current_password.required' => __('Current_Password_Required'),
+            'password.required' => __('Password_Required'),
+            'password.string' => __('Password_Invalid'),
+            'password.min' => __('Password_Min_8'),
+            'password.confirmed' => __('Password_Confirmed'),
         ]);
+
+        if ($validator->fails()) {
+            return $this->errorResponse($validator->errors(), 400);
+        }
 
         $user = $request->user();
 
@@ -86,6 +97,7 @@ class UserController extends Controller
         }
 
         $user->password = Hash::make($request->password);
+        $user->updated_at = now();
         try {
             $user->save();
 
@@ -103,6 +115,7 @@ class UserController extends Controller
         $user = $request->user();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->updated_at = now();
         try {
             $user->save();
             return $this->successResponse(['user' => $user], __('Profile_Updated_Successfully'), 200);
@@ -113,19 +126,56 @@ class UserController extends Controller
 
     public function updateName(Request $request)
     {
+        $charactersNotWanted = '0123456789!@#$%^&*()_+{}:"<>?\|[];,./`~';
+        $name =  trim($request->name, $charactersNotWanted);
 
-        $request->validate([
-            'name' => 'required'
+        $validator = Validator::make(['name' => $name], [
+            'name' => 'required|string|max:200',
+        ], [
+            'name.required' => __('Name_Required'),
+            'name.string' => __('Name_Invalid'),
+            'name.max' => __('Name_Max'),
         ]);
+
+        if ($validator->fails()) {
+            return $this->errorResponse($validator->errors(), 400);
+        }
 
         $user = $request->user();
 
-        $user->name = $request->name;
+        $user->name = $name;
+        $user->updated_at = now();
         try {
             $user->save();
             return $this->successResponse($user, __('Name_Updated_Successfully'), 200);
         } catch (\Exception $e) {
             return $this->errorResponse(__('Name_Updated_Failed'), 400);
+        }
+    }
+
+    public function updateEmail(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users,email,' . $request->user()->id,
+        ], [
+            'email.required' => __('Email_Required'),
+            'email.email' => __('Email_Invalid'),
+            'email.unique' => __('Email_Already_Exists'),
+        ]);
+
+        if ($validator->fails()) {
+            return $this->errorResponse($validator->errors(), 400);
+        }
+        $user = $request->user();
+
+        $user->email = $request->email;
+        $user->updated_at = now();
+        try {
+            $user->save();
+            return $this->successResponse($user, __('Email_Updated_Successfully'), 200);
+        } catch (\Exception $e) {
+            return $this->errorResponse(__('Email_Updated_Failed'), 400);
         }
     }
 

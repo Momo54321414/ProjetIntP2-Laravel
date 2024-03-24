@@ -132,15 +132,19 @@
     "Password_Updated_Successfully": "Password updated successfully",
     "Password_Updated_Failed": "Password update failed",
     "Password_Required": "The password field is required",
+    "Password_Invalid": "The password is invalid",
+    "Current_Password_Required": "The current password field is required",
     "Password_Confirmation_Required": "The password confirmation field is required",
     "Password_Min_8": "The password must be at least 8 characters",
-    "Password_Confirmation_Same_As_Password": "The password and password confirmation must match",
+    "Password_Confirmed": "The password and password confirmation must match",
     "Password_Confirmation_Min_8": "The password confirmation field is required",
 
     "Profile_Updated_Successfully": "Profile updated successfully",
     "Profile_Updated_Failed": "Profile update failed",
 
     "Name_Required": "The name field is required",
+    "Name_String": "The name must be a string",
+    "Name_Max": "The name must be less than 200 characters",
     "Name_Updated_Successfully": "Name updated successfully",
     "Name_Updated_Failed": "Name update failed",
     
@@ -154,6 +158,11 @@
     "Email_Not_Found": "We can't find a user with that e-mail address",
     "Email_Not_Verified": "Your email address is not verified",
     "Email_Not_Verified_Resend": "Your email address is not verified. Please click the link in the email we sent you, or click below to resend the email.",
+    "Email_Required": "The email field is required",
+    "Email_Invalid": "The email must be a valid email address",
+    "Email_Updated_Successfully": "Email updated successfully",
+    "Email_Updated_Failed": "Email update failed",
+
 
     "User_Created_Successfully": "Utilisateur créé avec succès",
     "User_Deleted_Successfully": "User deleted successfully",
@@ -223,17 +232,6 @@
     "Prescription_Edit_Successfully": "Prescription edit successfully",
     "Prescription_Edit_Failed": "Prescription edit failed",
   
-   
-
-
-
-
-    
-
-
-
-
-
 
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:",

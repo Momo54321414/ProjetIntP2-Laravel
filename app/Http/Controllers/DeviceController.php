@@ -124,7 +124,7 @@ class DeviceController extends Controller
  
             return $this->handleSuccessResponseRedirectWEB_API(
                 null,
-                __('Device_Updated_Successfully'),
+                __('Devices_Updated_Successfully'),
                 200,
                 'status',
                 'devices.index'

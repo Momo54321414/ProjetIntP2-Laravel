@@ -50,6 +50,7 @@ Route::prefix('{locale}')
             Route::patch('updateProfile', [UserController::class, 'updateProfile']);
             Route::patch('updatePassword', [UserController::class, 'updatePassword']);
             Route::patch('updateName', [UserController::class, 'updateName']);
+            Route::patch('updateEmail', [UserController::class, 'updateEmail']);
             Route::delete('deleteUser', [UserController::class, 'destroy']);
 
             Route::get('medications', [MedicationController::class, 'index']);

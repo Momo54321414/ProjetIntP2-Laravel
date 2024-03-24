@@ -128,15 +128,19 @@
     "Password_Updated_Successfully": "Mot de passe mis à jour avec succès",
     "Password_Updated_Failed": "Échec de la mise à jour du mot de passe",
     "Password_Required": "Le mot de passe est requis",
+    "Password_Invalid": "Le mot de passe est invalide",
+    "Current_Password_Required": "Le mot de passe actuel est requis",
     "Password_Confirmation_Required": "La confirmation du mot de passe est requise",
     "Password_Min_8": "Le mot de passe doit comporter au moins 8 caractères",
     "Password_Confirmation_Min_8": "La confirmation du mot de passe doit comporter au moins 8 caractères",
-    "Password_Confirmation_Same_As_Password": "La confirmation du mot de passe doit être identique au mot de passe",
+    "Password_Confirmed": "La confirmation du mot de passe doit être identique au mot de passe",
     
     "Profile_Updated_Successfully": "Profil mis à jour avec succès",
     "Profile_Updated_Failed": "Échec de la mise à jour du profil",
 
     "Name_Required": "Le nom est requis",
+    "Name_String": "Le nom doit être une chaîne de caractères",
+    "Name_Max": "Le nom doit comporter moins de 200 caractères",
     "Name_Updated_Successfully": "Nom mis à jour avec succès",
     "Name_Updated_Failed": "Échec de la mise à jour du nom",
 
@@ -149,6 +153,10 @@
     "Email_Not_Found": "E-mail non trouvé",
     "Email_Not_Verified": "E-mail non vérifié",
     "Email_Not_Verified_Resend": "E-mail non vérifié. Cliquez ici pour renvoyer l'e-mail de vérification",
+    "Email_Required": "Le courriel est requis",
+    "Email_Invalid": "Le courriel est invalide",
+    "Email_Updated_Successfully": "Le courriel mis à jour avec succès",
+    "Email_Updated_Failed": "Échec de la mise à jour du courriel",
 
     "User_Created_Successfully": "Utilisateur créé avec succès",
     "User_Deleted_Successfully": "Utilisateur supprimé avec succès",
@@ -219,9 +227,6 @@
     "Prescriptions_Finding_Failed": "Erreur lors de la recherche des prescriptions",
     "Prescription_Edit_Successfully": "Prescription modifiée avec succès",
     "Prescription_Edit_Failed": "Échec de la modification de la prescription",
-
-
-
 
 
     "MedicationName": "Nom du médicament:",
