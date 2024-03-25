@@ -101,7 +101,7 @@ class UserController extends Controller
         try {
             $user->save();
 
-            return $this->successResponse(null, __('Password_Updated_Successfully'), 200);
+            return $this->successResponse($user, __('Password_Updated_Successfully'), 200);
         } catch (\Exception $e) {
 
             return $this->errorResponse(__('Password_Updated_Failed'), 400);
