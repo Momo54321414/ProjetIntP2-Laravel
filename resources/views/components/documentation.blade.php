@@ -9,7 +9,7 @@
 <div class="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
    <div class="w-full lg:w-1/5 lg:px-6 text-xl text-black leading-normal dark:bg-gray-700 border border-grey-light border-rounded">
       <div class="lg:hidden sticky pin hidden">
-         <button id="menu-toggle" class="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded border-grey-dark hover:border-purple appearance-none focus:outline-none">
+         <button id="menu-toggle" class="flex w-full justify-end px-3 py-3 bg-white dark:bg-gray-500 lg:bg-transparent border rounded border-grey-dark hover:border-purple appearance-none focus:outline-none">
             <svg class="fill-current h-3 float-right" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
             </svg>
