@@ -7,7 +7,7 @@
 <div class="bg-grey-lightest ">
 <!--Container-->
 <div class="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
-   <div class="w-full lg:w-1/5 lg:px-6 text-xl dark:text-gray-500 leading-normal">
+   <div class="w-full lg:w-1/5 lg:px-6 text-xl text-black leading-normal dark:bg-gray-700 border border-grey-light border-rounded">
       <div class="lg:hidden sticky pin hidden">
          <button id="menu-toggle" class="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded border-grey-dark hover:border-purple appearance-none focus:outline-none">
             <svg class="fill-current h-3 float-right" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
