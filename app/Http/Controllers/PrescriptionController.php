@@ -27,8 +27,6 @@ class PrescriptionController extends Controller
             try {
 
                 $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
-                Log::info("message: Prescription_Finding_Successfully, user_id: " . Auth::user()->id . ", status: 200");
-                Log::info("Message:".$this->successResponse(['prescriptions' =>$prescriptions], __('Prescription_Finding_Successfully'), 200));
                
                 return $this->successResponse(['prescriptions' =>$prescriptions], __('Prescription_Finding_Successfully'), 200);
                 
@@ -62,13 +60,13 @@ class PrescriptionController extends Controller
                     )
                     ->where('prescriptions.user_id', Auth::user()->id)
                     ->get();
-                    Log::info(" Route: prescriptions.index, message: Prescription_Finding_Successfully, user_id: " . Auth::user()->id . ", status: 200");
+                   
                 return  view('prescriptions.index', [
                     'prescriptions' => $prescriptions
                 ]);
             } catch (\Exception $e) {
                 $message = __('Prescription_Finding_Failed');
-                Log::error("message: REDirection, status: 500");
+                
                 return redirect()->back()->with('errors', $message);
             }
         }
