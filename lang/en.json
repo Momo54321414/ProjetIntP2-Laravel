@@ -159,7 +159,10 @@
     "Email_Not_Verified": "Your email address is not verified",
     "Email_Not_Verified_Resend": "Your email address is not verified. Please click the link in the email we sent you, or click below to resend the email.",
     "Email_Required": "The email field is required",
+    "Email_String": "The email must be a string",
+    "Email_Lowercase": "The email must be a valid email address",
     "Email_Invalid": "The email must be a valid email address",
+    "Email_Max": "The email must be less than 200 characters",
     "Email_Updated_Successfully": "Email updated successfully",
     "Email_Updated_Failed": "Email update failed",
 

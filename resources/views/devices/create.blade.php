@@ -21,7 +21,7 @@
                             <x-input-label for="noSerie" value="{{ __('DeviceNoSerie') }}" />
 
                             <x-text-input id="noSerie" name="noSerie" type="text" class="mt-1 block w-3/4"
-                                placeholder="{{ __('EnterNoSerie') }}" />
+                                placeholder="{{ __('EnterNoSerie') }}" required />
 
                             <x-input-error :messages="$errors->get('noSerie')" class="mt-2" />
                         </div>
@@ -31,7 +31,7 @@
                                 value="{{ __('DeviceAssociatedPatientFullName') }}" />
 
                             <x-text-input id="associatedPatientFullName" name="associatedPatientFullName" type="text"
-                                class="mt-1 block w-3/4" placeholder="{{ __('EnterAssociatedPatientFullName') }}" />
+                                class="mt-1 block w-3/4" placeholder="{{ __('EnterAssociatedPatientFullName') }}"  />
 
                             <x-input-error :messages="$errors->get('associatedPatientFullName')" class="mt-2" />
                         </div>
