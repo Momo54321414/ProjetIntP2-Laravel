@@ -15,11 +15,11 @@
             </svg>
          </button>
       </div>
-      <div class="w-full sticky pin  h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-grey-light lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:5em;" id="menu-content">
+      <div class="w-full sticky pin  h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-grey-light lg:border-transparent  shadow lg:shadow-none lg:bg-transparent z-20" style="top:5em;" id="menu-content">
          <ul class="list-reset">
             <li class="py-2 md:my-0 hover:bg-purple-lightest lg:hover:bg-transparent">
                <a href="#Doc_Header_Configuration" class="block pl-4 align-middle text-grey-darker no-underline hover:text-purple border-l-4 border-transparent lg:border-purple lg:hover:border-purple">
-               <span class="pb-1 md:pb-0 text-sm text-black dark:text-white font-bold">{{__('Doc_Header_Introduction')}}</span>
+               <span class="pb-1 md:pb-0 text-sm text-black dark:text-gray-400 font-bold">{{__('Doc_Header_Introduction')}}</span>
                </a>
             </li>
             <li class="py-2 md:my-0 hover:bg-purple-lightest lg:hover:bg-transparent">
