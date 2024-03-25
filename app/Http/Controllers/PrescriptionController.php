@@ -26,7 +26,7 @@ class PrescriptionController extends Controller
             try {
                 $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
 
-                return $this->successResponse($prescriptions, __('Prescription_Finding_Successfully'), 200);
+                return $this->successResponse( $prescriptions, __('Prescription_Finding_Successfully'), 200);
             } catch (\Exception $e) {
 
                 return $this->errorResponse(__('Prescription_Finding_Failed'), 500);
