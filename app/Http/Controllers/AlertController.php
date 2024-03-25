@@ -61,7 +61,7 @@ class AlertController extends Controller
         try {
             $alert->save();
 
-            $message = ['status' => __('Alert_Updated_Successfully')];
+            $message =  __('Alert_Updated_Successfully');
             if (request()->is('api/*')) {
                 return  $this->successResponse(['alerts' => $alert], $message, 200);
             } else {
