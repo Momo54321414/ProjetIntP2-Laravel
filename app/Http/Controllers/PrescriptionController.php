@@ -21,17 +21,17 @@ class PrescriptionController extends Controller
     public function index()
     {
 
-        if (request()->is('api/*')) {
+        // if (request()->is('api/*')) {
 
-            try {
-                $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
+        //     try {
+        //         $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
 
-                return $this->successResponse(['prescriptions' =>$prescriptions], __('Prescription_Finding_Successfully'), 200);
-            } catch (\Exception $e) {
+        //         return $this->successResponse(['prescriptions' => $prescriptions], __('Prescription_Finding_Successfully'), 200);
+        //     } catch (\Exception $e) {
 
-                return $this->errorResponse(__('Prescription_Finding_Failed'), 500);
-            }
-        } else {
+        //         return $this->errorResponse(__('Prescription_Finding_Failed'), 500);
+        //     }
+        // } else {
 
             try {
                 $prescriptions = DB::table('prescriptions')
@@ -66,6 +66,21 @@ class PrescriptionController extends Controller
 
                 return redirect()->back()->with('errors', $message);
             }
+        // }
+    }
+
+    public  function getPrescriptions(string $locale)
+    {
+        try {
+            $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
+
+            return $this->handleSuccessResponseAPI(
+                ['prescriptions' => $prescriptions],
+                __('Prescription_Finding_Successfully'),
+                200
+            );
+        } catch (\Exception $e) {
+            return $this->handleErrorResponseWEB_API(__('Prescription_Finding_Failed'), 500);
         }
     }
 
