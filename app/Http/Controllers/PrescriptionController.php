@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PrescriptionRequest;
+
 use App\Models\Medication;
 use App\Models\Prescription;
 use Carbon\Carbon;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Traits\HttpResponses;
 use App\Traits\HandleRequestResponses;
-
+use Illuminate\Support\Facades\Log;
 
 class PrescriptionController extends Controller
 {
@@ -21,17 +22,21 @@ class PrescriptionController extends Controller
     public function index()
     {
 
-        // if (request()->is('api/*')) {
+        if (request()->is('api/*')) {
+            
+            try {
 
-        //     try {
-        //         $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
+                $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
+                Log::info("message: Prescription_Finding_Successfully, user_id: " . Auth::user()->id . ", status: 200");
+                Log::info("Message:".$this->successResponse(['prescriptions' =>$prescriptions], __('Prescription_Finding_Successfully'), 200));
+               
+                return $this->successResponse(['prescriptions' =>$prescriptions], __('Prescription_Finding_Successfully'), 200);
+                
+            } catch (\Exception $e) {
 
-        //         return $this->successResponse(['prescriptions' => $prescriptions], __('Prescription_Finding_Successfully'), 200);
-        //     } catch (\Exception $e) {
-
-        //         return $this->errorResponse(__('Prescription_Finding_Failed'), 500);
-        //     }
-        // } else {
+                return $this->errorResponse(__('Prescription_Finding_Failed'), 500);
+            }
+        } else {
 
             try {
                 $prescriptions = DB::table('prescriptions')
@@ -66,21 +71,6 @@ class PrescriptionController extends Controller
 
                 return redirect()->back()->with('errors', $message);
             }
-        // }
-    }
-
-    public  function getPrescriptions(string $locale)
-    {
-        try {
-            $prescriptions = Prescription::where('user_id', Auth::user()->id)->get();
-
-            return $this->handleSuccessResponseAPI(
-                ['prescriptions' => $prescriptions],
-                __('Prescription_Finding_Successfully'),
-                200
-            );
-        } catch (\Exception $e) {
-            return $this->handleErrorResponseWEB_API(__('Prescription_Finding_Failed'), 500);
         }
     }
 

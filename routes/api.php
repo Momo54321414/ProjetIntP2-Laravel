@@ -28,7 +28,7 @@ Route::prefix('{locale}')
 
             Route::post('logout',  [UserController::class, 'logout']);
 
-            Route::get('prescriptions', [PrescriptionController::class, 'getPrescriptions']);
+            Route::get('prescriptions', [PrescriptionController::class, 'index']);
             Route::post('prescriptions', [PrescriptionController::class, 'store']);
             Route::get('prescriptions/{prescription}', [PrescriptionController::class, 'show']);
             Route::patch('prescriptions/{prescription}', [PrescriptionController::class, 'update']);
