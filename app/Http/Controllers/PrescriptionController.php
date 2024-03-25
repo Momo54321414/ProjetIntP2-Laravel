@@ -62,7 +62,7 @@ class PrescriptionController extends Controller
                     )
                     ->where('prescriptions.user_id', Auth::user()->id)
                     ->get();
-
+                    Log::info(" Route: prescriptions.index, message: Prescription_Finding_Successfully, user_id: " . Auth::user()->id . ", status: 200");
                 return  view('prescriptions.index', [
                     'prescriptions' => $prescriptions
                 ]);
