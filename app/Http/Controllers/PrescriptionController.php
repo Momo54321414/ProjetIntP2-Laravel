@@ -68,7 +68,7 @@ class PrescriptionController extends Controller
                 ]);
             } catch (\Exception $e) {
                 $message = __('Prescription_Finding_Failed');
-
+                Log::error("message: REDirection, status: 500");
                 return redirect()->back()->with('errors', $message);
             }
         }
