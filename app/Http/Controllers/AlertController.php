@@ -63,7 +63,7 @@ class AlertController extends Controller
 
             $message =  __('Alert_Updated_Successfully');
             if (request()->is('api/*')) {
-                return  $this->successResponse(['alerts' => $alert], $message, 200);
+                return  $this->successResponse(['alerts' => [$alert]], $message, 200);
             } else {
                 return redirect()->back()->with($message);
             }

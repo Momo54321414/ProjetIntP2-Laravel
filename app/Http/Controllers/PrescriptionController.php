@@ -107,7 +107,7 @@ class PrescriptionController extends Controller
             $prescription->save();
 
             return $this->handleSuccessResponseRedirectWEB_API(
-                ['prescriptions' => $prescription],
+                ['prescriptions' => [$prescription]],
                 __('Prescription_Created_Successfully'),
                 200,
                 'status',
