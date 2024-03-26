@@ -223,6 +223,9 @@
     "P_FIH.date_format" :"The first intake hour for your prescription must be in the format HH:MM",
     "P_M.required" :"The medication is required",
     "P_M.integer" :"The medication must be a number",
+    "P_FBDIH.min" :"The frequency between doses in hours must be at least 1",
+    "P_FBDIH.max" :"The frequency between doses in hours must be at most 24",
+    "P_FOIID.max" :"The frequency of intake in days must be at most 30 days between each intake",
 
     "Prescription_Created_Successfully": "Prescription created successfully",
     "Prescription_Updated_Successfully": "Prescription updated successfully",

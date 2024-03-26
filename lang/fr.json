@@ -218,6 +218,10 @@
     "P_FIH.date_format" :"La première heure d'admission de votre prescription doit être au format HH:MM",
     "P_M.required" : "La médication est requise",
     "P_M.integer" : "La médication doit être un entier",
+    "P_FBDIH.min" : "La fréquence de la prescription entre les doses en heures doit être égale ou supérieure à 1",
+    "P_FBDIH.max" : "La fréquence de la prescription entre les doses en heures doit être inférieure ou égale à 24",
+    "P_FOIID.max" : "La fréquence de la prescription en jour doit être inférieure ou égale à 30 jours d'intervalles",
+
 
     
     "Prescription_Created_Successfully": "Prescription créée avec succès",
