@@ -54,12 +54,11 @@ class DeviceController extends Controller
 
         try {
             $validated = $request->validated();
-
-            $device = Device::create([
-                'noSerie' => $validated['noSerie'],
-                'associatedPatientFullName' => $validated['associatedPatientFullName'],
-                'user_id' => Auth::user()->id
-            ]);
+            $device = new Device($validated);
+            $device->user_id = Auth::user()->id;
+            $device->created_at = now();
+            $device->updated_at = now();
+            $device->save();
             return $this->handleSuccessResponseRedirectWEB_API(
                 ['devices' => $device],
                 __('Device_Created_Successfully'),
