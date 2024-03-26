@@ -60,7 +60,7 @@ class DeviceController extends Controller
             $device->updated_at = now();
             $device->save();
             return $this->handleSuccessResponseRedirectWEB_API(
-                ['devices' => $device],
+                ['devices' => [$device]],
                 __('Device_Created_Successfully'),
                 200,
                 'status',
