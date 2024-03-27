@@ -177,6 +177,7 @@
     "Add": "Ajouter",
     "Update": "Mettre à jour",
     "Delete": "Supprimer",
+    "MeansRequired": "* Indique un champ obligatoire",
 
     "Prescription":"Prescription",
     "Prescriptions":"Prescriptions",
@@ -208,6 +209,7 @@
     "P_DOP.date_format": "La date de la prescription doit être au format YYYY-MM-DD",
     "P_DOS.required": "La date de début de la prescription est requise",
     "P_DOS.date_format": "La date de début de la prescription doit être au format YYYY-MM-DD",
+    "P_DOS.after": "La date de début de la prescription doit être postérieure à la date de la prescription",
     "P_DOPID.required" :"La duration de la prescription en jours est requise",
     "P_DOPID.integer" :"La duration de la prescription en jours doit être un entier",
     "P_FBDIH.required" :"La fréquence de la prescription entre les doses en heures est requise",

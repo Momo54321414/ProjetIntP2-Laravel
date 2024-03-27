@@ -25,7 +25,7 @@ class PrescriptionRequest extends FormRequest
         return [
             'nameOfPrescription' => 'required|string|max:255',
             'dateOfPrescription' => 'required|date_format:Y-m-d',
-            'dateOfStart' => 'required|date_format:Y-m-d',
+            'dateOfStart' => 'required|date_format:Y-m-d|after:dateOfPrescription',
             'durationOfPrescriptionInDays' => 'required|integer|min:1',
             'frequencyBetweenDosesInHours' => 'required|integer|min:1|max:24',
             'frequencyOfIntakeInDays' => 'required|integer|min:1|max:30',
@@ -45,6 +45,7 @@ class PrescriptionRequest extends FormRequest
             'dateOfPrescription.date_format' => __('P_DOP.date_format',[],$this->getLocale()),
             'dateOfStart.required' => __('P_DOS.required',[],$this->getLocale()),
             'dateOfStart.date_format' => __('P_DOS.date_format',[],$this->getLocale()),
+            'dateOfStart.after' => __('P_DOS.after',[],$this->getLocale()),
             'durationOfPrescriptionInDays.required' => __('P_DOPID.required',[],$this->getLocale()),
             'durationOfPrescriptionInDays.integer' => __('P_DOPID.integer',[],$this->getLocale()),
             'durationOfPrescriptionInDays.min' => __('P_DOPID.min',[],$this->getLocale()),

@@ -13,10 +13,6 @@ class CalendarsSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('calendars')->insert([
-            'dateOfIntake' => '2024-02-12',
-            'hourOfIntake' => '12:24:49',
-            'prescription_id' => 1,
-        ]);
+     
     }
 }

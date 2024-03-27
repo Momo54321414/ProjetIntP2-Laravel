@@ -17,17 +17,18 @@
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                             {{ __('AddNewDevice') }}
                         </h2>
+                        <x-required-info-title />
                         <div class="mt-6">
-                            <x-input-label for="noSerie" value="{{ __('DeviceNoSerie') }}" />
+                            <x-input-label-required for="noSerie" value="{{ html_entity_decode(__('DeviceNoSerie')) }}" />
 
                             <x-text-input id="noSerie" name="noSerie" type="text" class="mt-1 block w-3/4"
-                                placeholder="{{ __('EnterNoSerie') }}" required />
+                                placeholder="{{ __('EnterNoSerie') }}" />
 
                             <x-input-error :messages="$errors->get('noSerie')" class="mt-2" />
                         </div>
 
                         <div class="mt-6">
-                            <x-input-label for="associatedPatientFullName"
+                            <x-input-label-required for="associatedPatientFullName"
                                 value="{{ __('DeviceAssociatedPatientFullName') }}" />
 
                             <x-text-input id="associatedPatientFullName" name="associatedPatientFullName" type="text"

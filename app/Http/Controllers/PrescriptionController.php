@@ -153,10 +153,10 @@ class PrescriptionController extends Controller
             $minDate = Carbon::now()->subDecades(2)->toDateString();
             $maxDateForStart = Carbon::now()->addDays(30)->toDateString();
 
-            return $this->handleSuccessResponseViewWEB_API(
+            return $this->webViewResponse(
                 'prescriptions.edit',
                 [
-                    'prescriptions' => $prescription,
+                    'prescription' => $prescription,
                     'medications' => $medications,
                     'maxDate' => $maxDate,
                     'minDate' => $minDate,
