@@ -39,7 +39,7 @@
 
                                     @foreach ($medications as $medication)
                                         <option value="{{ $medication->id }}"
-                                            {{ $prescription->medicationId == $medication->id ? 'selected' : '' }}>
+                                            {{ $prescription->medication_id == $medication->id ? 'selected' : '' }}>
                                             {{ $medication->name }}</option>
                                     @endforeach
                                 </select>

@@ -15,17 +15,16 @@ class AlertsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => (string) $this->id,
-            'attributes'=>[
-            'isTheMedicationTaken' => $this->isTheMedicationTaken,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
-            ],
-            'joins' =>[
-                'calendar_id' => $this->calendar_id,
-                'dateOfIntake' => $this->dateOfIntake,
-                'hourOfIntake' => $this->hourOfIntake,
-                'medicationName' => $this->medicationName,
+            'alerts' => [ // 'alerts' is the key that will be used in the JSON response to represent the alert object
+                'id' => (string) $this->id,
+                'attributes' => [
+                    'isTheMedicationTaken' => $this->isTheMedicationTaken,
+                    'createdAt' => $this->created_at,
+                    'updatedAt' => $this->updated_at,
+                ],
+                'calendars' => [
+                    'calendar_id' => $this->calendar_id,
+                ]
             ]
         ];
     }

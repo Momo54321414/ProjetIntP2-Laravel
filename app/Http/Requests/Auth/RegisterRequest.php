@@ -30,50 +30,20 @@ class RegisterRequest extends FormRequest
 
     public function messages(): array
     {
-        $locale = app()->getLocale();
-        switch ($locale) {
-            case 'en':
-                return $this->getEnglishMessages();
-            case 'fr':
-                return $this->getFrenchMessages();
-            default:
-                return $this->getEnglishMessages();
-        }
-    }
-
-    public function getEnglishMessages(): array
-    {
         return [
-            'name.required' => 'The name is required',
-            'name.string' => 'The name must be a string',
-            'name.max' => 'The name must not exceed 255 characters',
-            'email.required' => 'The email is required',
-            'email.string' => 'The email must be a string',
-            'email.max' => 'The email must not exceed 255 characters',
-            'email.email' => 'The email must be a valid email address',
-            'email.unique' => 'The email has already been taken',
-            'password.required' => 'The password is required',
-            'password.string' => 'The password must be a string',
-            'password.min' => 'The password must be at least 8 characters',
-            'password.confirmed' => 'The password confirmation does not match',
+            'name.required' => __('Name_Required'),
+            'name.string' => __('Name_String'),
+            'name.max' => __('Name_Max'),
+            'email.required' => __('Email_Required'),
+            'email.string' => __('Email_String'),
+            'email.email' => __('Email_Invalid'),
+            'email.max' => __('Email_Max'),
+            'email.unique' => __('Email_Already_Exists'),
+            'password.required' => __('Password_Required'),
+            'password.string' => __('Password_String'),
+            'password.min' => __('Password_Min'),
+            'password.confirmed' => __('Password_Confirmed'),
         ];
     }
-
-    public function getFrenchMessages(): array
-    {
-        return [
-            'name.required' => 'Le nom est requis',
-            'name.string' => 'Le nom doit être une chaîne de caractères',
-            'name.max' => 'Le nom ne doit pas dépasser 255 caractères',
-            'email.required' => 'L\'adresse email est requise',
-            'email.string' => 'L\'adresse email doit être une chaîne de caractères',
-            'email.max' => 'L\'adresse email ne doit pas dépasser 255 caractères',
-            'email.email' => 'L\'adresse email doit être une adresse email valide',
-            'email.unique' => 'L\'adresse email a déjà été prise',
-            'password.required' => 'Le mot de passe est requis',
-            'password.string' => 'Le mot de passe doit être une chaîne de caractères',
-            'password.min' => 'Le mot de passe doit comporter au moins 8 caractères',
-            'password.confirmed' => 'La confirmation du mot de passe ne correspond pas',
-        ];
-    }
+   
 }

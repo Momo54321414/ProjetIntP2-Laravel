@@ -52,7 +52,7 @@
     "Doc_Usage_Instructions_Remote_Monitoring_text_1": "Les utilisateurs peuvent surveiller à distance l'état du pilulier, l'observance du traitement et recevoir des notifications en temps réel sur l'application mobile.",
     "Doc_Usage_Instructions_Remote_Monitoring_text_2": "En cas de doses manquées ou de dysfonctionnements de la porte, les utilisateurs sont rapidement informés pour prendre les mesures nécessaires.",
 
-    "Doc_Header_Configuration": "Étape 5 : Configuration",
+    "Doc_Header_Configuration": "5. Configuration",
     "Doc_Header_Configuration_text_1": "Gardez le pilulier à l'abri de l'eau ou de l'humidité pour éviter d'endommager les composants électroniques.",
     "Doc_Header_Configuration_text_2": "Ne tentez pas de démonter ou de modifier le pilulier sans autorisation appropriée.",
     "Doc_Header_Configuration_text_3": "Conservez les médicaments en toute sécurité et hors de portée des enfants ou des animaux de compagnie.",
@@ -104,13 +104,13 @@
 
 
     "Feature_Not_Available": "Cette fonctionnalité n'est pas disponible",
-    "Email": "Email",
+    "Email": "Courriel",
     "Password": "Mot de passe",
     "Remember me": "Se souvenir de moi",
     "Forgot Your Password?": "Mot de passe oublié ?",
     "Login": "Se connecter",
     "Log_in": "Connexion",
-    "Email Password Reset Link": "Envoyer le lien de réinitialisation du mot de passe par e-mail",
+    "Email Password Reset Link": "Envoyer le lien de réinitialisation du mot de passe par courriel",
     "Name": "Nom",
     "Confirm Password": "Confirmer le mot de passe",
     "Already registered": "Déjà enregistré",
@@ -122,21 +122,25 @@
     
 
     "Password_Dont_Match": "Les mots de passe ne correspondent pas",
-    "Password_Reset_Link": "Le lien de réinitialisation du mot de passe a été envoyé par e-mail",
+    "Password_Reset_Link": "Le lien de réinitialisation du mot de passe a été envoyé par courriel",
     "Password_Reset_Link_Error": "Erreur lors de l'envoi du lien de réinitialisation du mot de passe par e-mail",
     "Password_Reset": "Le mot de passe a été réinitialisé",
     "Password_Updated_Successfully": "Mot de passe mis à jour avec succès",
     "Password_Updated_Failed": "Échec de la mise à jour du mot de passe",
     "Password_Required": "Le mot de passe est requis",
+    "Password_Invalid": "Le mot de passe est invalide",
+    "Current_Password_Required": "Le mot de passe actuel est requis",
     "Password_Confirmation_Required": "La confirmation du mot de passe est requise",
     "Password_Min_8": "Le mot de passe doit comporter au moins 8 caractères",
     "Password_Confirmation_Min_8": "La confirmation du mot de passe doit comporter au moins 8 caractères",
-    "Password_Confirmation_Same_As_Password": "La confirmation du mot de passe doit être identique au mot de passe",
+    "Password_Confirmed": "La confirmation du mot de passe doit être identique au mot de passe",
     
     "Profile_Updated_Successfully": "Profil mis à jour avec succès",
     "Profile_Updated_Failed": "Échec de la mise à jour du profil",
 
     "Name_Required": "Le nom est requis",
+    "Name_String": "Le nom doit être une chaîne de caractères",
+    "Name_Max": "Le nom doit comporter moins de 200 caractères",
     "Name_Updated_Successfully": "Nom mis à jour avec succès",
     "Name_Updated_Failed": "Échec de la mise à jour du nom",
 
@@ -149,6 +153,13 @@
     "Email_Not_Found": "E-mail non trouvé",
     "Email_Not_Verified": "E-mail non vérifié",
     "Email_Not_Verified_Resend": "E-mail non vérifié. Cliquez ici pour renvoyer l'e-mail de vérification",
+    "Email_Required": "Le courriel est requis",
+    "Email_String": "Le courriel doit être une chaîne de caractères",
+    "Email_Lowercase": "Le courriel doit être en minuscules",
+    "Email_Invalid": "Le courriel est invalide",
+    "Email_Max": "Le courriel doit comporter moins de 200 caractères",
+    "Email_Updated_Successfully": "Le courriel mis à jour avec succès",
+    "Email_Updated_Failed": "Échec de la mise à jour du courriel",
 
     "User_Created_Successfully": "Utilisateur créé avec succès",
     "User_Deleted_Successfully": "Utilisateur supprimé avec succès",
@@ -207,6 +218,10 @@
     "P_FIH.date_format" :"La première heure d'admission de votre prescription doit être au format HH:MM",
     "P_M.required" : "La médication est requise",
     "P_M.integer" : "La médication doit être un entier",
+    "P_FBDIH.min" : "La fréquence de la prescription entre les doses en heures doit être égale ou supérieure à 1",
+    "P_FBDIH.max" : "La fréquence de la prescription entre les doses en heures doit être inférieure ou égale à 24",
+    "P_FOIID.max" : "La fréquence de la prescription en jour doit être inférieure ou égale à 30 jours d'intervalles",
+
 
     
     "Prescription_Created_Successfully": "Prescription créée avec succès",
@@ -221,11 +236,10 @@
     "Prescription_Edit_Failed": "Échec de la modification de la prescription",
 
 
-
-
-
     "MedicationName": "Nom du médicament:",
     "MedicationFunction": "Fonction de médication:",
+    "Medicatons_Retrieved_Successfully": "Médicaments récupérés avec succès",
+    "Medicatons_Retrieved_Failed": "Échec de la récupération des médicaments",
 
     "Alerts": "Alertes",
     "Alerts log": "Journal des alertes",
@@ -242,5 +256,31 @@
     "Medication taken": "Médicament pris",
     "Medication not taken": "Médicament non pris",
     "Error": "Erreur",
-    "Status: ": "Statut: "
+    "Status: ": "Statut: ",
+    
+    "Devices": "Appareils",
+    "AddNewDevice": "Ajouter un nouvel appareil",
+    "EditDevice": "Modifier l'appareil",
+    "ZoomDevice": "Zoom sur l'appareil",
+    "AreYouSureYouWantToDeleteThisDevice": "Êtes-vous sûr de vouloir supprimer cet appareil?",
+    "DeviceNoSerie": "Numéro de série de l'appareil:",
+    "EnterNoSerie": "Entrez le numéro de série",
+    "DeviceList": "Liste des appareils",
+    "AssociatedPatientFullName": "Nom complet du patient associé à l'appareil:",
+    "EnterAssociatedPatientFullName": "Entrez le nom complet du patient associé",
+    "DeviceAssociatedPatientFullName": "Nom complet du patient associé à l'appareil:",
+    "Devices_Retrieved_Successfully": "Appareils récupérés avec succès",
+    "Devices_Retrieved_Failed": "Échec de la récupération des appareils",
+    "Device_Created_Successfully": "Appareil créé avec succès",
+    "Device_Created_Failed": "Échec de la création de l'appareil",
+    "Device_Updated_Successfully": "Appareil mis à jour avec succès",
+    "Device_Updated_Failed": "Échec de la mise à jour de l'appareil",
+    "Device_Deleted_Successfully": "Appareil supprimé avec succès",
+    "Device_Deleted_Failed": "Échec de la suppression de l'appareil",
+    "Device_Not_Found": "Appareil non trouvé",
+    "D_NS.required":"Le numéro de série de l'appareil est requis",
+    "D_NS.string":"Le numéro de série de l'appareil doit être une chaîne de caractères",
+    "D_NS.unique":"Le numéro de série de l'appareil est unique",
+    "D_APFN.required":"Le nom complet du patient associé est requis",
+    "D_APFN.string":"Le nom complet du patient associé doit être une chaîne de caractères"
 }

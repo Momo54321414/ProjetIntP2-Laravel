@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AlertController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\PrescriptionController;
-
+use App\Http\Controllers\MedicationController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -34,10 +37,21 @@ Route::prefix('{locale}')
             Route::get('alerts', [AlertController::class, 'index']);
             Route::patch('alerts/{alert}', [AlertController::class, 'update']);
 
+            Route::get('devices', [DeviceController::class, 'index']);
+            Route::post('devices', [DeviceController::class, 'store']);
+            Route::delete('devices/{device}', [DeviceController::class, 'destroy']);
+
+            Route::get('calendars', [CalendarController::class, 'index']);
+
+            Route::get('logs', [LogController::class, 'index']);
+
             Route::patch('updateProfile', [UserController::class, 'updateProfile']);
             Route::patch('updatePassword', [UserController::class, 'updatePassword']);
             Route::patch('updateName', [UserController::class, 'updateName']);
+            Route::patch('updateEmail', [UserController::class, 'updateEmail']);
             Route::delete('deleteUser', [UserController::class, 'destroy']);
+
+            Route::get('medications', [MedicationController::class, 'index']);
         });
     });
 

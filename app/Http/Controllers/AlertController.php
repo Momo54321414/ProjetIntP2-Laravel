@@ -19,22 +19,29 @@ class AlertController extends Controller
      */
     public function index()
     {
-        $alerts = DB::table('alerts')
-            ->join('calendars', 'alerts.calendar_id', '=', 'calendars.id')
-            ->join('prescriptions', 'calendars.prescription_id', '=', 'prescriptions.id')
-            ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
-            ->where('prescriptions.user_id', '=', Auth::user()->id)
-            ->where('calendars.dateOfIntake', '<=', Carbon::today())
-            ->where('calendars.active', '=', 1)
-            ->select('alerts.*', 'calendars.*', 'medications.name as medicationName')
-            ->orderBy('calendars.dateOfIntake', 'desc')
-            ->get();
+
 
         if (request()->is('api/*')) {
-
-            return  AlertsResource::collection($alerts);
+            $alerts = DB::table('alerts')
+                ->join('calendars', 'alerts.calendar_id', '=', 'calendars.id')
+                ->join('prescriptions', 'calendars.prescription_id', '=', 'prescriptions.id')
+                ->where('prescriptions.user_id', '=', Auth::user()->id)
+                ->select('alerts.*')
+                ->get();
+            //Utiliser la ressource?
+            return  $this->successResponse(['alerts' => $alerts], __('Alerts_Retrieved_Successfully'), 200);
         } else {
 
+            $alerts = DB::table('alerts')
+                ->join('calendars', 'alerts.calendar_id', '=', 'calendars.id')
+                ->join('prescriptions', 'calendars.prescription_id', '=', 'prescriptions.id')
+                ->join('medications', 'prescriptions.medication_id', '=', 'medications.id')
+                ->where('prescriptions.user_id', '=', Auth::user()->id)
+                ->where('calendars.dateOfIntake', '<=', Carbon::today())
+                ->where('calendars.active', '=', 1)
+                ->select('alerts.*', 'calendars.*', 'medications.name as medicationName')
+                ->orderBy('calendars.dateOfIntake', 'desc')
+                ->get();
             return view('alerts.index', [
                 'alerts' => $alerts,
             ]);
@@ -44,7 +51,7 @@ class AlertController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AlertRequest $request, string $id)
+    public function update(AlertRequest $request, string $locale, string $id)
     {
         $alert = Alert::findOrFail($id);
         $validated = $request->validated();
@@ -54,15 +61,20 @@ class AlertController extends Controller
         try {
             $alert->save();
 
-            $message = ['status' => __('Alert_Updated_Successfully')];
+            $message =  __('Alert_Updated_Successfully');
+            if (request()->is('api/*')) {
+                return  $this->successResponse(['alerts' => [$alert]], $message, 200);
+            } else {
+                return redirect()->back()->with($message);
+            }
         } catch (\Exception $e) {
             $message = ['error' => __('Alert_Updated_Failed')];
-        }
 
-        if (request()->is('api/*')) {
-            return response()->json($message);
-        } else {
-            return redirect()->back()->with($message);
+            if (request()->is('api/*')) {
+                return  $this->errorResponse($message, 500);
+            } else {
+                return redirect()->back()->with($message);
+            }
         }
     }
 }

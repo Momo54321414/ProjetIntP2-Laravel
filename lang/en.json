@@ -60,7 +60,7 @@
             "Doc_Usage_Instructions_Remote_Monitoring_text_1": "Users can remotely monitor the pillbox status, medication adherence, and receive real-time notifications on the mobile app.",
             "Doc_Usage_Instructions_Remote_Monitoring_text_2": "In case of missed doses or door malfunctions, users are notified promptly to take necessary action.",
 
-    "Doc_Header_Configuration": "Step 5: Configuration",
+    "Doc_Header_Configuration": "5. Configuration",
         "Doc_Header_Configuration_text_1": "Keep the pillbox away from water or moisture to prevent damage to electronic components.",
         "Doc_Header_Configuration_text_2": "Do not attempt to disassemble or modify the pillbox without proper authorization.",
         "Doc_Header_Configuration_text_3": "Keep medication stored securely and out of reach of children or pets.",
@@ -132,15 +132,19 @@
     "Password_Updated_Successfully": "Password updated successfully",
     "Password_Updated_Failed": "Password update failed",
     "Password_Required": "The password field is required",
+    "Password_Invalid": "The password is invalid",
+    "Current_Password_Required": "The current password field is required",
     "Password_Confirmation_Required": "The password confirmation field is required",
     "Password_Min_8": "The password must be at least 8 characters",
-    "Password_Confirmation_Same_As_Password": "The password and password confirmation must match",
+    "Password_Confirmed": "The password and password confirmation must match",
     "Password_Confirmation_Min_8": "The password confirmation field is required",
 
     "Profile_Updated_Successfully": "Profile updated successfully",
     "Profile_Updated_Failed": "Profile update failed",
 
     "Name_Required": "The name field is required",
+    "Name_String": "The name must be a string",
+    "Name_Max": "The name must be less than 200 characters",
     "Name_Updated_Successfully": "Name updated successfully",
     "Name_Updated_Failed": "Name update failed",
     
@@ -154,6 +158,14 @@
     "Email_Not_Found": "We can't find a user with that e-mail address",
     "Email_Not_Verified": "Your email address is not verified",
     "Email_Not_Verified_Resend": "Your email address is not verified. Please click the link in the email we sent you, or click below to resend the email.",
+    "Email_Required": "The email field is required",
+    "Email_String": "The email must be a string",
+    "Email_Lowercase": "The email must be a valid email address",
+    "Email_Invalid": "The email must be a valid email address",
+    "Email_Max": "The email must be less than 200 characters",
+    "Email_Updated_Successfully": "Email updated successfully",
+    "Email_Updated_Failed": "Email update failed",
+
 
     "User_Created_Successfully": "Utilisateur créé avec succès",
     "User_Deleted_Successfully": "User deleted successfully",
@@ -211,6 +223,9 @@
     "P_FIH.date_format" :"The first intake hour for your prescription must be in the format HH:MM",
     "P_M.required" :"The medication is required",
     "P_M.integer" :"The medication must be a number",
+    "P_FBDIH.min" :"The frequency between doses in hours must be at least 1",
+    "P_FBDIH.max" :"The frequency between doses in hours must be at most 24",
+    "P_FOIID.max" :"The frequency of intake in days must be at most 30 days between each intake",
 
     "Prescription_Created_Successfully": "Prescription created successfully",
     "Prescription_Updated_Successfully": "Prescription updated successfully",
@@ -223,20 +238,11 @@
     "Prescription_Edit_Successfully": "Prescription edit successfully",
     "Prescription_Edit_Failed": "Prescription edit failed",
   
-   
-
-
-
-
-    
-
-
-
-
-
 
     "MedicationName": "Medication Name:",
     "MedicationFunction": "Medication Function:",
+    "Medicatons_Retrieved_Successfully": "Medications retrieved successfully",
+    "Medicatons_Retrieved_Failed": "Medications retrieval failed",
 
     "Alerts": "Alerts",
     "Alerts log": "Alerts log",
@@ -252,7 +258,36 @@
     "Medication taken": "Medication taken",
     "Medication not taken": "Medication not taken",
     "Error": "Error",
-    "Status: ": "Status: "
+    "Status: ": "Status: ",
+    
+    "Devices": "Devices",
+    "AddNewDevice": "Add New Device",
+    "EditDevice": "Edit a Device",
+    "ZoomDevice": "Zoom on a device",
+    "AreYouSureYouWantToDeleteThisDevice": "Are you sure you want to delete this device?",
+    "DeviceNoSerie": "Device Serial Number:",
+    "EnterNoSerie": "Enter the serial number of the device",
+    "DeviceList": "Device List",
+    "AssociatedPatientFullName": "Associated Patient Full Name:",
+    "EnterAssociatedPatientFullName": "Enter the name of the associated patient",
+    "DeviceAssociatedPatientFullName": "Associated Patient Full Name:",
+    "Devices_Retrieved_Successfully": "Devices retrieved successfully",
+    "Devices_Retrieved_Failed": "Devices retrieval failed",
+    "Devices_Created_Successfully": "Device created successfully",
+    "Devices_Created_Failed": "Device creation failed",
+    "Devices_Updated_Successfully": "Device updated successfully",
+    "Devices_Updated_Failed": "Device update failed",
+    "Devices_Deleted_Successfully": "Device deleted successfully",
+    "Devices_Deleted_Failed": "Device deletion failed",
+    "Device_Not_Found": "Device not found",
+    "D_NS.required": "The serial number of the device is required",
+    "D_NS.string": "The serial number of the device must be a string",
+    "D_APFN.required":"The name of the associated patient is required",
+    "D_APFN.string":"The name of the associated patient must be a string"
+
+
+   
+
   
 
 }

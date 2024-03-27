@@ -11,15 +11,17 @@ trait HttpResponses
         return response()->json([
             'status' => 'success',
             'message' => $message,
-            'data' => $data
-        ], $code);
+            'data' => $data,
+            'code' => $code
+        ]);
     }
 
     protected function errorResponse($message, $code = 400): JsonResponse
     {
         return response()->json([
             'status' => 'error',
-            'message' => $message
-        ], $code);
+            'message' => $message,
+            'code' => $code
+        ]);
     }
 }
