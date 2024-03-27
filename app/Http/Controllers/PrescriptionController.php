@@ -206,13 +206,9 @@ class PrescriptionController extends Controller
     {
 
 
-
+        $prescription = Prescription::find($id);
         try {
-            $prescription = DB::table('prescriptions')
-                ->where('id', $id)
-                ->where('user_id', Auth::user()->id)
-                ->first()
-                ->delete();
+                $prescription->deleteOrFail();
 
             if (!$prescription) {
                 return $this->handleErrorResponseRedirectWEB_API(__('Prescription_Not_Found'), 404, 'prescriptions.index');
