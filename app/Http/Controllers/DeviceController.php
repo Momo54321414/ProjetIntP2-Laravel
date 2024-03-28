@@ -140,16 +140,21 @@ class DeviceController extends Controller
     public function destroy(string $locale, string $id)
     {
         try {
-
             $device = DB::table('devices')
                 ->where('id', $id)
                 ->where('user_id', Auth::user()->id)
-                ->delete();
-
+                ->first();
+    
             if (!$device) {
-                $this->handleErrorResponseRedirectWEB_API(__('Device_Not_Found'), 404, 'devices.index');
+                return $this->handleErrorResponseRedirectWEB_API(__('Device_Not_Found'), 404, 'devices.index');
             }
-
+    
+            // Delete the related logs
+            DB::table('logs')->where('device_id', $id)->delete();
+    
+            // Delete the device
+            DB::table('devices')->where('id', $id)->delete();
+    
             return $this->handleSuccessResponseRedirectWEB_API(
                 null,
                 __('Device_Deleted_Successfully'),

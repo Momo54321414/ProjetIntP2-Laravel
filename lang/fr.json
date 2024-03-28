@@ -264,6 +264,7 @@
     "AddNewDevice": "Ajouter un nouvel appareil",
     "EditDevice": "Modifier l'appareil",
     "ZoomDevice": "Zoom sur l'appareil",
+    "DeleteDevice": "Supprimer l'appareil",
     "AreYouSureYouWantToDeleteThisDevice": "Êtes-vous sûr de vouloir supprimer cet appareil?",
     "DeviceNoSerie": "Numéro de série de l'appareil:",
     "EnterNoSerie": "Entrez le numéro de série",
@@ -284,5 +285,7 @@
     "D_NS.string":"Le numéro de série de l'appareil doit être une chaîne de caractères",
     "D_NS.unique":"Le numéro de série de l'appareil est unique",
     "D_APFN.required":"Le nom complet du patient associé est requis",
-    "D_APFN.string":"Le nom complet du patient associé doit être une chaîne de caractères"
+    "D_APFN.string":"Le nom complet du patient associé doit être une chaîne de caractères",
+
+    "Logs_Empty": "Pas d'activité dans le journal pour le moment."
 }

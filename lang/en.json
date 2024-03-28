@@ -266,6 +266,7 @@
     "AddNewDevice": "Add New Device",
     "EditDevice": "Edit a Device",
     "ZoomDevice": "Zoom on a device",
+    "DeleteDevice": "Delete this Device",
     "AreYouSureYouWantToDeleteThisDevice": "Are you sure you want to delete this device?",
     "DeviceNoSerie": "Device Serial Number:",
     "EnterNoSerie": "Enter the serial number of the device",
@@ -285,7 +286,9 @@
     "D_NS.required": "The serial number of the device is required",
     "D_NS.string": "The serial number of the device must be a string",
     "D_APFN.required":"The name of the associated patient is required",
-    "D_APFN.string":"The name of the associated patient must be a string"
+    "D_APFN.string":"The name of the associated patient must be a string",
+
+    "Logs_Empty": "No logs to show yet"
 
 
    

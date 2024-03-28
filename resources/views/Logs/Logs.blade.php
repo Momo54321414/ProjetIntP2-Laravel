@@ -11,7 +11,7 @@ use Carbon\Carbon;
     <div class="overflow-y-scroll max-h-64">
         @if ($logs->isEmpty())
             <div class="text-gray-500 text-center">
-                {{ __('Logs') }}
+                {{ __('Logs_Empty') }}
             </div>
         @else
             @foreach ($logs as $log)
