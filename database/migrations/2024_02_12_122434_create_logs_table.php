@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql2')->unprepared('
         //Fichier config/database.php
-        Schema::connection('mysql-Laravel-DB')->create('logs', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('logs', function (Blueprint $table) {
             $table->id();
             $table->dateTime('actionTimestamp')->unique();
             $table->string('action');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql-Laravel-DB')->dropIfExists('logs');
+        Schema::connection('mysql2')->dropIfExists('logs');
     }
 };

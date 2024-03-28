@@ -12,10 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql2')->unprepared('
         //Fichier config/database.php
         //Trigger V3 basic sans delete
-        DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        DB::usingConnection('mysql2')->unprepared('
         CREATE TRIGGER prescriptions_after_update
                 AFTER UPDATE ON prescriptions
                 FOR EACH ROW
@@ -63,6 +63,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::usingConnection('mysql-Laravel-DB')->unprepared('DROP TRIGGER IF EXISTS prescriptions_after_update');
+        DB::usingConnection('mysql2')->unprepared('DROP TRIGGER IF EXISTS prescriptions_after_update');
     }
 };

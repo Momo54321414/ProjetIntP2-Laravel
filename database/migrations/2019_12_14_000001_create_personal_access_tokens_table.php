@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql2')->unprepared('
         //Fichier config/database.php
-        Schema::connection('mysql-Laravel-DB')->create('personal_access_tokens', function (Blueprint $table) {
+        Schema::connection('mysql2')->create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
             $table->morphs('tokenable');
             $table->string('name');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql-Laravel-DB')->dropIfExists('personal_access_tokens');
+        Schema::connection('mysql2')->dropIfExists('personal_access_tokens');
     }
 };

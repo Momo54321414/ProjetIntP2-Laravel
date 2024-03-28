@@ -12,9 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql2')->unprepared('
         //Fichier config/database.php
-        DB::usingConnection('mysql-Laravel-DB')->unprepared('
+        DB::usingConnection('mysql2')->unprepared('
        CREATE TRIGGER prescription_frequency_calculator_trigger
        BEFORE INSERT ON prescriptions
        FOR EACH ROW
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::usingConnection('mysql-Laravel-DB')->unprepared('DROP TRIGGER IF EXISTS prescription_frequency_calculator_trigger');
+        DB::usingConnection('mysql2')->unprepared('DROP TRIGGER IF EXISTS prescription_frequency_calculator_trigger');
     }
 };
