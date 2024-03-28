@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
         //Fichier config/database.php
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::connection('mysql-Laravel-DB')->create('failed_jobs', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
             $table->text('connection');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::connection('mysql-Laravel-DB')->dropIfExists('failed_jobs');
     }
 };

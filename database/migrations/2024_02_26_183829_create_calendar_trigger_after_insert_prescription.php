@@ -15,7 +15,7 @@ return new class extends Migration
 
 
 
-        DB::unprepared('
+        DB::usingConnection('mysql-Laravel-DB')->unprepared('
         CREATE TRIGGER create_calendar_after_insert_prescription
         AFTER INSERT ON prescriptions
         FOR EACH ROW
@@ -57,6 +57,6 @@ return new class extends Migration
     public function down(): void
     {
 
-        DB::unprepared('DROP TRIGGER IF EXISTS create_calendar_after_insert_prescription');
+        DB::usingConnection('mysql-Laravel-DB')->unprepared('DROP TRIGGER IF EXISTS create_calendar_after_insert_prescription');
     }
 };

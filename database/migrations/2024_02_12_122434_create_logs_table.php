@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
         //Fichier config/database.php
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::connection('mysql-Laravel-DB')->create('logs', function (Blueprint $table) {
             $table->id();
             $table->dateTime('actionTimestamp')->unique();
             $table->string('action');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logs');
+        Schema::connection('mysql-Laravel-DB')->dropIfExists('logs');
     }
 };

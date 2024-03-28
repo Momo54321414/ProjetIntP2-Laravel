@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
         //Fichier config/database.php
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::connection('mysql-Laravel-DB')->create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::connection('mysql-Laravel-DB')->dropIfExists('sessions');
     }
 };

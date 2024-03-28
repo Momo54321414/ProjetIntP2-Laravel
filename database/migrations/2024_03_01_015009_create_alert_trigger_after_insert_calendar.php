@@ -14,7 +14,7 @@ return new class extends Migration
     {
         //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
         //Fichier config/database.php
-        DB::unprepared('CREATE TRIGGER create_alert_after_insert_calendar
+        DB::usingConnection('mysql-Laravel-DB')->unprepared('CREATE TRIGGER create_alert_after_insert_calendar
         AFTER INSERT ON calendars
         FOR EACH ROW
         BEGIN
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::unprepared('DROP TRIGGER IF EXISTS create_alert_after_insert_calendar');
+        DB::usingConnection('mysql-Laravel-DB')->unprepared('DROP TRIGGER IF EXISTS create_alert_after_insert_calendar');
     }
 };

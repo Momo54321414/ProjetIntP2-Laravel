@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
         //Fichier config/database.php
-        Schema::create('calendars', function (Blueprint $table) {
+        Schema::connection('mysql-Laravel-DB')->create('calendars', function (Blueprint $table) {
             $table->id();
             $table->date('dateOfIntake');
             $table->time('hourOfIntake');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calendars');
+        Schema::connection('mysql-Laravel-DB')->dropIfExists('calendars');
     }
 };

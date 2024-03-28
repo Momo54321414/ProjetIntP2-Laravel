@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //Faire changement pour la connection avec le compte Laravel-DB DB::usingConnection('mysql-Laravel-DB')->unprepared('
         //Fichier config/database.php
-        Schema::create('prescriptions', function (Blueprint $table) {
+        Schema::connection('mysql-Laravel-DB')->create('prescriptions', function (Blueprint $table) {
             $table->id();
             $table->string('nameOfPrescription')->max(255);
             $table->date('dateOfPrescription');
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('prescriptions');
+        Schema::connection('mysql-Laravel-DB')->dropIfExists('prescriptions');
     }
 };
