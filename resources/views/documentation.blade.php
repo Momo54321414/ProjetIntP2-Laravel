@@ -1,9 +1,9 @@
-@extends('_layout.app') @section('title','Nouveau Formulaire') @section('content')
+<x-app-layout>
+    <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    
+    </h2>
+    <x-documentation />
+</x-slot>
 
-<div id="container">
-    <div id="banner">
-        Test
-    </div>
-</div>
-
-@endsection
+</x-app-layout>
